@@ -1,0 +1,24 @@
+{
+  "name": "helicoprion",
+  "version": "1.0.0",
+  "description": "Workout analysis",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^3.0.1",
+    "eslint-plugin-react": "^5.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remon-georgy/helicoprion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/remon-georgy/helicoprion/issues"
+  },
+  "homepage": "https://github.com/remon-georgy/helicoprion#readme"
+}
