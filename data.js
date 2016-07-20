@@ -19,7 +19,7 @@ var equipments = [
   'jump-rope'
 ];
 
-var excercises = [{
+var movements = [{
   id: 'pullup',
   equipments: ['pullup-rig']
 }, {
@@ -841,6 +841,7 @@ var wods = [{
   3 x8(75 % 1 RM), 2 x3(85 % ), 1 x1(95 % )
   *******************************************************************/
   {
+    name: 'Weightlifting #1',
     scoring: {
       _ref: {
         id: 'least-time',
@@ -894,6 +895,7 @@ var wods = [{
   16x Box jumps (24')
   ********************************************************************/
   {
+    name: 'Triplet #1',
     scoring: {
       _ref: {
         id: 'least-time'
@@ -974,7 +976,7 @@ var wods = [{
           rx: 0,
         }]
       },
-      // Separate excercise
+      // Separate movement
       {
         units: [{
           _ref: {
@@ -996,7 +998,7 @@ var wods = [{
     scoring: {
       _ref: {
         id: 'max-measure',
-        sequencing: 'timed-rouds',
+        sequencing: 'timed-rounds',
       },
       'round-work': 20,
       'round-rest': 10,
@@ -1349,3 +1351,9 @@ var wods = [{
     }]
   }
 ];
+
+module.exports = {
+  'wods': wods,
+  'movements': movements,
+  'equipments': equipments
+};
