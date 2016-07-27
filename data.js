@@ -6,803 +6,626 @@
 /**********************************************************************
 ANGIE
 
+{
+  movement: movements['/movement/'],
+  rx: {}
+}
+
 100 Pull-ups
 100 Push-ups
 100 Sit-ups
 100 Squats
 **********************************************************************/
-var equipments = [
-  'pullup',
-  'barbell',
-  'dumbell',
-  'rope',
-  'jump-rope'
-];
 
-var movements = [{
-  id: 'pullup',
-  equipments: ['pullup-rig']
-}, {
-  id: 'squat',
-  equipments: ['barbell', 'dumbell', 'Kettlebell']
-}];
+var movements = {
+  '/movement/pull-up': {
+    'id': '/movement/pull-up',
+    'name': 'Pull up',
+    'equipment': ['pull-up-rig', 'elastic-bands'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/push-up': {
+    'id': '/movement/push-up',
+    'name': 'Push up',
+    'equipment': ['none'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/sit-up': {
+    'id': '/movement/sit-up',
+    'name': 'Sit up',
+    'equipment': ['none', 'abmat'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/run': {
+    'id': '/movement/run',
+    'name': 'Run',
+    'equipment': ['none'],
+    'aspects': ['distance', 'load'],
+  },
+  '/movement/snatch': {
+    'id': '/movement/snatch',
+    'name': 'Snatch',
+    'equipment': ['none', 'barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/clean': {
+    'id': '/movement/clean',
+    'name': 'Clean',
+    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/squat': {
+    'id': '/movement/squat',
+    'name': 'Squat',
+    'equipment': ['none', 'barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/squat-overhead': {
+    'id': '/squat-overhead',
+    'name': 'Overhead Squat',
+    'equipment': ['none', 'barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/pistol': {
+    'id': '/movement/pistol',
+    'name': 'Pistol',
+    'equipment': ['none', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/clean-squat': {
+    'id': '/movement/clean-squat',
+    'name': 'Squat Clean',
+    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/deadlift': {
+    'id': '/movement/deadlift',
+    'name': 'Deadlift',
+    'equipment': ['barbell', 'dumbell', 'kettlebell'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/bench-press': {
+    'id': '/movement/bench-press',
+    'name': 'Bench Press',
+    'equipment': ['barbell', 'dumbell', 'kettlebell'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/handstand-push-up': {
+    'id': '/movement/handstand-push-up',
+    'name': 'Handstand Push Up',
+    'equipment': ['none', 'parallettes', 'abmat'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/ring-dips': {
+    'id': '/movement/ring-dips',
+    'name': 'Ring Dips',
+    'equipment': ['rings'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/thruster': {
+    'id': '/movement/thruster',
+    'name': 'Thruster',
+    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/clean-and-jerk': {
+    'id': '/movement/clean-and-jerk',
+    'name': 'Clean and Jerk',
+    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/kettlebell-swing': {
+    'id': '/movement/kettlebell-swing',
+    'name': 'Kettlebell Swing',
+    'equipment': ['kettlebell'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/row': {
+    'id': '/movement/row',
+    'name': 'Row',
+    'equipment': ['rower'],
+    'aspects': ['distance', 'damping'],
+  },
+  '/movement/wall-ball-shot': {
+    'id': '/movement/wall-ball-shot',
+    'name': 'Wall Ball Shot',
+    'equipment': ['medicine-ball'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/jump-rope-du': {
+    'id': '/movement/jump-rope-du',
+    'name': 'Double Under',
+    'equipment': ['jump-rope'],
+    'aspects': ['reps', 'load'],
+  },
+};
 
-var wods = [{
+var workouts = [
+  // For time
+  //
+  // 100 Pull-ups
+  // 100 Push-ups
+  // 100 Sit-ups
+  // 100 Squats
+  {
     name: 'Angie',
     scoring: {
-      _ref: {
-        id: 'least-time',
-        cat: 'fixed-work-variable-time'
-      }
+      name: 'For time',
+      type: 'FixedWorkVariableTime'
     },
-    // TODO rename to 'blocks'
-    units: [{
-      // TODO rename to 'movements'
-      units: [{
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 100
-      }, {
-        _ref: {
-          id: 'pushup',
-          measures: ['load'],
-        },
-        reps: 100
-      }, {
-        _ref: {
-          id: 'situp',
-          measures: ['load'],
-        },
-        reps: 100
-      }, {
-        _ref: {
-          id: 'squat',
-          measures: ['load'],
-        },
-        reps: 100
-      }]
+    clusters: [{
+      'units': [
+        {
+          movement: movements['/movement/pull-up'],
+          rx: {reps: 100}
+        }, {
+          movement: movements['/movement/push-up'],
+          rx: {reps: 100}
+        }, {
+          movement: movements['/movement/sit-up'],
+          rx: {reps: 100}
+        }, {
+          movement: movements['/movement/squat'],
+          rx: {reps: 100}
+        }
+      ]
     }]
   },
-
-  /**********************************************************************
-  Barbara
-
-  5X
-  20 Pull-ups
-  30 Push-ups
-  40 Sit-ups
-  50 Squats
-  Rest precisely three minutes between each round.
-  **********************************************************************/
+  // Barbara
+  //
+  // 5X
+  // 20 Pull-ups
+  // 30 Push-ups
+  // 40 Sit-ups
+  // 50 Squats
+  // Rest precisely three minutes between each round.
   {
     name: 'Barbara',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
-      // TODO what to do about that?
-      'rest-between-rounds': '3 minutes'
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
+      restBetweenRounds: 3*60,
     },
-    units: [{
+    clusters: [{
       rounds: 5,
       units: [{
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 20
+        movement: movements['/movement/pull-up'],
+        rx: {reps: 20}
+      },{
+        movement: movements['/movement/push-up'],
+        rx: {reps: 30}
       }, {
-        _ref: {
-          id: 'pushup',
-          measures: ['load'],
-        },
-        reps: 30
+        movement: movements['/movement/sit-up'],
+        rx: {reps: 40}
       }, {
-        _ref: {
-          id: 'situp',
-          measures: ['load'],
-        },
-        reps: 40
-      }, {
-        _ref: {
-          id: 'squat',
-          measures: ['load'],
-        },
-        reps: 50
+        movement: movements['/movement/squat'],
+        rx: {reps: 50}
       }]
     }]
   },
-
-  /**********************************************************************
-  Chelsea
-
-  Each min on the min for 30 min
-  5 Pull-ups
-  10 Push-ups
-  15 Squats
-  **********************************************************************/
+  // Each min on the min for 30 min
+  // 5 Pull-ups
+  // 10 Push-ups
+  // 15 Squats
   {
     name: 'Chelsea',
     scoring: {
-      _ref: {
-        id: 'max-rounds/per-time',
-        sequencing: 'emom'
-      },
-      'time-cap': '30 mins',
+      'name': 'Emom 30',
+      'type': 'FixedInterval',
+      'intervals': 30*60,
+      'intervalWork': 60,
+      // Implied 'intervalRest': 0
     },
-    units: [{
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 5
+        movement: movements['/movement/pull-up'],
+        rx: {reps: 5}
+      },{
+        movement: movements['/movement/push-up'],
+        rx: {reps: 10}
       }, {
-        _ref: {
-          id: 'pushup',
-          measures: ['load'],
-        },
-        reps: 10
-      }, {
-        _ref: {
-          id: 'squat',
-          measures: ['load'],
-        },
-        reps: 15
+        movement: movements['/movement/squat'],
+        rx: {reps: 15}
       }]
     }]
   },
-
-  /**********************************************************************
-  Cindy
-
-  5 Pull-ups
-  10 Push-ups
-  15 Squats
-
-  As many rounds as possible in 20 min
-  **********************************************************************/
+  // Cindy
+  //
+  // 5 Pull-ups
+  // 10 Push-ups
+  // 15 Squats
+  //
+  // As many rounds as possible in 20 min
   {
     name: 'Cindy',
     scoring: {
-      _ref: {
-        id: 'max-rounds/per-time',
-      },
-      'time-cap': '20 mins',
+      name: 'AMRAP 20',
+      type: 'FixedWorkVariableTime',
+      timeCap: 20*60,
     },
-    units: [{
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 5
+        movement: movements['/movement/pull-up'],
+        rx: {reps: 5}
+      },{
+        movement: movements['/movement/push-up'],
+        rx: {reps: 10}
       }, {
-        _ref: {
-          id: 'pushup',
-          measures: ['load'],
-        },
-        reps: 10
-      }, {
-        _ref: {
-          id: 'squat',
-          measures: ['load'],
-        },
-        reps: 15
+        movement: movements['/movement/squat'],
+        rx: {reps: 15}
       }]
     }]
   },
-
-  /**********************************************************************
-  Diane
-
-  Deadlift 225 lbs
-  Handstand push-ups
-
-  21-15-9 reps, for time
-  **********************************************************************/
+  // Diane
+  //
+  // Deadlift 225 lbs
+  // Handstand push-ups
+  //
+  // 21-15-9 reps, for time
   {
     name: 'Diane',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
-      rounds: '3',
+    clusters: [{
+      rounds: 3,
       units: [{
-        _ref: {
-          id: 'deadlift',
-          measures: ['load'],
-        },
-        rx: {
-          'load': 225,
-        },
-        reps: '21 - 6*round'
+        movement: movements['/movement/deadlift'],
+        rx: {'load': 225, 'reps': '21 - round*6'}
       }, {
-        _ref: {
-          id: 'handstand-pushup',
-          measures: ['load'],
-        },
-        reps: '21 - 6*round'
+        movement: movements['/movement/handstand-push-up'],
+        rx: {'reps': '21 - round*6'}
       }]
     }]
   },
-
-  /**********************************************************************
-  Elizabeth
-
-  Clean 135 lbs
-  Ring Dips
-
-  21-15-9 reps, for time
-  **********************************************************************/
+  // Elizabeth
+  //
+  // 21-15-9 reps, for time
+  //
+  // Clean 135 lbs
+  // Ring Dips
   {
     name: 'Elizabeth',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
-      rounds: '3',
+    clusters: [{
+      rounds: 3,
       units: [{
-        _ref: {
-          id: 'clean',
-          measures: ['load'],
-        },
-        rx: {
-          'load': 135,
-        },
-        reps: '21 - 6*round'
+        movement: movements['/movement/clean'],
+        rx: {'reps': '21 - round*6', 'load': 135}
       }, {
-        _ref: {
-          id: 'ring-dips',
-          measures: ['load'],
-        },
-        reps: '21 - 6*round'
+        movement: movements['/movement/ring-dips'],
+        rx: {'reps': '21 - round*6'}
       }]
     }]
   },
-
-  /**********************************************************************
-  Fran
-
-  Thruster 95 lbs
-  Pull-ups
-
-  21-15-9 reps, for time
-  **********************************************************************/
+  // Fran
+  //
+  // Thruster 95 lbs
+  // Pull-ups
+  //
+  // 21-15-9 reps, for time
   {
     name: 'Fran',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
-      rounds: '3',
+    clusters: [{
+      rounds: 3,
       units: [{
-        _ref: {
-          id: 'Thruster',
-          measures: ['load'],
-        },
-        rx: {
-          'load': 135,
-        },
-        reps: '21 - 6*round'
+        movement: movements['/movement/thruster'],
+        rx: {'reps': '21 - round*6', 'load': 95}
       }, {
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: '21 - 6*round'
+        movement: movements['/movement/pull-up'],
+        rx: {'reps': '21 - round*6'}
       }]
     }]
   },
-
-  /**********************************************************************
-  Grace
-
-  Clean and Jerk 135 lbs
-
-  30 reps for time
-  **********************************************************************/
+  // Grace
+  //
+  // Clean and Jerk 135 lbs
+  //
+  // 30 reps for time
   {
     name: 'Grace',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'clean-n-jerk',
-          measures: ['load'],
-        },
-        rx: {
-          'load': 135,
-        },
-        reps: 30
+        movement: movements['/movement/clean-and-jerk'],
+        rx: {'reps': '21 - round*6', 'load': 95}
       }]
     }]
   },
-
-  /**********************************************************************
-  Helen
-
-  3X
-  400 meter run
-  1.5 pood Kettlebell swing x 21
-  Pull-ups 12 reps
-  **********************************************************************/
+  // Helen
+  //
+  // 3X
+  // 400 meter run
+  // 1.5 pood Kettlebell swing x 21
+  // Pull-ups 12 reps
   {
     name: 'Helen',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
+    clusters: [{
       rounds: 3,
       units: [{
-        _ref: {
-          id: 'run',
-          measures: ['distance', 'load'],
-        },
-        rx: {
-          'distance': '400',
-        },
+        movement: movements['/movement/run'],
+        rx: {'distance': 400}
       }, {
-        _ref: {
-          id: 'kettlebell-swing',
-          measures: ['load'],
-        },
-        rx: {
-          'load': '1.5 poods',
-        },
-        reps: 21,
+        movement: movements['/movement/kettlebell-swing'],
+        rx: {'load': '54', 'reps': 21}
       }, {
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 12,
+        movement: movements['/movement/pull-up'],
+        rx: {'reps': 12}
       }]
     }]
   },
-
-  /**********************************************************************
-  Isabel
-
-  Snatch 135 pounds
-
-  30 reps for time
-  **********************************************************************/
+  // Isabel
+  //
+  // Snatch 135 pounds
+  //
+  // 30 reps for time
   {
     name: 'Isabel',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'snatch',
-          measures: ['load'],
-        },
-        rx: {
-          'load': 135,
-        },
-        reps: 30
+        movement: movements['/movement/snatch'],
+        rx: {'load': 135, 'reps': 30}
       }]
     }]
   },
-
-  /**********************************************************************
-  Jackie
-
-  1000 meter row
-  Thruster 45 lbs (50 reps)
-  Pull-ups (30 reps)
-  **********************************************************************/
+  // Jackie
+  //
+  // 1000 meter row
+  // Thruster 45 lbs (50 reps)
+  // Pull-ups (30 reps)
   {
     name: 'Jackie',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
-      rounds: 3,
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'row',
-          measures: ['distance', 'calories'],
-        },
-        rx: {
-          'distance': '1000 meter',
-        },
-      }, {
-        _ref: {
-          id: 'thruster',
-          measures: ['load'],
-        },
-        rx: {
-          'load': 45,
-        },
-        reps: 50,
-      }, {
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 30,
+        movement: movements['/movement/row'],
+        rx: {'distance': 1000}
       }]
     }]
   },
-
-  /**********************************************************************
-  Karen
-
-  Wall-ball 150 shots
-  **********************************************************************/
+  // Karen
+  //
+  // Wall-ball 150 shots
   {
     name: 'Karen',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'wall-ball',
-          measures: ['load'],
-        },
-        rx: {
-          'load': 24,
-        },
-        reps: 150
+        movement: movements['/movement/wall-ball-shot'],
+        rx: {reps: 150, load: 20}
       }]
     }]
   },
-
-  /**********************************************************************
-  Linda
-
-  Deadlift 1 1/2 BW
-  Bench BW
-  Clean 3/4 BW
-
-  10/9/8/7/6/5/4/3/2/1 rep
-  rounds for time
-  **********************************************************************/
+  // Linda
+  //
+  // Deadlift 1 1/2 BW
+  // Bench BW
+  // Clean 3/4 BW
+  //
+  // 10/9/8/7/6/5/4/3/2/1 rep
+  // rounds for time
   {
     name: 'Linda',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
+    clusters: [{
       rounds: 10,
       units: [{
-        _ref: {
-          id: 'deadlift',
-          measures: ['load'],
-        },
-        rx: {
-          'load': '1.5 * BW',
-        },
-        reps: '10 - round'
+        movement: movements['/movement/deadlift'],
+        rx: {reps: '10 - $round', 'load': '1.5 * $BW'}
       }, {
-        _ref: {
-          id: 'bench-press',
-          measures: ['load'],
-        },
-        rx: {
-          'load': 'BW',
-        },
-        reps: '10 - round'
+        movement: movements['/movement/bench-press'],
+        rx: {reps: '10 - $round', 'load': '$BW'}
       }, {
-        _ref: {
-          id: 'clean',
-          measures: ['load'],
-        },
-        rx: {
-          'load': '0.75 * BW',
-        },
-        reps: '10 - round'
+        movement: movements['/movement/clean'],
+        rx: {reps: '10 - $round', 'load': '0.75 * $BW'}
       }]
     }]
   },
-
-  /**********************************************************************
-  Mary
-
-  5 Handstand push-ups
-  10 1-legged squats
-  15 Pull-ups
-
-  As many rounds as possible in 20 min
-  **********************************************************************/
+  // Mary
+  //
+  // 5 Handstand push-ups
+  // 10 1-legged squats
+  // 15 Pull-ups
+  //
+  // As many rounds as possible in 20 min
   {
     name: 'Mary',
     scoring: {
-      _ref: {
-        id: 'max-rounds/per-time',
-      },
-      'time-cap': '20 mins',
+      name: 'AMRAP 20',
+      type: 'FixedTimeVariableWork',
+      measure: 'rounds',
+      timeCap: 1200,
     },
-    units: [{
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'handstand-pushup',
-          measures: ['load'],
-        },
-        reps: 5
+        movement: movements['/movement/handstand-push-up'],
+        rx: {reps: 5}
       }, {
-        _ref: {
-          id: 'one-legged-squat',
-          measures: ['load'],
-        },
-        reps: 10
+        movement: movements['/movement/pistol'],
+        rx: {reps: 10}
       }, {
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 15
+        movement: movements['/movement/pull-up'],
+        rx: {reps: 15}
       }]
     }]
   },
-
-  /**********************************************************************
-  Nancy
-
-  400 meter run
-  Overhead squat 95 lbs x 15
-
-  5 rounds for time
-  **********************************************************************/
+  // Nancy
+  //
+  // 400 meter run
+  // Overhead squat 95 lbs x 15
+  //
+  // 5 rounds for time
   {
     name: 'Nancy',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
+    clusters: [{
       rounds: 5,
       units: [{
-        _ref: {
-          id: 'run',
-          measures: ['distance', 'load'],
-        },
-        rx: {
-          'distance': '400',
-        },
+        movement: movements['/movement/run'],
+        rx: {'distance': 400}
       }, {
-        _ref: {
-          id: 'overhead-squat',
-          measures: ['load'],
-        },
-        rx: {
-          'load': '95',
-        },
-        reps: 15,
+        movement: movements['/movement/squat-overhead'],
+        rx: {reps: 15, load: 95}
       }]
     }]
   },
-
-  ///////////////////////////////////////////////////////////////////////
-  // New Girls
-  // http://www.crossfit.com/cf-info/faq.html
-  ///////////////////////////////////////////////////////////////////////
-
-  /************************************************************ PERFECT
-  Annie
-
-  Double-unders
-  Sit-ups
-
-  50-40-30-20 and 10 rep rounds; for time
-  *******************************************************************/
+  // Annie
+  //
+  // Double-unders
+  // Sit-ups
+  //
+  // 50-40-30-20 and 10 rep rounds; for time
   {
     name: 'Annie',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      }
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
-      rounds: 5,
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'double-unders',
-          measures: ['load']
-        },
-        reps: '50 - round*10'
-      }, {
-        'ref': {
-          id: 'situp',
-          measures: ['load']
-        },
-        reps: '50 - round*10'
+        movement: movements['/movement/jump-rope-du'],
+        rx: {reps: '50-10*$round'}
       }]
     }]
   },
-
-  /**********************************************************************
-  Eva
-
-  Run 800 meters
-  2 pood KB swing, 30 reps
-  30 pullups
-
-  5 rounds for time
-  **********************************************************************/
+  // Eva
+  //
+  // Run 800 meters
+  // 2 pood KB swing, 30 reps
+  // 30 pullups
+  //
+  // 5 rounds for time
   {
     name: 'Eva',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
+    clusters: [{
       rounds: 5,
       units: [{
-        _ref: {
-          id: 'run',
-          measures: ['distance', 'load'],
-        },
-        rx: {
-          'distance': '800',
-        },
+        movement: movements['/movement/run'],
+        rx: {'distance': 800}
       }, {
-        _ref: {
-          id: 'kettlebell-swing',
-          measures: ['load'],
-        },
-        rx: {
-          'load': '2 pood',
-        },
-        reps: 30,
+        movement: movements['/movement/kettlebell-swing'],
+        rx: {}
       }, {
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 30,
+        movement: movements['/movement/pull-up'],
+        rx: {}
       }]
     }]
   },
-
-  /**********************************************************************
-  Kelly
-
-  Run 400 meters
-  30 box jump, 24 inch box
-  30 Wall ball shots, 20 pound ball
-
-  5 rounds for time
-  **********************************************************************/
+  // Kelly
+  //
+  // Run 400 meters
+  // 30 box jump, 24 inch box
+  // 30 Wall ball shots, 20 pound ball
+  //
+  // 5 rounds for time
   {
     name: 'Kelly',
     scoring: {
-      _ref: {
-        id: 'least-time',
-      },
+      name: 'For time',
+      type: 'FixedWorkVariableTime',
     },
-    units: [{
+    clusters: [{
       rounds: 5,
       units: [{
-        _ref: {
-          id: 'run',
-          measures: ['distance', 'load'],
-        },
-        rx: {
-          'distance': '400',
-        },
+        movement: movements['/movement/run'],
+        rx: {'distance': 800}
       }, {
-        _ref: {
-          id: 'box-jump',
-          measures: ['load', 'height'],
-        },
-        rx: {
-          'height': 24,
-        },
-        reps: 30,
+        movement: movements['/movement/kettlebell-swing'],
+        rx: {}
       }, {
-        _ref: {
-          id: 'wallball',
-          measures: ['height', 'load'],
-        },
-        rx: {
-          'load': 20,
-        },
-        reps: 30,
+        movement: movements['/movement/pull-up'],
+        rx: {}
       }]
     }]
   },
-
-  /**********************************************************************
-  Lynne
-
-  Bodyweight bench press (e.g., same amount on bar as you weigh)
-  pullups
-
-  5 rounds for max reps. There is NO time component to this WOD, although some versions Rx the movements as a couplet.
-  **********************************************************************/
+  // TODO needs work on scoring part
+  // Lynne
+  //
+  // Bodyweight bench press (e.g., same amount on bar as you weigh)
+  // pullups
+  //
+  // 5 rounds for max reps. There is NO time component to this WOD, although some versions Rx the movements as a couplet.
   {
     name: 'Lynne',
     scoring: {
-      _ref: {
-        id: 'max-reps',
-      }
+      type: 'VariableTimeVariableWork',
+      aspects: ['reps'],
     },
-    units: [{
+    clusters: [{
       rounds: 5,
       units: [{
-        _ref: {
-          id: 'bench-press',
-          measures: ['load']
-        },
-        rx: {
-          'load': 'BW'
-        },
-        reps: 'MAX',
+        movement: movements['/movement/bench-press'],
+        rx: {reps: '$MAX', load: '$BW'}
       }, {
-        _ref: {
-          id: 'pullup',
-          measures: ['load'],
-        },
-        reps: 'MAX'
+        movement: movements['/movement/pull-up'],
+        rx: {reps: '$MAX'}
       }]
     }]
   },
-
-  /**********************************************************************
-  Nicole
-
-  Run 400 meters
-  Max rep Pull-ups
-
-  As many rounds as possible in 20 minutes.
-  Note number of pull-ups completed for each round.
-  **********************************************************************/
+  // Nicole
+  //
+  // Run 400 meters
+  // Max rep Pull-ups
+  //
+  // As many rounds as possible in 20 minutes.
+  // Note number of pull-ups completed for each round.
   {
     name: 'Nicole',
     scoring: {
-      _ref: {
-        id: 'max-rounds/per-time'
-      },
-      'time-cap': '20 minutes',
+      type: 'FixedTimeVariableWork',
+      timeCap: 1200,
+      aspect: 'reps'
     },
-    units: [{
+    clusters: [{
       units: [{
-        _ref: {
-          id: 'run',
-          measures: ['distance', 'load']
-        },
-        rx: {
-          'distance': '400 meter'
-        },
+        movement: movements['/movement/run'],
+        rx: {'distance': 400}
       }, {
-        _ref: {
-          id: 'pullup',
-          measures: ['load']
-        },
-        reps: 'MAX',
+        movement: movements['/movement/pull-up'],
+        rx: {reps: '$MAX'}
       }]
     }]
   },
 
+
+];
+
+var oldWorkouts = [
   /**********************************************************************
   Amanda
 
@@ -831,7 +654,7 @@ var wods = [{
 
   /////////////////////////////////////////////////////////////////////
   // WOD DRIVE
-  // www.woddrive.com/list-of-crossfit-wods.html
+  // www.woddrive.com/list-of-crossfit-workouts.html
   /////////////////////////////////////////////////////////////////////
 
   /************************************************************ PERFECT
@@ -1215,15 +1038,17 @@ var wods = [{
           measures: ['load'],
         },
         rx: {
-          'load': 135
+          'load': 135,
+          reps: '2 + round*2',
         },
-        reps: '2 + round*2',
       }, {
         _ref: {
           id: 'toes-to-bar',
           measures: ['load'],
         },
-        reps: '2 + round*2',
+        rx: {
+          reps: '2 + round*2',
+        }
       }]
     }]
   },
@@ -1251,9 +1076,9 @@ var wods = [{
           measures: ['load'],
         },
         rx: {
-          'load': '225 + round*40'
+          'load': '225 + round*40',
+          reps: 1
         },
-        'rep': '1'
       }]
     }]
   },
@@ -1353,7 +1178,6 @@ var wods = [{
 ];
 
 module.exports = {
-  'wods': wods,
+  'workouts': workouts,
   'movements': movements,
-  'equipments': equipments
 };
