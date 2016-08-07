@@ -3,19 +3,6 @@
 // http://www.crossfit.com/cf-info/faq.html
 ///////////////////////////////////////////////////////////////////////
 
-/**********************************************************************
-ANGIE
-
-{
-  movement: movements['/movement/'],
-  rx: {}
-}
-
-100 Pull-ups
-100 Push-ups
-100 Sit-ups
-100 Squats
-**********************************************************************/
 
 var movements = {
   '/movement/pull-up': {
@@ -27,25 +14,25 @@ var movements = {
   '/movement/push-up': {
     'id': '/movement/push-up',
     'name': 'Push up',
-    'equipment': ['none'],
+    'equipment': ['bodyweight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/sit-up': {
     'id': '/movement/sit-up',
     'name': 'Sit up',
-    'equipment': ['none', 'abmat'],
+    'equipment': ['bodyweight', 'abmat'],
     'aspects': ['reps', 'load'],
   },
   '/movement/run': {
     'id': '/movement/run',
     'name': 'Run',
-    'equipment': ['none'],
+    'equipment': ['bodyweight'],
     'aspects': ['distance', 'load'],
   },
   '/movement/snatch': {
     'id': '/movement/snatch',
     'name': 'Snatch',
-    'equipment': ['none', 'barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
+    'equipment': ['bodyweight', 'barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
     'aspects': ['reps', 'load'],
   },
   '/movement/clean': {
@@ -54,22 +41,38 @@ var movements = {
     'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/squat': {
-    'id': '/movement/squat',
-    'name': 'Squat',
-    'equipment': ['none', 'barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+  '/movement/squat-air': {
+    'id': '/movement/squat-air',
+    'name': 'Air Squat',
+    'equipment': ['bodyweight'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/squat-back': {
+    'id': '/movement/squat-back',
+    'name': 'Back Squat',
+    'parent': '/movement/squat',
+    'equipment': ['bodyweight', 'barbell', 'dumbell', 'kettlebell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/squat-overhead': {
     'id': '/squat-overhead',
+    'parent': '/movement/squat',
     'name': 'Overhead Squat',
-    'equipment': ['none', 'barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/squat-front': {
+    'id': '/movement/squat-front',
+    'parent': '/movement/squat',
+    'name': 'Front Squat',
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/pistol': {
     'id': '/movement/pistol',
+    'parent': '/movement/squat',
     'name': 'Pistol',
-    'equipment': ['none', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'equipment': ['bodyweight', 'dumbell', 'kettlebell', 'medicine-ball'],
     'aspects': ['reps', 'load'],
   },
   '/movement/clean-squat': {
@@ -93,7 +96,7 @@ var movements = {
   '/movement/handstand-push-up': {
     'id': '/movement/handstand-push-up',
     'name': 'Handstand Push Up',
-    'equipment': ['none', 'parallettes', 'abmat'],
+    'equipment': ['bodyweight', 'parallettes', 'abmat'],
     'aspects': ['reps', 'load'],
   },
   '/movement/ring-dips': {
@@ -132,11 +135,24 @@ var movements = {
     'equipment': ['medicine-ball'],
     'aspects': ['reps', 'load'],
   },
+  '/movement/jump-rope': {
+    'id': '/movement/jump-rope',
+    'name': 'Jump Rope',
+    'equipment': ['jump-rope'],
+    'aspects': ['reps', 'load'],
+  },
   '/movement/jump-rope-du': {
     'id': '/movement/jump-rope-du',
     'name': 'Double Under',
+    'parent': '/movement/jump-rope',
     'equipment': ['jump-rope'],
     'aspects': ['reps', 'load'],
+  },
+  '/movement/box-jump': {
+    'id': '/movement/box-jump',
+    'name': 'Box Jump',
+    'equipment': ['box'],
+    'aspects': ['reps', 'height'],
   },
 };
 
@@ -165,7 +181,7 @@ var workouts = [
           movement: movements['/movement/sit-up'],
           rx: {reps: 100}
         }, {
-          movement: movements['/movement/squat'],
+          movement: movements['/movement/squat-air'],
           rx: {reps: 100}
         }
       ]
@@ -198,7 +214,7 @@ var workouts = [
         movement: movements['/movement/sit-up'],
         rx: {reps: 40}
       }, {
-        movement: movements['/movement/squat'],
+        movement: movements['/movement/squat-air'],
         rx: {reps: 50}
       }]
     }]
@@ -224,7 +240,7 @@ var workouts = [
         movement: movements['/movement/push-up'],
         rx: {reps: 10}
       }, {
-        movement: movements['/movement/squat'],
+        movement: movements['/movement/squat-air'],
         rx: {reps: 15}
       }]
     }]
@@ -251,14 +267,14 @@ var workouts = [
         movement: movements['/movement/push-up'],
         rx: {reps: 10}
       }, {
-        movement: movements['/movement/squat'],
+        movement: movements['/movement/squat-air'],
         rx: {reps: 15}
       }]
     }]
   },
   // Diane
   //
-  // Deadlift 225 lbs
+  // Deadlift 225/155 lbs
   // Handstand push-ups
   //
   // 21-15-9 reps, for time
@@ -272,7 +288,7 @@ var workouts = [
       rounds: 3,
       units: [{
         movement: movements['/movement/deadlift'],
-        rx: {'load': 225, 'reps': '21 - round*6'}
+        rx: {'load': [225, 155], 'reps': '21 - round*6'}
       }, {
         movement: movements['/movement/handstand-push-up'],
         rx: {'reps': '21 - round*6'}
@@ -283,7 +299,7 @@ var workouts = [
   //
   // 21-15-9 reps, for time
   //
-  // Clean 135 lbs
+  // Clean 135/95 lbs
   // Ring Dips
   {
     name: 'Elizabeth',
@@ -295,7 +311,7 @@ var workouts = [
       rounds: 3,
       units: [{
         movement: movements['/movement/clean'],
-        rx: {'reps': '21 - round*6', 'load': 135}
+        rx: {'reps': '21 - round*6', 'load': [135, 95]}
       }, {
         movement: movements['/movement/ring-dips'],
         rx: {'reps': '21 - round*6'}
@@ -304,7 +320,7 @@ var workouts = [
   },
   // Fran
   //
-  // Thruster 95 lbs
+  // Thruster 95/65 lbs
   // Pull-ups
   //
   // 21-15-9 reps, for time
@@ -318,7 +334,7 @@ var workouts = [
       rounds: 3,
       units: [{
         movement: movements['/movement/thruster'],
-        rx: {'reps': '21 - round*6', 'load': 95}
+        rx: {'reps': '21 - round*6', 'load': [95, 65]}
       }, {
         movement: movements['/movement/pull-up'],
         rx: {'reps': '21 - round*6'}
@@ -327,7 +343,7 @@ var workouts = [
   },
   // Grace
   //
-  // Clean and Jerk 135 lbs
+  // Clean and Jerk 135/95 lbs
   //
   // 30 reps for time
   {
@@ -339,7 +355,7 @@ var workouts = [
     clusters: [{
       units: [{
         movement: movements['/movement/clean-and-jerk'],
-        rx: {'reps': '21 - round*6', 'load': 95}
+        rx: {'reps': '21 - round*6', 'load': [135, 95]}
       }]
     }]
   },
@@ -362,7 +378,7 @@ var workouts = [
         rx: {'distance': 400}
       }, {
         movement: movements['/movement/kettlebell-swing'],
-        rx: {'load': '54', 'reps': 21}
+        rx: {'load': [53, 35], 'reps': 21}
       }, {
         movement: movements['/movement/pull-up'],
         rx: {'reps': 12}
@@ -371,7 +387,7 @@ var workouts = [
   },
   // Isabel
   //
-  // Snatch 135 pounds
+  // Snatch 135/95 pounds
   //
   // 30 reps for time
   {
@@ -383,7 +399,7 @@ var workouts = [
     clusters: [{
       units: [{
         movement: movements['/movement/snatch'],
-        rx: {'load': 135, 'reps': 30}
+        rx: {'load': [135, 95], 'reps': 30}
       }]
     }]
   },
@@ -402,6 +418,12 @@ var workouts = [
       units: [{
         movement: movements['/movement/row'],
         rx: {'distance': 1000}
+      }, {
+        movement: movements['/movement/thruster'],
+        rx: {'load': 45}
+      }, {
+        movement: movements['/movement/pull-up'],
+        rx: {'reps': 30}
       }]
     }]
   },
@@ -417,7 +439,7 @@ var workouts = [
     clusters: [{
       units: [{
         movement: movements['/movement/wall-ball-shot'],
-        rx: {reps: 150, load: 20}
+        rx: {reps: 150, load: [20, 14]}
       }]
     }]
   },
@@ -480,7 +502,7 @@ var workouts = [
   // Nancy
   //
   // 400 meter run
-  // Overhead squat 95 lbs x 15
+  // Overhead squat 95/65 lbs x 15
   //
   // 5 rounds for time
   {
@@ -496,7 +518,7 @@ var workouts = [
         rx: {'distance': 400}
       }, {
         movement: movements['/movement/squat-overhead'],
-        rx: {reps: 15, load: 95}
+        rx: {reps: 15, load: [95, 65]}
       }]
     }]
   },
@@ -539,10 +561,10 @@ var workouts = [
         rx: {'distance': 800}
       }, {
         movement: movements['/movement/kettlebell-swing'],
-        rx: {}
+        rx: {reps: 30, load: 70}
       }, {
         movement: movements['/movement/pull-up'],
-        rx: {}
+        rx: {reps: 30}
       }]
     }]
   },
@@ -565,11 +587,11 @@ var workouts = [
         movement: movements['/movement/run'],
         rx: {'distance': 800}
       }, {
-        movement: movements['/movement/kettlebell-swing'],
-        rx: {}
+        movement: movements['/movement/box-jump'],
+        rx: {reps: 30, height: [24, 20]}
       }, {
-        movement: movements['/movement/pull-up'],
-        rx: {}
+        movement: movements['/movement/wall-ball-shot'],
+        rx: {reps: 30, load: [20, 14]}
       }]
     }]
   },

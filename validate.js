@@ -2,7 +2,7 @@ var data = require('./data');
 
 var equipmentSchema = {
   'id': '/Equipment',
-  'enum': ['none', 'barbell', 'dumbell', 'kettlebell', 'jump-rope', 'rope', 'abmat', 'rings', 'pull-up-rig', 'box', 'bench', 'rower', 'sled', 'yoke', 'tire', 'parallettes', 'plates', 'rack', 'elastic-bands', 'medicine-ball', 'weighted-vest', 'ghd', 'assault-bike']
+  'enum': ['bodyweight', 'barbell', 'dumbell', 'kettlebell', 'jump-rope', 'rope', 'abmat', 'rings', 'pull-up-rig', 'box', 'bench', 'rower', 'sled', 'yoke', 'tire', 'parallettes', 'plates', 'rack', 'elastic-bands', 'medicine-ball', 'weighted-vest', 'ghd', 'assault-bike']
 };
 
 
@@ -19,6 +19,7 @@ var movementSchema = {
   'properties': {
     'id': {'type': 'string'},
     'name': {'type': 'string'},
+    'parent': {'parent': 'Object'},
     'aspects': {
       'type': 'array',
       'minItems': 1,
@@ -146,7 +147,7 @@ v.addSchema(FixedIntervalSchema, '/FixedInterval');
 var show = true;
 data.workouts.forEach(function(workout) {
   var ret = v.validate(workout, workoutSchema);
-  if (ret) {
+  if (ret.errors) {
     console.log(ret.errors);
     show = false;
   }
