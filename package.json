@@ -22,9 +22,12 @@
   },
   "homepage": "https://github.com/remon-georgy/helicoprion#readme",
   "dependencies": {
-    "eslint": "^3.2.2",
+    "eslint": "^3.4.0",
+    "eslint-plugin-html": "^1.5.2",
+    "express": "^4.14.0",
     "jsonschema": "^1.1.0",
-    "mongodb": "^2.2.5",
-    "mongoose": "^4.5.8"
+    "lodash": "^4.15.0",
+    "react-native-web": "0.0.44",
+    "rethinkdb": "^2.3.3"
   }
 }
