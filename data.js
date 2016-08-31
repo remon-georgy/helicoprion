@@ -8,7 +8,7 @@ var movements = {
   '/movement/pull-up': {
     'id': '/movement/pull-up',
     'name': 'Pull up',
-    'equipment': ['pull-up-rig', 'elastic-bands'],
+    'equipment': ['pull-up-rig'],
     'aspects': ['reps', 'load'],
   },
   '/movement/push-up': {
@@ -20,7 +20,7 @@ var movements = {
   '/movement/sit-up': {
     'id': '/movement/sit-up',
     'name': 'Sit up',
-    'equipment': ['bodyweight', 'abmat'],
+    'equipment': ['bodyweight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/run': {
@@ -32,7 +32,7 @@ var movements = {
   '/movement/snatch': {
     'id': '/movement/snatch',
     'name': 'Snatch',
-    'equipment': ['bodyweight', 'barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/clean': {
@@ -51,14 +51,14 @@ var movements = {
     'id': '/movement/squat-back',
     'name': 'Back Squat',
     'parent': '/movement/squat',
-    'equipment': ['bodyweight', 'barbell', 'dumbell', 'kettlebell'],
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/squat-overhead': {
     'id': '/squat-overhead',
     'parent': '/movement/squat',
     'name': 'Overhead Squat',
-    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/squat-front': {
@@ -72,31 +72,31 @@ var movements = {
     'id': '/movement/pistol',
     'parent': '/movement/squat',
     'name': 'Pistol',
-    'equipment': ['bodyweight', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'equipment': ['bodyweight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/clean-squat': {
     'id': '/movement/clean-squat',
     'name': 'Squat Clean',
-    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/deadlift': {
     'id': '/movement/deadlift',
     'name': 'Deadlift',
-    'equipment': ['barbell', 'dumbell', 'kettlebell'],
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/bench-press': {
     'id': '/movement/bench-press',
     'name': 'Bench Press',
-    'equipment': ['barbell', 'dumbell', 'kettlebell'],
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/handstand-push-up': {
     'id': '/movement/handstand-push-up',
     'name': 'Handstand Push Up',
-    'equipment': ['bodyweight', 'parallettes', 'abmat'],
+    'equipment': ['bodyweight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/ring-dips': {
@@ -108,13 +108,13 @@ var movements = {
   '/movement/thruster': {
     'id': '/movement/thruster',
     'name': 'Thruster',
-    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/clean-and-jerk': {
     'id': '/movement/clean-and-jerk',
     'name': 'Clean and Jerk',
-    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball'],
+    'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
   '/movement/kettlebell-swing': {
@@ -172,16 +172,16 @@ var workouts = [
     clusters: [{
       'units': [
         {
-          movement: movements['/movement/pull-up'],
+          movementID: movements['/movement/pull-up'].id,
           rx: {reps: 100}
         }, {
-          movement: movements['/movement/push-up'],
+          movementID: movements['/movement/push-up'].id,
           rx: {reps: 100}
         }, {
-          movement: movements['/movement/sit-up'],
+          movementID: movements['/movement/sit-up'].id,
           rx: {reps: 100}
         }, {
-          movement: movements['/movement/squat-air'],
+          movementID: movements['/movement/squat-air'].id,
           rx: {reps: 100}
         }
       ]
@@ -205,16 +205,16 @@ var workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {reps: 20}
       },{
-        movement: movements['/movement/push-up'],
+        movementID: movements['/movement/push-up'].id,
         rx: {reps: 30}
       }, {
-        movement: movements['/movement/sit-up'],
+        movementID: movements['/movement/sit-up'].id,
         rx: {reps: 40}
       }, {
-        movement: movements['/movement/squat-air'],
+        movementID: movements['/movement/squat-air'].id,
         rx: {reps: 50}
       }]
     }]
@@ -234,13 +234,13 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {reps: 5}
       },{
-        movement: movements['/movement/push-up'],
+        movementID: movements['/movement/push-up'].id,
         rx: {reps: 10}
       }, {
-        movement: movements['/movement/squat-air'],
+        movementID: movements['/movement/squat-air'].id,
         rx: {reps: 15}
       }]
     }]
@@ -261,13 +261,13 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {reps: 5}
       },{
-        movement: movements['/movement/push-up'],
+        movementID: movements['/movement/push-up'].id,
         rx: {reps: 10}
       }, {
-        movement: movements['/movement/squat-air'],
+        movementID: movements['/movement/squat-air'].id,
         rx: {reps: 15}
       }]
     }]
@@ -287,10 +287,10 @@ var workouts = [
     clusters: [{
       rounds: 3,
       units: [{
-        movement: movements['/movement/deadlift'],
+        movementID: movements['/movement/deadlift'].id,
         rx: {'load': [225, 155], 'reps': '21 - round*6'}
       }, {
-        movement: movements['/movement/handstand-push-up'],
+        movementID: movements['/movement/handstand-push-up'].id,
         rx: {'reps': '21 - round*6'}
       }]
     }]
@@ -310,10 +310,10 @@ var workouts = [
     clusters: [{
       rounds: 3,
       units: [{
-        movement: movements['/movement/clean'],
+        movementID: movements['/movement/clean-squat'].id,
         rx: {'reps': '21 - round*6', 'load': [135, 95]}
       }, {
-        movement: movements['/movement/ring-dips'],
+        movementID: movements['/movement/ring-dips'].id,
         rx: {'reps': '21 - round*6'}
       }]
     }]
@@ -333,10 +333,10 @@ var workouts = [
     clusters: [{
       rounds: 3,
       units: [{
-        movement: movements['/movement/thruster'],
+        movementID: movements['/movement/thruster'].id,
         rx: {'reps': '21 - round*6', 'load': [95, 65]}
       }, {
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {'reps': '21 - round*6'}
       }]
     }]
@@ -354,7 +354,7 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/clean-and-jerk'],
+        movementID: movements['/movement/clean-and-jerk'].id,
         rx: {'reps': '21 - round*6', 'load': [135, 95]}
       }]
     }]
@@ -374,13 +374,13 @@ var workouts = [
     clusters: [{
       rounds: 3,
       units: [{
-        movement: movements['/movement/run'],
+        movementID: movements['/movement/run'].id,
         rx: {'distance': 400}
       }, {
-        movement: movements['/movement/kettlebell-swing'],
+        movementID: movements['/movement/kettlebell-swing'].id,
         rx: {'load': [53, 35], 'reps': 21}
       }, {
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {'reps': 12}
       }]
     }]
@@ -398,7 +398,7 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/snatch'],
+        movementID: movements['/movement/snatch'].id,
         rx: {'load': [135, 95], 'reps': 30}
       }]
     }]
@@ -416,13 +416,13 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/row'],
+        movementID: movements['/movement/row'].id,
         rx: {'distance': 1000}
       }, {
-        movement: movements['/movement/thruster'],
+        movementID: movements['/movement/thruster'].id,
         rx: {'load': 45}
       }, {
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {'reps': 30}
       }]
     }]
@@ -438,7 +438,7 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/wall-ball-shot'],
+        movementID: movements['/movement/wall-ball-shot'].id,
         rx: {reps: 150, load: [20, 14]}
       }]
     }]
@@ -460,13 +460,13 @@ var workouts = [
     clusters: [{
       rounds: 10,
       units: [{
-        movement: movements['/movement/deadlift'],
+        movementID: movements['/movement/deadlift'].id,
         rx: {reps: '10 - $round', 'load': '1.5 * $BW'}
       }, {
-        movement: movements['/movement/bench-press'],
+        movementID: movements['/movement/bench-press'].id,
         rx: {reps: '10 - $round', 'load': '$BW'}
       }, {
-        movement: movements['/movement/clean'],
+        movementID: movements['/movement/clean-squat'].id,
         rx: {reps: '10 - $round', 'load': '0.75 * $BW'}
       }]
     }]
@@ -488,13 +488,13 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/handstand-push-up'],
+        movementID: movements['/movement/handstand-push-up'].id,
         rx: {reps: 5}
       }, {
-        movement: movements['/movement/pistol'],
+        movementID: movements['/movement/pistol'].id,
         rx: {reps: 10}
       }, {
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {reps: 15}
       }]
     }]
@@ -514,10 +514,10 @@ var workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movement: movements['/movement/run'],
+        movementID: movements['/movement/run'].id,
         rx: {'distance': 400}
       }, {
-        movement: movements['/movement/squat-overhead'],
+        movementID: movements['/movement/squat-overhead'].id,
         rx: {reps: 15, load: [95, 65]}
       }]
     }]
@@ -536,7 +536,7 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/jump-rope-du'],
+        movementID: movements['/movement/jump-rope-du'].id,
         rx: {reps: '50-10*$round'}
       }]
     }]
@@ -557,13 +557,13 @@ var workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movement: movements['/movement/run'],
+        movementID: movements['/movement/run'].id,
         rx: {'distance': 800}
       }, {
-        movement: movements['/movement/kettlebell-swing'],
+        movementID: movements['/movement/kettlebell-swing'].id,
         rx: {reps: 30, load: 70}
       }, {
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {reps: 30}
       }]
     }]
@@ -584,13 +584,13 @@ var workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movement: movements['/movement/run'],
+        movementID: movements['/movement/run'].id,
         rx: {'distance': 800}
       }, {
-        movement: movements['/movement/box-jump'],
+        movementID: movements['/movement/box-jump'].id,
         rx: {reps: 30, height: [24, 20]}
       }, {
-        movement: movements['/movement/wall-ball-shot'],
+        movementID: movements['/movement/wall-ball-shot'].id,
         rx: {reps: 30, load: [20, 14]}
       }]
     }]
@@ -611,10 +611,10 @@ var workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movement: movements['/movement/bench-press'],
+        movementID: movements['/movement/bench-press'].id,
         rx: {reps: '$MAX', load: '$BW'}
       }, {
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {reps: '$MAX'}
       }]
     }]
@@ -635,10 +635,10 @@ var workouts = [
     },
     clusters: [{
       units: [{
-        movement: movements['/movement/run'],
+        movementID: movements['/movement/run'].id,
         rx: {'distance': 400}
       }, {
-        movement: movements['/movement/pull-up'],
+        movementID: movements['/movement/pull-up'].id,
         rx: {reps: '$MAX'}
       }]
     }]
