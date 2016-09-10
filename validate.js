@@ -1,4 +1,5 @@
 var data = require('./data');
+var Model = require('./db');
 
 var equipmentSchema = {
   'id': '/Equipment',
@@ -8,7 +9,7 @@ var equipmentSchema = {
 
 var aspectSchema = {
   'id': '/Aspect',
-  'enum': ['load', 'distance', 'height', 'reps', 'calories', 'damping']
+  'enum': ['load', 'distance', 'height', 'reps', 'calories', 'damping', 'rounds']
 };
 
 var movementSchema = {
@@ -35,10 +36,11 @@ var movementSchema = {
 // @todo rounds
 var unitSchema = {
   'id': '/Unit',
-  'required': ['movement', 'rx'],
+  'required': ['rx'],
   'additionalProperties': false,
   'properties': {
     'movement': {$ref: '/Movement'},
+    'movementID': {type: 'string'},
     'rx': {
       'type': 'object',
     }
@@ -52,6 +54,13 @@ var ClusterSchema = {
   'properties': {
     'name': {'type': 'string'},
     'rounds': {'type': 'integer', 'default': 1},
+    'repScheme': {'enum': [
+      '50-10*$round', // 50-40-30-20-10
+      '21-$round*6', // 21-15-9
+      '15-$round*3', // 15-12-9
+      '10-$round', // 10-9-8-7-6-5-4-3-2-1
+      '9-$round*2', // 9-7-5
+    ]},
     'units': {
       'type': 'array',
       'minItems': 1,
@@ -62,41 +71,43 @@ var ClusterSchema = {
 
 var FixedWorkVariableTimeSchema = {
   'id': '/FixedWorkVariableTime',
+  'required': ['type'],
+  'additionalProperties': false,
   'properties': {
     'type': {'enum': ['FixedWorkVariableTime']},
     'name': {'type': 'string'},
-    'restBetweenRounds': {'type': 'integer'}
+    'restBetweenRounds': {'type': 'integer'},
   }
 };
 
 var FixedTimeVariableWorkSchema = {
   'id': '/FixedTimeVariableWork',
-  'required': ['timeCap'],
+  'required': ['timeCap', 'aspect', 'type'],
+  'additionalProperties': false,
   'properties': {
     'type': {'enum': ['FixedTimeVariableWork']},
     'name': {'type': 'string'},
-    'aspect': {'enum': ['rounds', 'aspects', 'reps']},
+    'aspect': {'$ref': '/Aspect'},
     'timeCap': {'type': 'integer'},
     'restBetweenRounds': {'type': 'integer'}
   }
 };
 
-var VariableTimeVariableWorkSchema = {
-  'id': '/VariableTimeVariableWork',
-  'required': ['aspects'],
+var VariableWorkVariableTimeSchema = {
+  'id': '/VariableWorkVariableTime',
+  'required': ['aspect', 'type'],
+  'additionalProperties': false,
   'properties': {
-    'type': {'enum': ['VariableTimeVariableWork']},
+    'type': {'enum': ['VariableWorkVariableTime']},
     'rounds': {'type': 'integer', 'default': 1},
     'name': {'type': 'string'},
-    'aspects': {
-      'type': 'array',
-      'items': {'$ref': '/Aspect'}
-    },
+    'aspect': {'$ref': '/Aspect'},
   }
 };
 var FixedIntervalSchema = {
   'id': '/FixedInterval',
   'required': ['intervalWork', 'intervals'],
+  'additionalProperties': false,
   'properties': {
     'name': {'type': 'string'},
     'type': {'enum': ['FixedInterval']},
@@ -106,20 +117,21 @@ var FixedIntervalSchema = {
   }
 };
 
+
 var workoutSchema = {
   'id': '/Workout',
   'type': 'object',
   'required': ['name', 'scoring', 'clusters'],
   'additionalProperties': false,
   'properties': {
-    
+    'id': {'type': 'string'},
     'name': {'type': 'string'},
     'scoring': {
       'type': 'object',
       'oneOf': [
         {'$ref': '/FixedWorkVariableTime'},
         {'$ref': '/FixedTimeVariableWork'},
-        {'$ref': '/VariableTimeVariableWork'},
+        {'$ref': '/VariableWorkVariableTime'},
         {'$ref': '/FixedInterval'},
       ]
     },
@@ -128,6 +140,8 @@ var workoutSchema = {
       'minItems': 1,
       'items': {'$ref': '/Cluster'}
     },
+    'equipments': {type: 'array'},
+    'movements': {type: 'array'},
   }
 };
 
@@ -140,16 +154,18 @@ v.addSchema(equipmentSchema, '/Equipment');
 v.addSchema(ClusterSchema, '/Cluster');
 v.addSchema(FixedWorkVariableTimeSchema, '/FixedWorkVariableTime');
 v.addSchema(FixedTimeVariableWorkSchema, '/FixedTimeVariableWork');
-v.addSchema(VariableTimeVariableWorkSchema, '/VariableTimeVariableWork');
+v.addSchema(VariableWorkVariableTimeSchema, '/VariableWorkVariableTime');
 v.addSchema(FixedIntervalSchema, '/FixedInterval');
 
-
-var show = true;
-data.workouts.forEach(function(workout) {
-  var ret = v.validate(workout, workoutSchema);
-  if (ret.errors) {
-    console.log(ret.errors);
-    show = false;
-  }
+var model = new Model((error) => {
+  model.getWorkouts((workouts) => {
+    workouts.forEach(function(workout) {
+      var ret = v.validate(workout, workoutSchema);
+      if (ret.errors.length > 0) {
+        console.log(ret.errors);
+        console.log(workout);
+        console.log('==============================');
+      }
+    });
+  });
 });
-

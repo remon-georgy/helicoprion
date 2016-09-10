@@ -35,6 +35,12 @@ var movements = {
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
+  '/movement/snatch-squat': {
+    'id': '/movement/snatch-squat',
+    'name': 'Squat Snatch',
+    'equipment': ['barbell'],
+    'aspects': ['reps', 'load'],
+  },
   '/movement/clean': {
     'id': '/movement/clean',
     'name': 'Clean',
@@ -154,6 +160,12 @@ var movements = {
     'equipment': ['box'],
     'aspects': ['reps', 'height'],
   },
+  '/movement/muscle-up': {
+    'id': '/movement/muscle-up',
+    'name': 'Muscle up',
+    'equipment': ['rings'],
+    'aspects': ['reps'],
+  },
 };
 
 var workouts = [
@@ -200,7 +212,7 @@ var workouts = [
     scoring: {
       name: 'For time',
       type: 'FixedWorkVariableTime',
-      restBetweenRounds: 3*60,
+      restBetweenRounds: 180,
     },
     clusters: [{
       rounds: 5,
@@ -256,8 +268,9 @@ var workouts = [
     name: 'Cindy',
     scoring: {
       name: 'AMRAP 20',
-      type: 'FixedWorkVariableTime',
-      timeCap: 20*60,
+      type: 'FixedTimeVariableWork',
+      aspect: 'rounds',
+      timeCap: 1200,
     },
     clusters: [{
       units: [{
@@ -286,12 +299,12 @@ var workouts = [
     },
     clusters: [{
       rounds: 3,
+      repScheme: '21-$round*6',
       units: [{
         movementID: movements['/movement/deadlift'].id,
-        rx: {'load': [225, 155], 'reps': '21 - round*6'}
+        rx: {'load': [225, 155]}
       }, {
         movementID: movements['/movement/handstand-push-up'].id,
-        rx: {'reps': '21 - round*6'}
       }]
     }]
   },
@@ -309,12 +322,12 @@ var workouts = [
     },
     clusters: [{
       rounds: 3,
+      repScheme: '21-$round*6',
       units: [{
         movementID: movements['/movement/clean-squat'].id,
-        rx: {'reps': '21 - round*6', 'load': [135, 95]}
+        rx: {'load': [135, 95]}
       }, {
         movementID: movements['/movement/ring-dips'].id,
-        rx: {'reps': '21 - round*6'}
       }]
     }]
   },
@@ -332,12 +345,12 @@ var workouts = [
     },
     clusters: [{
       rounds: 3,
+      repScheme: '21-$round*6',
       units: [{
         movementID: movements['/movement/thruster'].id,
-        rx: {'reps': '21 - round*6', 'load': [95, 65]}
+        rx: {'load': [95, 65]}
       }, {
         movementID: movements['/movement/pull-up'].id,
-        rx: {'reps': '21 - round*6'}
       }]
     }]
   },
@@ -353,9 +366,11 @@ var workouts = [
       type: 'FixedWorkVariableTime',
     },
     clusters: [{
+      rounds: 3,
+      repScheme: '21-$round*6',
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
-        rx: {'reps': '21 - round*6', 'load': [135, 95]}
+        rx: {'load': [135, 95]}
       }]
     }]
   },
@@ -459,15 +474,16 @@ var workouts = [
     },
     clusters: [{
       rounds: 10,
+      repScheme: '10-$round',
       units: [{
         movementID: movements['/movement/deadlift'].id,
-        rx: {reps: '10 - $round', 'load': '1.5 * $BW'}
+        rx: {'load': '1.5 * $BW'}
       }, {
         movementID: movements['/movement/bench-press'].id,
-        rx: {reps: '10 - $round', 'load': '$BW'}
+        rx: {'load': '$BW'}
       }, {
         movementID: movements['/movement/clean-squat'].id,
-        rx: {reps: '10 - $round', 'load': '0.75 * $BW'}
+        rx: {'load': '0.75 * $BW'}
       }]
     }]
   },
@@ -483,7 +499,7 @@ var workouts = [
     scoring: {
       name: 'AMRAP 20',
       type: 'FixedTimeVariableWork',
-      measure: 'rounds',
+      aspect: 'rounds',
       timeCap: 1200,
     },
     clusters: [{
@@ -527,7 +543,7 @@ var workouts = [
   // Double-unders
   // Sit-ups
   //
-  // 50-40-30-20 and 10 rep rounds; for time
+  // 50-40-30-20 and10 rep rounds; for time
   {
     name: 'Annie',
     scoring: {
@@ -535,12 +551,12 @@ var workouts = [
       type: 'FixedWorkVariableTime',
     },
     clusters: [{
+      rounds: 5,
+      repScheme: '50-10*$round',
       units: [{
         movementID: movements['/movement/jump-rope-du'].id,
-        rx: {reps: '50-10*$round'}
       }, {
         movementID: movements['/movement/sit-up'].id,
-        rx: {reps: '50-10*$round'}
       }]
     }]
   },
@@ -608,17 +624,16 @@ var workouts = [
   {
     name: 'Lynne',
     scoring: {
-      type: 'VariableTimeVariableWork',
-      aspects: ['reps'],
+      type: 'VariableWorkVariableTime',
+      aspect: 'reps',
     },
     clusters: [{
       rounds: 5,
       units: [{
         movementID: movements['/movement/bench-press'].id,
-        rx: {reps: '$MAX', load: '$BW'}
+        rx: {load: '$BW'}
       }, {
         movementID: movements['/movement/pull-up'].id,
-        rx: {reps: '$MAX'}
       }]
     }]
   },
@@ -632,6 +647,7 @@ var workouts = [
   {
     name: 'Nicole',
     scoring: {
+      name: 'For reps',
       type: 'FixedTimeVariableWork',
       timeCap: 1200,
       aspect: 'reps'
@@ -646,6 +662,68 @@ var workouts = [
       }]
     }]
   },
+  // Amanda
+  // 9-7-5 Reps For Time
+  // Muscle-Ups
+  // Snatches (135/95 lbs)
+  {
+    name: 'Amanda',
+    scoring: {
+      type: 'FixedWorkVariableTime',
+    },
+    clusters: [{
+      rounds: 3,
+      repScheme: '9-$round*2',
+      units: [{
+        movementID: movements['/movement/muscle-up'].id,
+      }, {
+        movementID: movements['/movement/snatch-squat'].id,
+        rx: {load: [135, 95]}
+      }]
+    }]
+  },
+  // Christine
+  // 3 Rounds for Time
+  // 500 meter Row
+  // 12 Deadlifts (Bodyweight)
+  // 21 Box Jumps (24/20 in)
+  {
+    name: 'Christine',
+    scoring: {
+      type: 'FixedWorkVariableTime',
+    },
+    clusters: [{
+      rounds: 3,
+      units: [{
+        movementID: movements['/movement/run'].id,
+        rx: {distance: 500}
+      }, {
+        movementID: movements['/movement/deadlift'].id,
+        rx: {reps: 12, 'load': '$BW'}
+      }, {
+        movementID: movements['/movement/box-jump'].id,
+        rx: {reps: 21}
+      }]
+    }]
+  },
+  // GWEN
+  // 15-12-9 Reps
+  // Clean-and-Jerk
+  {
+    name: 'Gwen',
+    scoring: {
+      type: 'VariableWorkVariableTime',
+      name: 'For load',
+      aspect: 'load',
+    },
+    clusters: [{
+      rounds: 3,
+      repScheme: '15-$round*3',
+      units: [{
+        movementID: movements['/movement/clean-and-jerk'].id,
+      }]
+    }]
+  }
 ];
 
 module.exports = {
