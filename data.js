@@ -212,10 +212,10 @@ var workouts = [
     scoring: {
       name: 'For time',
       type: 'FixedWorkVariableTime',
-      restBetweenRounds: 180,
     },
     clusters: [{
       rounds: 5,
+      restBetweenRounds: 180,
       units: [{
         movementID: movements['/movement/pull-up'].id,
         rx: {reps: 20}
@@ -231,6 +231,8 @@ var workouts = [
       }]
     }]
   },
+  // Chelsea
+  //
   // Each min on the min for 30 min
   // 5 Pull-ups
   // 10 Push-ups
@@ -240,7 +242,7 @@ var workouts = [
     scoring: {
       'name': 'Emom 30',
       'type': 'FixedInterval',
-      'intervals': 30*60,
+      'intervals': 30,
       'intervalWork': 60,
       // Implied 'intervalRest': 0
     },
@@ -435,7 +437,7 @@ var workouts = [
         rx: {'distance': 1000}
       }, {
         movementID: movements['/movement/thruster'].id,
-        rx: {'load': 45}
+        rx: {'load': 45, reps: 50}
       }, {
         movementID: movements['/movement/pull-up'].id,
         rx: {'reps': 30}

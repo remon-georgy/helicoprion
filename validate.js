@@ -54,6 +54,7 @@ var ClusterSchema = {
   'properties': {
     'name': {'type': 'string'},
     'rounds': {'type': 'integer', 'default': 1},
+    'restBetweenRounds': {'type': 'integer'},
     'repScheme': {'enum': [
       '50-10*$round', // 50-40-30-20-10
       '21-$round*6', // 21-15-9
@@ -76,7 +77,6 @@ var FixedWorkVariableTimeSchema = {
   'properties': {
     'type': {'enum': ['FixedWorkVariableTime']},
     'name': {'type': 'string'},
-    'restBetweenRounds': {'type': 'integer'},
   }
 };
 
