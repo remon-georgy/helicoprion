@@ -1,3 +1,7 @@
+/**
+ * @flow
+ */
+
 var r = require('rethinkdb');
 
 module.exports = class Model {

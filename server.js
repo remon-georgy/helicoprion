@@ -1,3 +1,7 @@
+/**
+ * @flow
+ */
+
 var r = require('rethinkdb');
 var express = require('express');
 var app = express();

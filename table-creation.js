@@ -1,3 +1,7 @@
+/**
+ * @flow
+ */
+
 var movements = require('./data').movements;
 var workouts = require('./data').workouts;
 var r = require('rethinkdb');

@@ -1,3 +1,7 @@
+/**
+ * @flow
+ */
+
 var data = require('./data');
 var Model = require('./db');
 
