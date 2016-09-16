@@ -181,11 +181,10 @@ var workouts = [
   // 100 Squats
   {
     name: 'Angie',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime'
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
+      // missing 'timing' means that time is unlimited
       'units': [
         {
           movementID: movements['/movement/pull-up'].id,
@@ -213,10 +212,8 @@ var workouts = [
   // Rest precisely three minutes between each round.
   {
     name: 'Barbara',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    type: 'FixedWorkVariableTime',
+    scoring: 'time',
     clusters: [{
       rounds: 5,
       restBetweenRounds: 180,
@@ -243,14 +240,17 @@ var workouts = [
   // 15 Squats
   {
     name: 'Chelsea',
-    scoring: {
-      'name': 'Emom 30',
-      'type': 'FixedInterval',
-      'intervals': 30,
-      'intervalWork': 60,
-      // Implied 'intervalRest': 0
-    },
+    scoring: 'rounds',
+    type: 'FixedInterval',
     clusters: [{
+      timing: {
+        type: 'FI',
+        count: 30,
+        deathBy: true,
+        length: 60,
+        // TODO optional
+        // work: 60, // no included rest.
+      },
       units: [{
         movementID: movements['/movement/pull-up'].id,
         rx: {reps: 5}
@@ -272,13 +272,13 @@ var workouts = [
   // As many rounds as possible in 20 min
   {
     name: 'Cindy',
-    scoring: {
-      name: 'AMRAP 20',
-      type: 'FixedTimeVariableWork',
-      aspect: 'rounds',
-      timeCap: 1200,
-    },
+    type: 'FixedTimeVariableWork',
+    scoring: 'rounds',
     clusters: [{
+      timing: {
+        type: 'AMRAP',
+        timeCap: 1200
+      },
       units: [{
         movementID: movements['/movement/pull-up'].id,
         rx: {reps: 5}
@@ -299,10 +299,8 @@ var workouts = [
   // 21-15-9 reps, for time
   {
     name: 'Diane',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    type: 'FixedWorkVariableTime',
+    scoring: 'time',
     clusters: [{
       rounds: 3,
       repScheme: '21-$round*6',
@@ -322,10 +320,8 @@ var workouts = [
   // Ring Dips
   {
     name: 'Elizabeth',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 3,
       repScheme: '21-$round*6',
@@ -345,10 +341,8 @@ var workouts = [
   // 21-15-9 reps, for time
   {
     name: 'Fran',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 3,
       repScheme: '21-$round*6',
@@ -367,16 +361,14 @@ var workouts = [
   // 30 reps for time
   {
     name: 'Grace',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 3,
       repScheme: '21-$round*6',
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
-        rx: {'load': [135, 95]}
+        rx: {'load': [135, 95], reps: 30}
       }]
     }]
   },
@@ -388,10 +380,8 @@ var workouts = [
   // Pull-ups 12 reps
   {
     name: 'Helen',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 3,
       units: [{
@@ -413,10 +403,8 @@ var workouts = [
   // 30 reps for time
   {
     name: 'Isabel',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       units: [{
         movementID: movements['/movement/snatch'].id,
@@ -431,10 +419,8 @@ var workouts = [
   // Pull-ups (30 reps)
   {
     name: 'Jackie',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       units: [{
         movementID: movements['/movement/row'].id,
@@ -453,10 +439,8 @@ var workouts = [
   // Wall-ball 150 shots
   {
     name: 'Karen',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       units: [{
         movementID: movements['/movement/wall-ball-shot'].id,
@@ -474,10 +458,8 @@ var workouts = [
   // rounds for time
   {
     name: 'Linda',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 10,
       repScheme: '10-$round',
@@ -502,13 +484,13 @@ var workouts = [
   // As many rounds as possible in 20 min
   {
     name: 'Mary',
-    scoring: {
-      name: 'AMRAP 20',
-      type: 'FixedTimeVariableWork',
-      aspect: 'rounds',
-      timeCap: 1200,
-    },
+    type: 'FixedTimeVariableWork',
+    scoring: 'rounds',
     clusters: [{
+      timing: {
+        type: 'rounds',
+        timeCap: 1200,
+      },
       units: [{
         movementID: movements['/movement/handstand-push-up'].id,
         rx: {reps: 5}
@@ -529,10 +511,8 @@ var workouts = [
   // 5 rounds for time
   {
     name: 'Nancy',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 5,
       units: [{
@@ -552,10 +532,8 @@ var workouts = [
   // 50-40-30-20 and10 rep rounds; for time
   {
     name: 'Annie',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 5,
       repScheme: '50-10*$round',
@@ -575,10 +553,8 @@ var workouts = [
   // 5 rounds for time
   {
     name: 'Eva',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 5,
       units: [{
@@ -602,10 +578,8 @@ var workouts = [
   // 5 rounds for time
   {
     name: 'Kelly',
-    scoring: {
-      name: 'For time',
-      type: 'FixedWorkVariableTime',
-    },
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
     clusters: [{
       rounds: 5,
       units: [{
@@ -620,8 +594,9 @@ var workouts = [
       }]
     }]
   },
-  // TODO needs work on scoring part
   // Lynne
+  // TODO perhaps declare there's no timing. This way it looks like a "For time" wod. But
+  // this is very edgy wod anyway.
   //
   // Bodyweight bench press (e.g., same amount on bar as you weigh)
   // pullups
@@ -629,17 +604,16 @@ var workouts = [
   // 5 rounds for max reps. There is NO time component to this WOD, although some versions Rx the movements as a couplet.
   {
     name: 'Lynne',
-    scoring: {
-      type: 'VariableWorkVariableTime',
-      aspect: 'reps',
-    },
+    type: 'VariableWorkVariableTime',
+    scoring: 'reps',
     clusters: [{
       rounds: 5,
       units: [{
         movementID: movements['/movement/bench-press'].id,
-        rx: {load: '$BW'}
+        rx: {reps: '$MAX', load: '$BW'}
       }, {
         movementID: movements['/movement/pull-up'].id,
+        rx: {reps: '$MAX'}
       }]
     }]
   },
@@ -652,13 +626,13 @@ var workouts = [
   // Note number of pull-ups completed for each round.
   {
     name: 'Nicole',
-    scoring: {
-      name: 'For reps',
-      type: 'FixedTimeVariableWork',
-      timeCap: 1200,
-      aspect: 'reps'
-    },
+    type: 'FixedTimeVariableWork',
+    scoring: 'reps',
     clusters: [{
+      timing: {
+        type: 'rounds',
+        timeCap: 1200,
+      },
       units: [{
         movementID: movements['/movement/run'].id,
         rx: {'distance': 400}
@@ -674,9 +648,8 @@ var workouts = [
   // Snatches (135/95 lbs)
   {
     name: 'Amanda',
-    scoring: {
-      type: 'FixedWorkVariableTime',
-    },
+    type: 'FixedWorkVariableTime',
+    scoring: 'time',
     clusters: [{
       rounds: 3,
       repScheme: '9-$round*2',
@@ -695,13 +668,12 @@ var workouts = [
   // 21 Box Jumps (24/20 in)
   {
     name: 'Christine',
-    scoring: {
-      type: 'FixedWorkVariableTime',
-    },
+    type: 'FixedWorkVariableTime',
+    scoring: 'time',
     clusters: [{
       rounds: 3,
       units: [{
-        movementID: movements['/movement/run'].id,
+        movementID: movements['/movement/row'].id,
         rx: {distance: 500}
       }, {
         movementID: movements['/movement/deadlift'].id,
@@ -717,16 +689,14 @@ var workouts = [
   // Clean-and-Jerk
   {
     name: 'Gwen',
-    scoring: {
-      type: 'VariableWorkVariableTime',
-      name: 'For load',
-      aspect: 'load',
-    },
+    type: 'VariableWorkVariableTime',
+    scoring: 'load',
     clusters: [{
       rounds: 3,
       repScheme: '15-$round*3',
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
+        rx: {load: '$MAX'}
       }]
     }]
   }

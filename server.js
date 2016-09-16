@@ -19,7 +19,9 @@ app.use(function(req, res, next) {
 
 app.get('/workouts', function(req, res) {
   var model = new Model((error) => {
-    console.log('error:', error);
+    if (error) {
+      console.error('error:', error);
+    }
     model.getWorkouts((workouts) => {
       res.json(workouts);
     });

@@ -11,13 +11,15 @@ module.exports = class Model {
       this.conn = conn;
       cb();
     }).error(function(err) {
-      console.error(err);
+      if (err) {
+        console.error(err);
+      }
       cb(err);
     });
   }
   
   getWorkouts(cb) {
-    r.db('wodmeup').table('workouts')
+    let query = r.db('wodmeup').table('workouts')
     // Cache movements
     .map(function(workout) {
       return workout.merge(function(workout) {
@@ -48,9 +50,9 @@ module.exports = class Model {
         }).distinct()
       });
     })
-    // Order
-    .orderBy('name')
-    .run(this.conn, (err, cursor) => {
+    .orderBy('name');
+
+    query.run(this.conn, (err, cursor) => {
       if (err) throw err;
       cursor.toArray((err, result) => {
         cb(result);
