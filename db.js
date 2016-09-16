@@ -28,12 +28,13 @@ module.exports = class Model {
             return {'units': cluster('units').map(function(unit) {
               return unit.merge({
                 movement: r.db('wodmeup').table('movements').get(unit('movementID')),
-                rx:{}
+                rx:{}, notes:[],
               });
             })};
-          });
+          },
+          {notes:[]});
         })};
-      });
+      }, {notes: []});
     })
     // Cache equipments
     .map(function(workout) {

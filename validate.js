@@ -45,9 +45,43 @@ var unitSchema = {
   'properties': {
     'movement': {$ref: '/Movement'},
     'movementID': {type: 'string'},
+    'notes': {type: 'array'},
     'rx': {
       'type': 'object',
     }
+  }
+};
+
+
+var TimingSchema = {
+  'id': '/Timing',
+  'required': ['type'],
+  'properties': {
+    'type': {'enum': ['rounds']}
+  }
+};
+
+var FITimingSchema = {
+  'id': '/FITiming',
+  'required': ['type'],
+  'additionalProperties': false,
+  'properties': {
+    type: {'enum': ['FI']},
+    count: {type: 'integer'},
+    deathBy: {type: 'boolean', 'default': false},
+    length: {type: 'integer', 'default':60},
+    rest: {type: 'integer', 'default':0},
+    work: {type: 'integer'}
+  }
+};
+
+var AMRAPTimingSchema = {
+  'id': '/AMRAPTiming',
+  'required': ['type', 'timeCap'],
+  'additionalProperties': false,
+  'properties': {
+    type: {'enum': ['AMRAP']},
+    timeCap: {'type': 'integer'}
   }
 };
 
@@ -59,6 +93,15 @@ var ClusterSchema = {
     'name': {'type': 'string'},
     'rounds': {'type': 'integer', 'default': 1},
     'restBetweenRounds': {'type': 'integer'},
+    'notes': {type: 'array'},
+    'timing': {
+      'type': 'object',
+      'oneOf': [
+        {'$ref': '/FITiming'},
+        {'$ref': '/AMRAPTiming'},
+      ]
+    },
+    // TODO change this into a regex that parses tokens.
     'repScheme': {'enum': [
       '50-10*$round', // 50-40-30-20-10
       '21-$round*6', // 21-15-9
@@ -74,70 +117,19 @@ var ClusterSchema = {
   }
 };
 
-var FixedWorkVariableTimeSchema = {
-  'id': '/FixedWorkVariableTime',
-  'required': ['type'],
-  'additionalProperties': false,
-  'properties': {
-    'type': {'enum': ['FixedWorkVariableTime']},
-    'name': {'type': 'string'},
-  }
-};
-
-var FixedTimeVariableWorkSchema = {
-  'id': '/FixedTimeVariableWork',
-  'required': ['timeCap', 'aspect', 'type'],
-  'additionalProperties': false,
-  'properties': {
-    'type': {'enum': ['FixedTimeVariableWork']},
-    'name': {'type': 'string'},
-    'aspect': {'$ref': '/Aspect'},
-    'timeCap': {'type': 'integer'},
-    'restBetweenRounds': {'type': 'integer'}
-  }
-};
-
-var VariableWorkVariableTimeSchema = {
-  'id': '/VariableWorkVariableTime',
-  'required': ['aspect', 'type'],
-  'additionalProperties': false,
-  'properties': {
-    'type': {'enum': ['VariableWorkVariableTime']},
-    'rounds': {'type': 'integer', 'default': 1},
-    'name': {'type': 'string'},
-    'aspect': {'$ref': '/Aspect'},
-  }
-};
-var FixedIntervalSchema = {
-  'id': '/FixedInterval',
-  'required': ['intervalWork', 'intervals'],
-  'additionalProperties': false,
-  'properties': {
-    'name': {'type': 'string'},
-    'type': {'enum': ['FixedInterval']},
-    'intervals': {'type': 'integer'},
-    'intervalWork': {'type': 'integer'},
-    'intervalRest': {'type': 'integer'}
-  }
-};
-
-
 var workoutSchema = {
   'id': '/Workout',
   'type': 'object',
-  'required': ['name', 'scoring', 'clusters'],
+  'required': ['name', 'scoring', 'clusters', 'type', 'scoring'],
   'additionalProperties': false,
   'properties': {
     'id': {'type': 'string'},
     'name': {'type': 'string'},
     'scoring': {
-      'type': 'object',
-      'oneOf': [
-        {'$ref': '/FixedWorkVariableTime'},
-        {'$ref': '/FixedTimeVariableWork'},
-        {'$ref': '/VariableWorkVariableTime'},
-        {'$ref': '/FixedInterval'},
-      ]
+      'enum': ['time', 'load', 'reps', 'rounds']
+    },
+    'type': {
+      'enum': ['FixedInterval', 'FixedWorkVariableTime', 'FixedTimeVariableWork', 'VariableWorkVariableTime']
     },
     'clusters': {
       'type': 'array',
@@ -146,6 +138,7 @@ var workoutSchema = {
     },
     'equipments': {type: 'array'},
     'movements': {type: 'array'},
+    'notes': {type: 'array'},
   }
 };
 
@@ -156,12 +149,12 @@ v.addSchema(aspectSchema, '/Aspect');
 v.addSchema(movementSchema, '/Movement');
 v.addSchema(equipmentSchema, '/Equipment');
 v.addSchema(ClusterSchema, '/Cluster');
-v.addSchema(FixedWorkVariableTimeSchema, '/FixedWorkVariableTime');
-v.addSchema(FixedTimeVariableWorkSchema, '/FixedTimeVariableWork');
-v.addSchema(VariableWorkVariableTimeSchema, '/VariableWorkVariableTime');
-v.addSchema(FixedIntervalSchema, '/FixedInterval');
+v.addSchema(FITimingSchema, '/FITiming');
+v.addSchema(AMRAPTimingSchema, '/AMRAPTiming');
 
 var model = new Model((error) => {
+  if (error)
+    throw new Error(error.message);
   model.getWorkouts((workouts) => {
     workouts.forEach(function(workout) {
       var ret = v.validate(workout, workoutSchema);

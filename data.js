@@ -184,7 +184,7 @@ var workouts = [
     scoring: 'time',
     type: 'FixedWorkVariableTime',
     clusters: [{
-      // missing 'timing' means that time is unlimited
+      // missing '' means that time is unlimited
       'units': [
         {
           movementID: movements['/movement/pull-up'].id,
@@ -488,7 +488,7 @@ var workouts = [
     scoring: 'rounds',
     clusters: [{
       timing: {
-        type: 'rounds',
+        type: 'AMRAP',
         timeCap: 1200,
       },
       units: [{
@@ -630,7 +630,7 @@ var workouts = [
     scoring: 'reps',
     clusters: [{
       timing: {
-        type: 'rounds',
+        type: 'AMRAP',
         timeCap: 1200,
       },
       units: [{
@@ -692,7 +692,6 @@ var workouts = [
     type: 'VariableWorkVariableTime',
     scoring: 'load',
     clusters: [{
-      rounds: 3,
       repScheme: '15-$round*3',
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
