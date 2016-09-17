@@ -153,6 +153,7 @@ var workoutSchema = {
   'properties': {
     'id': {'type': 'string'},
     'name': {'type': 'string'},
+    'weighted': {type: ['array', 'integer']},
     'scoring': {
       'enum': ['time', 'load', 'reps', 'rounds']
     },

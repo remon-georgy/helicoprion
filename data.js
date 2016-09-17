@@ -15,6 +15,12 @@ var movements = {
     'equipment': ['pull-up-rig'],
     'aspects': ['reps', 'load'],
   },
+  '/movement/chest-to-bar': {
+    'id': '/movement/chest-to-bar',
+    'name': 'Chest-to-Bar Pull-up',
+    'equipment': ['pull-up-rig'],
+    'aspects': ['reps', 'load'],
+  },
   '/movement/push-up': {
     'id': '/movement/push-up',
     'name': 'Push up',
@@ -784,6 +790,59 @@ var workouts = [
       }]
     }]
   },
+  // DEL
+  //
+  // For Time
+  //
+  // 25 Burpees
+  // 400 Meter Run (20 lbs/14 lbs medicine ball)
+  // 25 Weighted Pull-Ups (20 lbs/15 lbs dumbbell)
+  // 400 Meter Run (20 lbs/14 lbs medicine ball)
+  // 25 Handstand Push-Ups
+  // 400 Meter Run (20 lbs/14 lbs medicine ball)
+  // 25 Chest-to-Bar Pull-Ups
+  // 400 Meter Run (20 lbs/14 lbs medicine ball)
+  // 25 Burpees
+  {
+    name: 'DEL',
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
+    clusters: [{
+      units: [{
+        movementID: movements['/movement/burpee'].id,
+        rx: {reps: 25},
+      }, {
+        movementID: movements['/movement/run'].id,
+        rx: {'distance':400, load: [20, 14]},
+        notes: ['20 lbs/14 lbs medicine ball']
+      }, {
+        movementID: movements['/movement/pull-up'].id,
+        rx: {reps: 25, load: [20, 15]},
+        notes: ['20 lbs/15 lbs dumbbell']
+      }, {
+        movementID: movements['/movement/run'].id,
+        rx: {'distance':400, load: [20, 14]},
+        notes: ['20 lbs/14 lbs medicine ball']
+      }, {
+        movementID: movements['/movement/handstand-push-up'].id,
+        rx: {reps: 25},
+      }, {
+        movementID: movements['/movement/run'].id,
+        rx: {'distance':400, load: [20, 14]},
+        notes: ['20 lbs/14 lbs medicine ball']
+      }, {
+        movementID: movements['/movement/chest-to-bar'].id,
+        rx: {reps: 25},
+      }, {
+        movementID: movements['/movement/run'].id,
+        rx: {'distance':400, load: [20, 14]},
+        notes: ['20 lbs/14 lbs medicine ball']
+      }, {
+        movementID: movements['/movement/burpee'].id,
+        rx: {reps: 25},
+      }]
+    }]
+  }
 ];
 
 module.exports = {
