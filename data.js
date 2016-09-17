@@ -33,6 +33,12 @@ var movements = {
     'equipment': ['bodyweight'],
     'aspects': ['distance', 'load'],
   },
+  '/movement/shuttle-sprint': {
+    'id': '/movement/shuttle-sprint',
+    'name': 'Shuttle Sprint',
+    'equipment': ['bodyweight'],
+    'aspects': ['distance', 'load', 'reps'],
+  },
   '/movement/snatch': {
     'id': '/movement/snatch',
     'name': 'Snatch',
@@ -127,6 +133,12 @@ var movements = {
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
+  '/movement/jerk': {
+    'id': '/movement/jerk',
+    'name': 'Jerk',
+    'equipment': ['barbell'],
+    'aspects': ['reps', 'load'],
+  },
   '/movement/kettlebell-swing': {
     'id': '/movement/kettlebell-swing',
     'name': 'Kettlebell Swing',
@@ -175,6 +187,11 @@ var movements = {
     'name': 'Burpee',
     'equipment': ['bodyweight'],
     'aspects': ['reps'],
+  },
+  '/movement/rest': {
+    'id': '/movement/burpee',
+    'name': 'Rest',
+    'aspects': ['time'],
   },
 };
 
@@ -250,7 +267,7 @@ var workouts = [
     type: 'FixedInterval',
     clusters: [{
       timing: {
-        type: 'FI',
+        type: 'FixedInterval',
         count: 30,
         deathBy: true,
         length: 60,
@@ -724,7 +741,49 @@ var workouts = [
         movementID: movements['/movement/burpee'].id,
       }]
     }]
-  }
+  },
+  // SANTORA
+  //
+  // 3 Round For Reps
+  // 1 Minute Squat Cleans (155 lbs)
+  // 1 Minute Shuttle Sprints (20 ft foward, 20 ft backwards = 1 rep)
+  // 1 Minute Deadlifts (245 lbs)
+  // 1 Minute Burpees
+  // 1 Minute Jerks (155 lbs)
+  // 1 Minute Rest
+  //
+  // * Added because it's a timed rounds workout
+  {
+    name: 'Santora',
+    scoring: 'reps',
+    type: 'FixedTimeVariableWork',
+    clusters: [{
+      rounds: 3,
+      timing: {
+        type: 'TimedRounds',
+        rounds: 3,
+        length: 60,
+      },
+      units: [{
+        movementID: movements['/movement/clean-squat'].id,
+        rx: {reps: '$MAX', load: 155}
+      },{
+        movementID: movements['/movement/shuttle-sprint'].id,
+        rx: {reps: '$MAX'}
+      }, {
+        movementID: movements['/movement/deadlift'].id,
+        rx: {reps: '$MAX'}
+      }, {
+        movementID: movements['/movement/burpee'].id,
+        rx: {reps: '$MAX'}
+      }, {
+        movementID: movements['/movement/jerk'].id,
+        rx: {reps: '$MAX', load: 155}
+      }, {
+        movementID: movements['/movement/rest'].id,
+      }]
+    }]
+  },
 ];
 
 module.exports = {

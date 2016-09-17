@@ -66,7 +66,7 @@ var FITimingSchema = {
   'required': ['type'],
   'additionalProperties': false,
   'properties': {
-    type: {'enum': ['FI']},
+    type: {'enum': ['FixedInterval']},
     count: {type: 'integer'},
     deathBy: {type: 'boolean', 'default': false},
     length: {type: 'integer', 'default':60},
@@ -82,6 +82,17 @@ var AMRAPTimingSchema = {
   'properties': {
     type: {'enum': ['AMRAP']},
     timeCap: {'type': 'integer'}
+  }
+};
+
+var TRTimingSchema = {
+  'id': '/TRTiming',
+  'required': ['type'],
+  'additionalProperties': false,
+  'properties': {
+    type: {'enum': ['TimedRounds']},
+    rounds: {type: 'integer'},
+    length: {type: 'integer', 'default':60},
   }
 };
 
@@ -116,6 +127,7 @@ var ClusterSchema = {
       'oneOf': [
         {'$ref': '/FITiming'},
         {'$ref': '/AMRAPTiming'},
+        {'$ref': '/TRTiming'},
       ]
     },
     // TODO change this into a regex that parses tokens.
@@ -167,6 +179,7 @@ v.addSchema(equipmentSchema, '/Equipment');
 v.addSchema(ClusterSchema, '/Cluster');
 v.addSchema(FITimingSchema, '/FITiming');
 v.addSchema(AMRAPTimingSchema, '/AMRAPTiming');
+v.addSchema(TRTimingSchema, '/TRTiming');
 v.addSchema(RepSchemeExprSchema, '/RepSchemeExpr');
 v.addSchema(RepSchemeArraySchema, '/RepSchemeArray');
 
