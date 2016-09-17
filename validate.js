@@ -85,6 +85,23 @@ var AMRAPTimingSchema = {
   }
 };
 
+var RepSchemeExprSchema = {
+  id: '/RepSchemeExpr',
+  'enum': [
+    '50-10*$round', // 50-40-30-20-10
+    '21-$round*6', // 21-15-9
+    '15-$round*3', // 15-12-9
+    '10-$round', // 10-9-8-7-6-5-4-3-2-1
+    '9-$round*2', // 9-7-5
+  ]
+};
+
+var RepSchemeArraySchema = {
+  id: '/RepSchemeArray',
+  type: 'array',
+  'minItems': 1,
+};
+
 var ClusterSchema = {
   'id': '/Cluster',
   'required': ['units'],
@@ -102,13 +119,12 @@ var ClusterSchema = {
       ]
     },
     // TODO change this into a regex that parses tokens.
-    'repScheme': {'enum': [
-      '50-10*$round', // 50-40-30-20-10
-      '21-$round*6', // 21-15-9
-      '15-$round*3', // 15-12-9
-      '10-$round', // 10-9-8-7-6-5-4-3-2-1
-      '9-$round*2', // 9-7-5
-    ]},
+    'repScheme': {
+      'oneOf': [
+        {'$ref': '/RepSchemeExpr'},
+        {'$ref': '/RepSchemeArray'},
+      ]
+    },
     'units': {
       'type': 'array',
       'minItems': 1,
@@ -151,6 +167,8 @@ v.addSchema(equipmentSchema, '/Equipment');
 v.addSchema(ClusterSchema, '/Cluster');
 v.addSchema(FITimingSchema, '/FITiming');
 v.addSchema(AMRAPTimingSchema, '/AMRAPTiming');
+v.addSchema(RepSchemeExprSchema, '/RepSchemeExpr');
+v.addSchema(RepSchemeArraySchema, '/RepSchemeArray');
 
 var model = new Model((error) => {
   if (error)

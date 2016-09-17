@@ -143,7 +143,7 @@ var movements = {
     'id': '/movement/wall-ball-shot',
     'name': 'Wall Ball Shot',
     'equipment': ['medicine-ball'],
-    'aspects': ['reps', 'load'],
+    'aspects': ['reps', 'load', 'height'],
   },
   '/movement/jump-rope': {
     'id': '/movement/jump-rope',
@@ -168,6 +168,12 @@ var movements = {
     'id': '/movement/muscle-up',
     'name': 'Muscle up',
     'equipment': ['rings'],
+    'aspects': ['reps'],
+  },
+  '/movement/burpee': {
+    'id': '/movement/burpee',
+    'name': 'Burpee',
+    'equipment': ['bodyweight'],
     'aspects': ['reps'],
   },
 };
@@ -696,6 +702,26 @@ var workouts = [
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
         rx: {load: '$MAX'}
+      }]
+    }]
+  },
+  // DONNY
+  // 21-15-9-9-15-21 Reps For Time
+  // Deadlifts (225/155 lbs)
+  // Burpees
+  //
+  // * Added because of the irregular repScheme
+  {
+    name: 'Donny',
+    type: 'FixedWorkVariableTime',
+    scoring: 'time',
+    clusters: [{
+      repScheme: [21, 15, 9, 9, 15, 21],
+      units: [{
+        movementID: movements['/movement/deadlift'].id,
+        rx: {'load': [225, 155]}
+      }, {
+        movementID: movements['/movement/burpee'].id,
       }]
     }]
   }
