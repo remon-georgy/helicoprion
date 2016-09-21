@@ -13,7 +13,7 @@ var equipmentSchema = {
 
 var aspectSchema = {
   'id': '/Aspect',
-  'enum': ['load', 'distance', 'height', 'reps', 'calories', 'damping', 'rounds']
+  'enum': ['load', 'distance', 'height', 'reps', 'calories', 'damping', 'rounds', 'time']
 };
 
 var movementSchema = {
@@ -69,7 +69,7 @@ var FITimingSchema = {
     type: {'enum': ['FixedInterval']},
     count: {type: 'integer'},
     deathBy: {type: 'boolean', 'default': false},
-    length: {type: 'integer', 'default':60},
+    time: {type: 'integer', 'default':60},
     rest: {type: 'integer', 'default':0},
     work: {type: 'integer'}
   }
@@ -92,7 +92,7 @@ var TRTimingSchema = {
   'properties': {
     type: {'enum': ['TimedRounds']},
     rounds: {type: 'integer'},
-    length: {type: 'integer', 'default':60},
+    time: {type: 'integer', 'default':60},
   }
 };
 

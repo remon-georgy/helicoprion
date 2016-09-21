@@ -11,7 +11,7 @@
 var movements = {
   '/movement/pull-up': {
     'id': '/movement/pull-up',
-    'name': 'Pull up',
+    'name': 'Pull-Up',
     'equipment': ['pull-up-rig'],
     'aspects': ['reps', 'load'],
   },
@@ -23,13 +23,13 @@ var movements = {
   },
   '/movement/push-up': {
     'id': '/movement/push-up',
-    'name': 'Push up',
+    'name': 'Push-Up',
     'equipment': ['bodyweight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/sit-up': {
     'id': '/movement/sit-up',
-    'name': 'Sit up',
+    'name': 'Sit-Up',
     'equipment': ['bodyweight'],
     'aspects': ['reps', 'load'],
   },
@@ -117,13 +117,13 @@ var movements = {
   },
   '/movement/handstand-push-up': {
     'id': '/movement/handstand-push-up',
-    'name': 'Handstand Push Up',
+    'name': 'Handstand Push-Up',
     'equipment': ['bodyweight'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/ring-dips': {
-    'id': '/movement/ring-dips',
-    'name': 'Ring Dips',
+  '/movement/ring-dip': {
+    'id': '/movement/ring-dip',
+    'name': 'Ring Dip',
     'equipment': ['rings'],
     'aspects': ['reps', 'load'],
   },
@@ -135,7 +135,7 @@ var movements = {
   },
   '/movement/clean-and-jerk': {
     'id': '/movement/clean-and-jerk',
-    'name': 'Clean and Jerk',
+    'name': 'Clean-and-Jerk',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
@@ -159,7 +159,7 @@ var movements = {
   },
   '/movement/wall-ball-shot': {
     'id': '/movement/wall-ball-shot',
-    'name': 'Wall Ball Shot',
+    'name': 'Wall-Ball Shot',
     'equipment': ['medicine-ball'],
     'aspects': ['reps', 'load', 'height'],
   },
@@ -171,7 +171,7 @@ var movements = {
   },
   '/movement/jump-rope-du': {
     'id': '/movement/jump-rope-du',
-    'name': 'Double Under',
+    'name': 'Double-Under',
     'parent': '/movement/jump-rope',
     'equipment': ['jump-rope'],
     'aspects': ['reps', 'load'],
@@ -184,7 +184,7 @@ var movements = {
   },
   '/movement/muscle-up': {
     'id': '/movement/muscle-up',
-    'name': 'Muscle up',
+    'name': 'Muscle-Up',
     'equipment': ['rings'],
     'aspects': ['reps'],
   },
@@ -195,8 +195,9 @@ var movements = {
     'aspects': ['reps'],
   },
   '/movement/rest': {
-    'id': '/movement/burpee',
+    'id': '/movement/rest',
     'name': 'Rest',
+    'equipment': ['bodyweight'],
     'aspects': ['time'],
   },
 };
@@ -258,6 +259,9 @@ var workouts = [
       }, {
         movementID: movements['/movement/squat-air'].id,
         rx: {reps: 50}
+      }, {
+        movementID: movements['/movement/rest'].id,
+        rx: {time: 180}
       }]
     }]
   },
@@ -276,7 +280,7 @@ var workouts = [
         type: 'FixedInterval',
         count: 30,
         deathBy: true,
-        length: 60,
+        time: 60,
         // TODO optional
         // work: 60, // no included rest.
       },
@@ -358,7 +362,7 @@ var workouts = [
         movementID: movements['/movement/clean-squat'].id,
         rx: {'load': [135, 95]}
       }, {
-        movementID: movements['/movement/ring-dips'].id,
+        movementID: movements['/movement/ring-dip'].id,
       }]
     }]
   },
@@ -602,7 +606,7 @@ var workouts = [
   //
   // Run 400 meters
   // 30 box jump, 24 inch box
-  // 30 Wall ball shots, 20 pound ball
+  // 30 Wall-ball Shots, 20 pound ball
   //
   // 5 rounds for time
   {
@@ -709,7 +713,7 @@ var workouts = [
         rx: {reps: 12, 'load': '$BW'}
       }, {
         movementID: movements['/movement/box-jump'].id,
-        rx: {reps: 21}
+        rx: {reps: 21, height: [24, 20]}
       }]
     }]
   },
@@ -722,6 +726,7 @@ var workouts = [
     scoring: 'load',
     clusters: [{
       repScheme: '15-$round*3',
+      rounds: 3,
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
         rx: {load: '$MAX'}
@@ -768,7 +773,7 @@ var workouts = [
       timing: {
         type: 'TimedRounds',
         rounds: 3,
-        length: 60,
+        time: 60,
       },
       units: [{
         movementID: movements['/movement/clean-squat'].id,

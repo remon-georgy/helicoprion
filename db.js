@@ -32,7 +32,7 @@ module.exports = class Model {
               });
             })};
           },
-          {notes:[]});
+          {notes:[], timing: {}});
         })};
       }, {notes: []});
     })
