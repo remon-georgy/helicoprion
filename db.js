@@ -32,7 +32,10 @@ module.exports = class Model {
               });
             })};
           },
-          {notes:[], timing: {}});
+          function(cluster) {
+            return r.expr({timing: {type: 'UT'}}).merge(cluster);
+          },
+          {notes:[]});
         })};
       }, {notes: []});
     })

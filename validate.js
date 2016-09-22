@@ -85,6 +85,15 @@ var AMRAPTimingSchema = {
   }
 };
 
+var UnlimitedTimingSchema = {
+  'id': '/UnlimitedTiming',
+  'required': ['type'],
+  'additionalProperties': false,
+  'properties': {
+    type: {'enum': ['UT']},
+  }
+};
+
 var TRTimingSchema = {
   'id': '/TRTiming',
   'required': ['type'],
@@ -128,7 +137,8 @@ var ClusterSchema = {
         {'$ref': '/FITiming'},
         {'$ref': '/AMRAPTiming'},
         {'$ref': '/TRTiming'},
-      ]
+        {'$ref': '/UnlimitedTiming'},
+      ],
     },
     // TODO change this into a regex that parses tokens.
     'repScheme': {
@@ -181,6 +191,7 @@ v.addSchema(ClusterSchema, '/Cluster');
 v.addSchema(FITimingSchema, '/FITiming');
 v.addSchema(AMRAPTimingSchema, '/AMRAPTiming');
 v.addSchema(TRTimingSchema, '/TRTiming');
+v.addSchema(UnlimitedTimingSchema, '/UnlimitedTiming');
 v.addSchema(RepSchemeExprSchema, '/RepSchemeExpr');
 v.addSchema(RepSchemeArraySchema, '/RepSchemeArray');
 
