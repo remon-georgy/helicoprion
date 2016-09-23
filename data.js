@@ -103,6 +103,12 @@ var movements = {
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
+  '/movement/clean-power': {
+    'id': '/movement/clean-power',
+    'name': 'Power Clean',
+    'equipment': ['barbell'],
+    'aspects': ['reps', 'load'],
+  },
   '/movement/deadlift': {
     'id': '/movement/deadlift',
     'name': 'Deadlift',
@@ -845,6 +851,59 @@ var workouts = [
       }, {
         movementID: movements['/movement/burpee'].id,
         rx: {reps: 25},
+      }]
+    }]
+  },
+  // The Chief
+  // AMRAP in 19 minutes
+  // 5 Cycles of 3 Minutes Each
+  //
+  // 3 Power Cleans (135/95 lbs)
+  // 6 Push-Ups
+  // 9 Air Squats
+  // Rest 1 Minute Between Each 3-Minute Cycle
+  {
+    name: 'The Chief',
+    scoring: 'reps',
+    type: 'FixedTimeVariableWork',
+    clusters: [{
+      rounds: 3,
+      timing: {
+        type: 'TimedRounds',
+        rounds: 3,
+        time: 180,
+        restBetweenRounds: 60,
+      },
+      units: [{
+        movementID: movements['/movement/clean-power'].id,
+        rx: {reps: 3, load: [135, 95]}
+      }, {
+        movementID: movements['/movement/push-up'].id,
+        rx: {reps: 6}
+      }, {
+        movementID: movements['/movement/squat-air'].id,
+        rx: {reps: 9}
+      }, ]
+    }]
+  // Open 15.5
+  },
+  // 27-21-15-9 Reps for Time
+  // Row (calories)
+  // Thrusters (95/65 lbs)
+  //
+  // Added to tackle calories representation in a repSchemed wod.
+  {
+    name: 'Open 15.5',
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
+    clusters: [{
+      // FIXME repScheme represents rowing calories
+      repScheme: '27-6$round',
+      units: [{
+        movementID: movements['/movement/row'].id,
+      }, {
+        movementID: movements['/movement/thruster'].id,
+        rx: {load: [95, 65]}
       }]
     }]
   }
