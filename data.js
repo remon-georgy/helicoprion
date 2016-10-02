@@ -57,6 +57,12 @@ var movements = {
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
+  '/movement/snatch-hang-squat': {
+    'id': '/movement/snatch-hang-squat',
+    'name': 'Hang Squat Snatch',
+    'equipment': ['barbell'],
+    'aspects': ['reps', 'load'],
+  },
   '/movement/clean': {
     'id': '/movement/clean',
     'name': 'Clean',
@@ -188,6 +194,12 @@ var movements = {
     'equipment': ['box'],
     'aspects': ['reps', 'height'],
   },
+  '/movement/box-jump-over': {
+    'id': '/movement/box-jump-over',
+    'name': 'Box Jump Over',
+    'equipment': ['box'],
+    'aspects': ['reps', 'height'],
+  },
   '/movement/muscle-up': {
     'id': '/movement/muscle-up',
     'name': 'Muscle-Up',
@@ -197,6 +209,18 @@ var movements = {
   '/movement/burpee': {
     'id': '/movement/burpee',
     'name': 'Burpee',
+    'equipment': ['bodyweight'],
+    'aspects': ['reps'],
+  },
+  '/movement/burpee-over-bar': {
+    'id': '/movement/burpee-over-bar',
+    'name': 'Over the Bar Burpees',
+    'equipment': ['bodyweight'],
+    'aspects': ['reps'],
+  },
+  '/movement/burpee-facing-bar': {
+    'id': '/movement/burpee-facing-bar',
+    'name': 'Bar Facing Burpees',
     'equipment': ['bodyweight'],
     'aspects': ['reps'],
   },
@@ -220,7 +244,6 @@ var workouts = [
     scoring: 'time',
     type: 'FixedWorkVariableTime',
     clusters: [{
-      // missing '' means that time is unlimited
       'units': [
         {
           movementID: movements['/movement/pull-up'].id,
@@ -280,15 +303,14 @@ var workouts = [
   {
     name: 'Chelsea',
     scoring: 'rounds',
-    type: 'FixedInterval',
+    type: 'FixedWorkFixedTime',
     clusters: [{
       timing: {
-        type: 'FixedInterval',
-        count: 30,
+        type: 'FixedIntervals',
+        intervals: 30,
         deathBy: true,
         time: 60,
-        // TODO optional
-        // work: 60, // no included rest.
+        // work: 60, // defaults to time
       },
       units: [{
         movementID: movements['/movement/pull-up'].id,
@@ -403,8 +425,6 @@ var workouts = [
     scoring: 'time',
     type: 'FixedWorkVariableTime',
     clusters: [{
-      rounds: 3,
-      repScheme: '21-$round*6',
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
         rx: {'load': [135, 95], reps: 30}
@@ -634,11 +654,9 @@ var workouts = [
     }]
   },
   // Lynne
-  // TODO perhaps declare there's no timing. This way it looks like a "For time" wod. But
-  // this is very edgy wod anyway.
   //
   // Bodyweight bench press (e.g., same amount on bar as you weigh)
-  // pullups
+  // Pullups
   //
   // 5 rounds for max reps. There is NO time component to this WOD, although some versions Rx the movements as a couplet.
   {
@@ -661,8 +679,7 @@ var workouts = [
   // Run 400 meters
   // Max rep Pull-ups
   //
-  // As many rounds as possible in 20 minutes.
-  // Note number of pull-ups completed for each round.
+  // Score is total of un-broken Pull-Ups completed each round.
   {
     name: 'Nicole',
     type: 'FixedTimeVariableWork',
@@ -726,6 +743,8 @@ var workouts = [
   // GWEN
   // 15-12-9 Reps
   // Clean-and-Jerk
+  //
+  // Score is weight used for all three UNBROKEN sets.
   {
     name: 'Gwen',
     type: 'VariableWorkVariableTime',
@@ -744,7 +763,7 @@ var workouts = [
   // Deadlifts (225/155 lbs)
   // Burpees
   //
-  // * Added because of the irregular repScheme
+  // *ref* irregular repScheme
   {
     name: 'Donny',
     type: 'FixedWorkVariableTime',
@@ -762,6 +781,7 @@ var workouts = [
   // SANTORA
   //
   // 3 Round For Reps
+  //
   // 1 Minute Squat Cleans (155 lbs)
   // 1 Minute Shuttle Sprints (20 ft foward, 20 ft backwards = 1 rep)
   // 1 Minute Deadlifts (245 lbs)
@@ -769,16 +789,16 @@ var workouts = [
   // 1 Minute Jerks (155 lbs)
   // 1 Minute Rest
   //
-  // * Added because it's a timed rounds workout
+  // *ref* Added because it's a timed units workout
   {
     name: 'Santora',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
     clusters: [{
       rounds: 3,
+      restBetweenRounds: 60,
       timing: {
-        type: 'TimedRounds',
-        rounds: 3,
+        type: 'TimedUnits',
         time: 60,
       },
       units: [{
@@ -786,7 +806,8 @@ var workouts = [
         rx: {reps: '$MAX', load: 155}
       },{
         movementID: movements['/movement/shuttle-sprint'].id,
-        rx: {reps: '$MAX'}
+        rx: {reps: '$MAX'},
+        notes: ['20 ft foward, 20 ft backwards = 1 rep'],
       }, {
         movementID: movements['/movement/deadlift'].id,
         rx: {reps: '$MAX'}
@@ -796,8 +817,6 @@ var workouts = [
       }, {
         movementID: movements['/movement/jerk'].id,
         rx: {reps: '$MAX', load: 155}
-      }, {
-        movementID: movements['/movement/rest'].id,
       }]
     }]
   },
@@ -814,6 +833,8 @@ var workouts = [
   // 25 Chest-to-Bar Pull-Ups
   // 400 Meter Run (20 lbs/14 lbs medicine ball)
   // 25 Burpees
+  //
+  // *ref* loaded movements.
   {
     name: 'DEL',
     scoring: 'time',
@@ -868,11 +889,11 @@ var workouts = [
     type: 'FixedTimeVariableWork',
     clusters: [{
       rounds: 3,
+      restBetweenRounds: 60,
       timing: {
-        type: 'TimedRounds',
-        rounds: 3,
+        type: 'FixedIntervals',
+        intervals: 3,
         time: 180,
-        restBetweenRounds: 60,
       },
       units: [{
         movementID: movements['/movement/clean-power'].id,
@@ -885,25 +906,178 @@ var workouts = [
         rx: {reps: 9}
       }, ]
     }]
-  // Open 15.5
   },
+  // Open 15.5
   // 27-21-15-9 Reps for Time
   // Row (calories)
   // Thrusters (95/65 lbs)
   //
-  // Added to tackle calories representation in a repSchemed wod.
+  // *ref* Added to tackle calories representation in a repSchemed wod.
   {
     name: 'Open 15.5',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
     clusters: [{
-      // FIXME repScheme represents rowing calories
-      repScheme: '27-6$round',
+      repScheme: '27-6*$round',
       units: [{
         movementID: movements['/movement/row'].id,
+        // NOTE this is experimental
+        rx: {calories: '../repScheme', reps:'./calories'}
       }, {
         movementID: movements['/movement/thruster'].id,
         rx: {load: [95, 65]}
+      }]
+    }]
+  },
+  // VIOLA
+  //
+  // As Many Rounds as Possible (AMRAP) in 25 minutes
+  // 3, 6, 9, 12, 15, 18 Reps and so on
+  // Thrusters (95 lbs/65 lbs)
+  // Pull-ups
+  // Over the Bar Burpees
+  //
+  // *ref* repSchemed AMRAP (vs. usual repschemed 'for time')
+  {
+    name: 'Viola',
+    scoring: 'rounds',
+    type: 'FixedTimeVariableWork',
+    clusters: [{
+      repScheme: '($round+3)*3',
+      units: [{
+        movementID: movements['/movement/thruster'].id,
+        rx: {load: [95, 65]},
+      }, {
+        movementID: movements['/movement/pull-up'].id,
+      }, {
+        movementID: movements['/movement/burpee-over-bar'].id,
+      }]
+    }]
+  },
+  // MOOSE
+  //
+  // For Time
+  //
+  // 1,000 meter Row
+  //
+  // Then 10 Rounds of:
+  // 7 Bar Facing Burpees
+  // 3 Thrusters (95/65 lbs)
+  //
+  // 1,200 Meter Run (with med ball (20/14 lbs))
+  //
+  // *ref* multiple clusters
+  {
+    name: 'Moose',
+    scoring: 'time',
+    type: 'FixedWorkVariableTime',
+    clusters: [{
+      units: [{
+        movementID: movements['/movement/row'].id,
+        rx: {distance: 1000}
+      }]
+    }, {
+      rounds: 10,
+      units: [{
+        movementID: movements['/movement/burpee-facing-bar'].id,
+        rx: {reps: 7}
+      }, {
+        movementID: movements['/movement/thruster'].id,
+        rx: {reps: 3, rx: {load: [95, 65]}}
+      }]
+    }, {
+      units: [{
+        movementID: movements['/movement/run'].id,
+        rx: {distance: 1200, load: [20, 14]}
+      }]
+    }]
+  },
+  // THREE WISE MEN
+  //
+  // Three 4-Minute AMRAPs in 16 minutes
+  //
+  // "Jeremy Wise"
+  // As Many Rounds & Reps as Possible (AMRAP) in 4 Minutes
+  // 5 Hang Squat Snatch (135/95 lbs)
+  // 10 Bar-Facing Burpees
+  //
+  // "Ben Wise"
+  // AMRAP in 4 Minutes
+  // 10 Power Cleans (135/95 lbs)
+  // 20 Pull-Ups
+  //
+  // "Beau Wise"
+  // AMRAP in 4 Minutes
+  // 15 Box Jump-Overs (24/20 in)
+  // 30 Wall Ball Shots (20/14 lbs)
+  //
+  // *ref* named wods
+  {
+    name: 'Three Wise Men',
+    scoring: 'reps',
+    type: 'FixedTimeVariableWork',
+    clusters: [{
+      name: 'Jeremy Wise',
+      timing: {
+        type: 'AMRAP',
+        timeCap: 240,
+      },
+      units: [{
+        movementID: movements['/movement/snatch-hang-squat'].id,
+        rx: {load: [135, 95]}
+      }, {
+        movementID: movements['/movement/burpee-facing-bar'].id,
+      }]
+    }, {
+      name: 'Ben Wise',
+      timing: {
+        type: 'AMRAP',
+        timeCap: 240,
+      },
+      units: [{
+        movementID: movements['/movement/clean-power'].id,
+        rx: {load: [135, 95]}
+      }, {
+        movementID: movements['/movement/pull-up'].id,
+      }]
+    }, {
+      name: 'Beau Wise',
+      timing: {
+        type: 'AMRAP',
+        timeCap: 240,
+      },
+      units: [{
+        movementID: movements['/movement/box-jump-over'].id,
+      }, {
+        movementID: movements['/movement/wall-ball-shot'].id,
+        rx: {load: [20, 14]}
+      }]
+    }]
+  },
+  // TEST 3
+  //
+  // For Reps in 8 minutes
+  // Tabata Air Squats
+  // Max Muscle Ups
+  {
+    name: 'Test 3',
+    scoring: 'reps',
+    type: 'FixedTimeVariableWork',
+    clusters: [{
+      timing: {
+        type:'FixedIntervals',
+        work: 20,
+        rest: 10,
+        time: 30,
+        intervals: 8,
+      },
+      units: [{
+        movementID: movements['/movement/squat-air'].id
+      }]
+    }, {
+      units: [{
+        movementID: movements['/movement/muscle-up'].id,
+        rx: {reps: '$MAX'}
       }]
     }]
   }

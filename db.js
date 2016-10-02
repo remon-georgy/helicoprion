@@ -24,7 +24,7 @@ module.exports = class Model {
     .map(function(workout) {
       return workout.merge(function(workout) {
         return {'clusters': workout('clusters').map(function(cluster) {
-          return cluster.merge(function(cluster){
+          return cluster.merge(function(cluster) {
             return {'units': cluster('units').map(function(unit) {
               return unit.merge({
                 movement: r.db('wodmeup').table('movements').get(unit('movementID')),
@@ -33,7 +33,7 @@ module.exports = class Model {
             })};
           },
           function(cluster) {
-            return r.expr({timing: {type: 'UT'}}).merge(cluster);
+            return r.expr({timing: {type: 'NoTiming'}}).merge(cluster);
           },
           {notes:[]});
         })};
