@@ -21,6 +21,12 @@ var movements = {
     'equipment': ['pull-up-rig'],
     'aspects': ['reps', 'load'],
   },
+  '/movement/toes-to-bar': {
+    'id': '/movement/toes-to-bar',
+    'name': 'Toes-to-Bar',
+    'equipment': ['pull-up-rig'],
+    'aspects': ['reps', 'load'],
+  },
   '/movement/push-up': {
     'id': '/movement/push-up',
     'name': 'Push-Up',
@@ -50,6 +56,17 @@ var movements = {
     'name': 'Snatch',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
+  },
+  '/movement/push-jerk': {
+    'id': '/movement/push-jerk',
+    'name': 'Push Jerk',
+    'equipment': ['barbell'],
+    'aspects': ['reps', 'load'],
+  },
+  '/movement/push-press': {
+    'id': '/movement/push-press',
+    'name': 'Push Press',
+    'equipment': ['barbell'],
   },
   '/movement/snatch-squat': {
     'id': '/movement/snatch-squat',
@@ -337,7 +354,7 @@ var workouts = [
     scoring: 'rounds',
     clusters: [{
       timing: {
-        type: 'AMRAP',
+        type: 'Capped', name: 'AMRAP',
         timeCap: 1200
       },
       units: [{
@@ -547,7 +564,7 @@ var workouts = [
     scoring: 'rounds',
     clusters: [{
       timing: {
-        type: 'AMRAP',
+        type: 'Capped', name: 'AMRAP',
         timeCap: 1200,
       },
       units: [{
@@ -643,7 +660,7 @@ var workouts = [
       rounds: 5,
       units: [{
         movementID: movements['/movement/run'].id,
-        rx: {'distance': 800}
+        rx: {'distance': 400}
       }, {
         movementID: movements['/movement/box-jump'].id,
         rx: {reps: 30, height: [24, 20]}
@@ -686,7 +703,7 @@ var workouts = [
     scoring: 'reps',
     clusters: [{
       timing: {
-        type: 'AMRAP',
+        type: 'Capped', name: 'AMRAP',
         timeCap: 1200,
       },
       units: [{
@@ -810,7 +827,7 @@ var workouts = [
         notes: ['20 ft foward, 20 ft backwards = 1 rep'],
       }, {
         movementID: movements['/movement/deadlift'].id,
-        rx: {reps: '$MAX'}
+        rx: {reps: '$MAX', load: 245}
       }, {
         movementID: movements['/movement/burpee'].id,
         rx: {reps: '$MAX'}
@@ -918,6 +935,7 @@ var workouts = [
     scoring: 'time',
     type: 'FixedWorkVariableTime',
     clusters: [{
+      rounds: 4,
       repScheme: '27-6*$round',
       units: [{
         movementID: movements['/movement/row'].id,
@@ -983,7 +1001,7 @@ var workouts = [
         rx: {reps: 7}
       }, {
         movementID: movements['/movement/thruster'].id,
-        rx: {reps: 3, rx: {load: [95, 65]}}
+        rx: {reps: 3, load: [95, 65]}
       }]
     }, {
       units: [{
@@ -1011,7 +1029,7 @@ var workouts = [
   // 15 Box Jump-Overs (24/20 in)
   // 30 Wall Ball Shots (20/14 lbs)
   //
-  // *ref* named wods
+  // *ref* named clusters
   {
     name: 'Three Wise Men',
     scoring: 'reps',
@@ -1019,38 +1037,41 @@ var workouts = [
     clusters: [{
       name: 'Jeremy Wise',
       timing: {
-        type: 'AMRAP',
+        type: 'Capped', name: 'AMRAP',
         timeCap: 240,
       },
       units: [{
         movementID: movements['/movement/snatch-hang-squat'].id,
-        rx: {load: [135, 95]}
+        rx: {load: [135, 95], reps: 5}
       }, {
         movementID: movements['/movement/burpee-facing-bar'].id,
+        rx: {reps: 10}
       }]
     }, {
       name: 'Ben Wise',
       timing: {
-        type: 'AMRAP',
+        type: 'Capped', name: 'AMRAP',
         timeCap: 240,
       },
       units: [{
         movementID: movements['/movement/clean-power'].id,
-        rx: {load: [135, 95]}
+        rx: {load: [135, 95], reps: 10}
       }, {
         movementID: movements['/movement/pull-up'].id,
+        rx: {reps: 20}
       }]
     }, {
       name: 'Beau Wise',
       timing: {
-        type: 'AMRAP',
+        type: 'Capped', name: 'AMRAP',
         timeCap: 240,
       },
       units: [{
         movementID: movements['/movement/box-jump-over'].id,
+        rx: {reps: 15}
       }, {
         movementID: movements['/movement/wall-ball-shot'].id,
-        rx: {load: [20, 14]}
+        rx: {load: [20, 14], reps: 30}
       }]
     }]
   },
@@ -1059,6 +1080,8 @@ var workouts = [
   // For Reps in 8 minutes
   // Tabata Air Squats
   // Max Muscle Ups
+  //
+  // *ref* an embedded Tabata
   {
     name: 'Test 3',
     scoring: 'reps',
@@ -1079,6 +1102,226 @@ var workouts = [
         movementID: movements['/movement/muscle-up'].id,
         rx: {reps: '$MAX'}
       }]
+    }]
+  },
+  // Open Workout 12.2
+  //
+  // AMRAP 10 mins
+  // 30 Snatches (75, 45)
+  // 30 Snatches (135, 75)
+  // 30 Snatches (165, 100)
+  // As many reps as possible (210, 120)
+  //
+  // *ref* amrap movement
+  {
+    name: 'Open 12.2',
+    scoring: 'reps',
+    type: 'FixedTimeVariableWork',
+    clusters: [{
+      timing: {
+        type: 'Capped', name: 'AMRAP',
+        timeCap: 600
+      },
+      units: [{
+        movementID: movements['/movement/snatch'].id,
+        rx: {reps: 30, load: [75, 45]}
+      }, {
+        movementID: movements['/movement/snatch'].id,
+        rx: {reps: 30, load: [135, 75]}
+      }, {
+        movementID: movements['/movement/snatch'].id,
+        rx: {reps: 30, load: [165, 100]}
+      }, {
+        movementID: movements['/movement/snatch'].id,
+        rx: {reps: '$MAX', load: [210, 120]}
+      }]
+    }]
+  },
+  // Open 12.5
+  //
+  // Complete as many reps as possible in 7 minutes following the rep scheme below:
+  // 100 pound Thruster, 3 reps
+  // 3 Chest to bar Pull-ups
+  // 100 pound Thruster, 6 reps
+  // 6 Chest to bar Pull-ups
+  // 100 pound Thruster, 9 reps
+  // This is a timed workout. If you complete the round of 9, go on to 12.
+  //If you complete 12, go on to 15, etc.
+  //
+  // *ref* time capped, rep schemed wod
+  // *ref* i.e infinite repScheme
+  {
+    name: 'Open 12.5',
+    scoring: 'reps',
+    type: 'FixedTimeVariableWork',
+    clusters: [{
+      repScheme: '($round+3)*3',
+      timing: {
+        type: 'Capped', name: 'AMRAP',
+        timeCap: 420,
+      },
+      units: [{
+        movementID: movements['/movement/chest-to-bar'].id,
+      }, {
+        movementID: movements['/movement/thruster'].id,
+        rx: {load: 100}
+      }]
+    }]
+  },
+  // 14.4
+  //
+  // Complete as many rounds and repetitions as possible in 14 minutes of:
+  // 60-calorie row
+  // 50 toes-to-bar
+  // 40 wall-ball shots, 20/14 lb. to 10/9-foot target
+  // 30 cleans, 135/95 lb.
+  // 20 muscle-ups
+  //
+  // *ref* calories again
+  {
+    name: 'Open 14.4',
+    scoring: 'rounds',
+    type: 'FixedTimeVariableWork',
+    clusters: [{
+      timing: {
+        type: 'Capped', name: 'AMRAP',
+        timeCap: 1020,
+      },
+      units: [{
+        movementID: movements['/movement/row'].id,
+        rx: {reps: './calories', calories: 60}
+      }, {
+        movementID: movements['/movement/toes-to-bar'].id,
+        rx: {reps: 50}
+      }, {
+        movementID: movements['/movement/wall-ball-shot'].id,
+        rx: {load: [20, 14], height: [10 ,9]}
+      }, {
+        movementID: movements['/movement/clean'].id,
+        rx: {load: [135, 95]}
+      }, {
+        movementID: movements['/movement/muscle-up'].id,
+        rx: {reps: 20}
+      }]
+    }]
+  },
+  // Open 14.2
+  //
+  // From 0:00-3:00
+  //    2 rounds of:
+  //    10 overhead squats
+  //    10 chest-to-bar pull-ups
+  //
+  // From 3:00-6:00
+  //    2 rounds of:
+  //    12 overhead squats
+  //    12 chest-to-bar pull-ups
+  //
+  // From 6:00-9:00
+  //    2 rounds of:
+  //    14 overhead squats
+  //    14 chest-to-bar pull-ups
+  //
+  // Etc., following same pattern until you fail to complete both rounds
+  //
+  // *ref* scoring by intervals
+  // *ref* 2 rounds of each interval
+  {
+    name: 'Open 14.2',
+    scoring: 'intervals',
+    type: 'VariableWorkVariableTime',
+    clusters:[{
+      // NOTE experimental
+      // NOTE intervals here are unlimited
+      rounds: 2,
+      repScheme: '10+$round*2',
+      timing: {
+        type: 'FixedIntervals',
+        deathBy: true,
+        time: 180,
+      },
+      units: [{
+        movementID: movements['/movement/squat-overhead'].id,
+        rx: {load: [95, 65]}
+      }, {
+        movementID: movements['/movement/chest-to-bar'].id,
+      }]
+    }]
+  },
+  // Open 13.5
+  // As Many Reps as Possible in 4 minutes
+  // 15 Thrusters (100/65 lbs)
+  // 15 Chest-to-Bar Pull-ups
+  // If 90 reps (3 rounds) are completed in under 4 minutes, time extends to 8 minutes.
+  // If 180 reps (6 rounds) are completed in under 8 minutes, time extends to 12 minutes. Etc.
+  //
+  // *ref* repeatable AMRAP. Because there's not AMRAP'ed Fixedinterval!
+  {
+    name: 'Open 13.5',
+    scoring: 'rounds',
+    type: 'FixedWorkVariableTime',
+    clusters: [{
+      rounds: 3,
+      timing: {
+        type: 'Capped', name: 'AMRAP',
+        timeCap: 240,
+        repeatable: true,
+      },
+      units: [{
+        movementID: movements['/movement/thruster'].id,
+        rx: {reps: 15, load: [100, 65]}
+      }, {
+        movementID: movements['/movement/chest-to-bar'].id,
+        rx: {reps: 15}
+      }]
+    }]
+  },
+  // Dragon
+  //
+  // For time:
+  // Run 5k
+  // 4 minutes to find 4 rep max Deadlift
+  // Run 5k
+  // 4 minutes to find 4 rep max Push jerk
+  //
+  // TODO there are two loads to score this wod :/
+  // *ref* find max load
+  // *ref* confusing score
+  // *ref* timeCapped but not an AMPAP, actually as much load
+  {
+    name: 'Dragon',
+    scoring: 'load',
+    type: 'VariableWorkVariableTime',
+    clusters: [{
+      units: [{
+        movementID: movements['/movement/run'].id,
+        rx: {distance: 15}
+      }]
+    }, {
+      timing: {
+        type: 'Capped',
+        timeCap: 240,
+      },
+      units: [{
+        movementID: movements['/movement/deadlift'].id,
+        rx: {load: '$MAX'},
+      }],
+      notes: ['Find 4RM'],
+    }, {
+      units: [{
+        movementID: movements['/movement/run'].id,
+        rx: {distance: 15}
+      }]
+    }, {
+      timing: {
+        type: 'Capped',
+        timeCap: 240,
+      },
+      units: [{
+        movementID: movements['/movement/push-jerk'].id,
+        rx: {load: '$MAX'},
+      }],
+      notes: ['Find 4RM'],
     }]
   }
 ];

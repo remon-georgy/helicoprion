@@ -17,7 +17,7 @@ var aspectSchema = {
     // Non-iterable
     'load', 'height', 'damping',
     // Iterable
-    'distance', 'reps', 'calories', 'rounds', 'time']
+    'distance', 'reps', 'calories', 'rounds', 'time', 'intervals']
 };
 
 var movementSchema = {
@@ -41,7 +41,6 @@ var movementSchema = {
   }
 };
 
-// @todo rounds
 var unitSchema = {
   'id': '/Unit',
   'required': ['rx'],
@@ -70,6 +69,7 @@ var FixedIntervalsTimingSchema = {
   'required': ['type'],
   'additionalProperties': false,
   'properties': {
+    name: {type: 'string'},
     type: {'enum': ['FixedIntervals']},
     intervals: {type: 'integer'},
     deathBy: {type: 'boolean', 'default': false},
@@ -79,13 +79,15 @@ var FixedIntervalsTimingSchema = {
   }
 };
 
-var AMRAPTimingSchema = {
-  'id': '/AMRAPTiming',
+var CappedTimingSchema = {
+  'id': '/CappedTiming',
   'required': ['type', 'timeCap'],
   'additionalProperties': false,
   'properties': {
-    type: {'enum': ['AMRAP']},
-    timeCap: {'type': 'integer'}
+    name: {type: 'string'},
+    type: {'enum': ['Capped']},
+    timeCap: {'type': 'integer'},
+    repeatable: {'type': 'boolean', 'default': false}
   }
 };
 
@@ -94,6 +96,7 @@ var TimedUnitsTimingSchema = {
   'required': ['type'],
   'additionalProperties': false,
   'properties': {
+    name: {type: 'string'},
     type: {'enum': ['TimedUnits']},
     rounds: {type: 'integer'},
     time: {type: 'integer', 'default':60},
@@ -111,7 +114,8 @@ var RepSchemeExprSchema = {
     '15-$round*3', // 15-12-9
     '10-$round', // 10-9-8-7-6-5-4-3-2-1
     '9-$round*2', // 9-7-5
-    '($round+3)*3', // 3-6-8...etc
+    '($round+3)*3', // 3-6-9...etc
+    '10+$round*2', // 10-12-14..etc
   ]
 };
 
@@ -134,7 +138,7 @@ var ClusterSchema = {
       'type': 'object',
       'oneOf': [
         {'$ref': '/FixedIntervalsTiming'},
-        {'$ref': '/AMRAPTiming'},
+        {'$ref': '/CappedTiming'},
         {'$ref': '/TimedUnitsTiming'},
         {'$ref': '/NoTiming'},
       ],
@@ -163,9 +167,7 @@ var workoutSchema = {
     'id': {'type': 'string'},
     'name': {'type': 'string'},
     'weighted': {type: ['array', 'integer']},
-    'scoring': {
-      'enum': ['time', 'load', 'reps', 'rounds']
-    },
+    'scoring': {'$ref': '/Aspect'},
     'type': {
       'enum': ['FixedWorkFixedTime', 'FixedWorkVariableTime', 'FixedTimeVariableWork', 'VariableWorkVariableTime']
     },
@@ -188,7 +190,7 @@ v.addSchema(movementSchema, '/Movement');
 v.addSchema(equipmentSchema, '/Equipment');
 v.addSchema(ClusterSchema, '/Cluster');
 v.addSchema(FixedIntervalsTimingSchema, '/FixedIntervalsTiming');
-v.addSchema(AMRAPTimingSchema, '/AMRAPTiming');
+v.addSchema(CappedTimingSchema, '/CappedTiming');
 v.addSchema(TimedUnitsTimingSchema, '/TimedUnitsTiming');
 v.addSchema(NoTimingSchema, '/NoTiming');
 v.addSchema(RepSchemeExprSchema, '/RepSchemeExpr');
