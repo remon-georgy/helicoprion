@@ -4,9 +4,7 @@
   "description": "Workout analysis",
   "main": "index.js",
   "devDependencies": {
-    "eslint": "^3.0.1",
-    "eslint-plugin-html": "^1.5.1",
-    "eslint-plugin-react": "^5.2.2",
+    "eslint": "^3.7.1",
     "flow-bin": "^0.32.0"
   },
   "scripts": {
@@ -24,13 +22,11 @@
   },
   "homepage": "https://github.com/remon-georgy/helicoprion#readme",
   "dependencies": {
-    "eslint": "^3.5.0",
-    "eslint-plugin-html": "^1.5.2",
     "express": "^4.14.0",
+    "gun": "^0.3.995",
     "jsonschema": "^1.1.0",
-    "lodash": "^4.15.0",
-    "nodemon": "^1.10.2",
-    "react-native-web": "0.0.44",
+    "lodash": "^4.16.4",
+    "nodemon": "^1.11.0",
     "rethinkdb": "^2.3.3"
   }
 }
