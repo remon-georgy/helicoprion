@@ -437,7 +437,6 @@ var workouts = [
   // Clean and Jerk 135/95 lbs
   //
   // 30 reps for time
-  // TODO
   {
     name: 'Grace',
     scoring: 'time',
@@ -445,7 +444,7 @@ var workouts = [
     clusters: [{
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
-        rx: {'load': [135, 95], reps: 30}
+        rx: {'load': [135, 95], unit: 'lb', reps: 30}
       }]
     }]
   },
@@ -478,7 +477,6 @@ var workouts = [
   // Snatch 135/95 pounds
   //
   // 30 reps for time
-  // TODO
   {
     name: 'Isabel',
     scoring: 'time',
@@ -543,13 +541,13 @@ var workouts = [
       repScheme: '10-$round',
       units: [{
         movementID: movements['/movement/deadlift'].id,
-        rx: {'load': '1.5 * $BW', unit: 'lb'}
+        rx: {'load': '1.5 * $BW'}
       }, {
         movementID: movements['/movement/bench-press'].id,
         rx: {'load': '$BW'}
       }, {
         movementID: movements['/movement/clean-squat'].id,
-        rx: {'load': '0.75 * $BW', unit: 'lb'}
+        rx: {'load': '0.75 * $BW'}
       }]
     }]
   },
@@ -587,7 +585,6 @@ var workouts = [
   // Overhead squat 95/65 lbs x 15
   //
   // 5 rounds for time
-  // TODO
   {
     name: 'Nancy',
     scoring: 'time',
@@ -655,7 +652,6 @@ var workouts = [
   // 30 Wall-ball Shots, 20 pound ball
   //
   // 5 rounds for time
-  // TODO
   {
     name: 'Kelly',
     scoring: 'time',
@@ -688,7 +684,7 @@ var workouts = [
       rounds: 5,
       units: [{
         movementID: movements['/movement/bench-press'].id,
-        rx: {reps: '$MAX', load: '$BW', unit: 'lb'}
+        rx: {reps: '$MAX', load: '$BW'}
       }, {
         movementID: movements['/movement/pull-up'].id,
         rx: {reps: '$MAX'}
@@ -754,7 +750,7 @@ var workouts = [
         rx: {distance: 500, unit: 'm'}
       }, {
         movementID: movements['/movement/deadlift'].id,
-        rx: {reps: 12, 'load': '$BW', unit: 'lb'}
+        rx: {reps: 12, 'load': '$BW'}
       }, {
         movementID: movements['/movement/box-jump'].id,
         rx: {reps: 21, height: [24, 20], unit: 'in'}
@@ -775,7 +771,7 @@ var workouts = [
       rounds: 3,
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
-        rx: {load: '$MAX', unit: 'lb'}
+        rx: {load: '$MAX'}
       }]
     }]
   },
@@ -856,7 +852,6 @@ var workouts = [
   // 25 Burpees
   //
   // *ref* loaded movements.
-  // TODO
   {
     name: 'DEL',
     scoring: 'time',
@@ -875,21 +870,21 @@ var workouts = [
         notes: ['20 lbs/15 lbs dumbbell']
       }, {
         movementID: movements['/movement/run'].id,
-        rx: {'distance':400, unit: 'm', load: [20, 14], unit: 'lb'},
+        rx: {'distance':400, unit: 'm'},
         notes: ['20 lbs/14 lbs medicine ball']
       }, {
         movementID: movements['/movement/handstand-push-up'].id,
         rx: {reps: 25},
       }, {
         movementID: movements['/movement/run'].id,
-        rx: {'distance':400, unit: 'm', load: [20, 14], unit: 'lb'},
+        rx: {'distance':400, unit: 'm'},
         notes: ['20 lbs/14 lbs medicine ball']
       }, {
         movementID: movements['/movement/chest-to-bar'].id,
         rx: {reps: 25},
       }, {
         movementID: movements['/movement/run'].id,
-        rx: {'distance':400, unit: 'm', load: [20, 14], unit: 'lb'},
+        rx: {'distance':400, unit: 'm'},
         notes: ['20 lbs/14 lbs medicine ball']
       }, {
         movementID: movements['/movement/burpee'].id,
@@ -1018,7 +1013,7 @@ var workouts = [
     }, {
       units: [{
         movementID: movements['/movement/run'].id,
-        rx: {distance: 1200, unit: 'm', load: [20, 14], unit: 'lb'}
+        rx: {distance: 1200, unit: 'm'}
       }]
     }]
   },
