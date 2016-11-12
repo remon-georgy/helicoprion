@@ -260,6 +260,7 @@ var workouts = [
     name: 'Angie',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       'units': [
         {
@@ -290,6 +291,7 @@ var workouts = [
     name: 'Barbara',
     type: 'FixedWorkVariableTime',
     scoring: 'time',
+    tags: ['girls'],
     clusters: [{
       rounds: 5,
       restBetweenRounds: 180,
@@ -321,6 +323,7 @@ var workouts = [
     name: 'Chelsea',
     scoring: 'rounds',
     type: 'FixedWorkFixedTime',
+    tags: ['girls'],
     clusters: [{
       timing: {
         type: 'FixedIntervals',
@@ -352,6 +355,7 @@ var workouts = [
     name: 'Cindy',
     type: 'FixedTimeVariableWork',
     scoring: 'rounds',
+    tags: ['girls'],
     clusters: [{
       timing: {
         type: 'Capped', name: 'AMRAP',
@@ -379,6 +383,7 @@ var workouts = [
     name: 'Diane',
     type: 'FixedWorkVariableTime',
     scoring: 'time',
+    tags: ['girls'],
     clusters: [{
       rounds: 3,
       repScheme: '21-$round*6',
@@ -400,6 +405,7 @@ var workouts = [
     name: 'Elizabeth',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       rounds: 3,
       repScheme: '21-$round*6',
@@ -421,6 +427,7 @@ var workouts = [
     name: 'Fran',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       rounds: 3,
       repScheme: '21-$round*6',
@@ -441,6 +448,7 @@ var workouts = [
     name: 'Grace',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
@@ -458,6 +466,7 @@ var workouts = [
     name: 'Helen',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       rounds: 3,
       units: [{
@@ -481,6 +490,7 @@ var workouts = [
     name: 'Isabel',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       units: [{
         movementID: movements['/movement/snatch'].id,
@@ -497,6 +507,7 @@ var workouts = [
     name: 'Jackie',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       units: [{
         movementID: movements['/movement/row'].id,
@@ -517,6 +528,7 @@ var workouts = [
     name: 'Karen',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       units: [{
         movementID: movements['/movement/wall-ball-shot'].id,
@@ -536,6 +548,7 @@ var workouts = [
     name: 'Linda',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       rounds: 10,
       repScheme: '10-$round',
@@ -562,6 +575,7 @@ var workouts = [
     name: 'Mary',
     type: 'FixedTimeVariableWork',
     scoring: 'rounds',
+    tags: ['girls'],
     clusters: [{
       timing: {
         type: 'Capped', name: 'AMRAP',
@@ -589,6 +603,7 @@ var workouts = [
     name: 'Nancy',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       rounds: 5,
       units: [{
@@ -610,6 +625,7 @@ var workouts = [
     name: 'Annie',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       rounds: 5,
       repScheme: '50-10*$round',
@@ -631,6 +647,7 @@ var workouts = [
     name: 'Eva',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       rounds: 5,
       units: [{
@@ -656,6 +673,7 @@ var workouts = [
     name: 'Kelly',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['girls'],
     clusters: [{
       rounds: 5,
       units: [{
@@ -680,6 +698,7 @@ var workouts = [
     name: 'Lynne',
     type: 'VariableWorkVariableTime',
     scoring: 'reps',
+    tags: ['girls'],
     clusters: [{
       rounds: 5,
       units: [{
@@ -701,6 +720,7 @@ var workouts = [
     name: 'Nicole',
     type: 'FixedTimeVariableWork',
     scoring: 'reps',
+    tags: ['girls'],
     clusters: [{
       timing: {
         type: 'Capped', name: 'AMRAP',
@@ -723,6 +743,7 @@ var workouts = [
     name: 'Amanda',
     type: 'FixedWorkVariableTime',
     scoring: 'time',
+    tags: ['girls'],
     clusters: [{
       rounds: 3,
       repScheme: '9-$round*2',
@@ -743,6 +764,7 @@ var workouts = [
     name: 'Christine',
     type: 'FixedWorkVariableTime',
     scoring: 'time',
+    tags: ['girls'],
     clusters: [{
       rounds: 3,
       units: [{
@@ -766,6 +788,7 @@ var workouts = [
     name: 'Gwen',
     type: 'VariableWorkVariableTime',
     scoring: 'load',
+    tags: ['girls'],
     clusters: [{
       repScheme: '15-$round*3',
       rounds: 3,
@@ -785,6 +808,7 @@ var workouts = [
     name: 'Donny',
     type: 'FixedWorkVariableTime',
     scoring: 'time',
+    tags: ['hero'],
     clusters: [{
       repScheme: [21, 15, 9, 9, 15, 21],
       units: [{
@@ -811,6 +835,7 @@ var workouts = [
     name: 'Santora',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
+    tags: ['hero'],
     clusters: [{
       rounds: 3,
       restBetweenRounds: 60,
@@ -856,6 +881,7 @@ var workouts = [
     name: 'DEL',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['hero'],
     clusters: [{
       units: [{
         movementID: movements['/movement/burpee'].id,
@@ -906,6 +932,7 @@ var workouts = [
     name: 'The Chief',
     scoring: 'rounds',
     type: 'FixedTimeVariableWork',
+    tags: ['hero'],
     clusters: [{
       rounds: 3,
       restBetweenRounds: 60,
@@ -936,6 +963,7 @@ var workouts = [
     name: 'Open 15.5',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['cf-open'],
     clusters: [{
       rounds: 4,
       repScheme: '27-6*$round',
@@ -962,6 +990,7 @@ var workouts = [
     name: 'Viola',
     scoring: 'rounds',
     type: 'FixedTimeVariableWork',
+    tags: ['hero'],
     clusters: [{
       timing: {
         type: 'Capped',
@@ -996,6 +1025,7 @@ var workouts = [
     name: 'Moose',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
+    tags: ['hero'],
     clusters: [{
       units: [{
         movementID: movements['/movement/row'].id,
@@ -1041,6 +1071,7 @@ var workouts = [
     name: 'Three Wise Men',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
+    tags: ['hero'],
     clusters: [{
       name: 'Jeremy Wise',
       timing: {
@@ -1093,6 +1124,7 @@ var workouts = [
     name: 'Test 3',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
+    tags: ['hero'],
     clusters: [{
       timing: {
         type:'FixedIntervals',
@@ -1124,6 +1156,7 @@ var workouts = [
     name: 'Open 12.2',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
+    tags: ['cf-open'],
     clusters: [{
       timing: {
         type: 'Capped', name: 'AMRAP',
@@ -1161,6 +1194,7 @@ var workouts = [
     name: 'Open 12.5',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
+    tags: ['cf-open'],
     clusters: [{
       repScheme: '($round+3)*3',
       timing: {
@@ -1189,6 +1223,7 @@ var workouts = [
     name: 'Open 14.4',
     scoring: 'rounds',
     type: 'FixedTimeVariableWork',
+    tags: ['cf-open'],
     clusters: [{
       timing: {
         type: 'Capped', name: 'AMRAP',
@@ -1237,6 +1272,7 @@ var workouts = [
     name: 'Open 14.2',
     scoring: 'intervals',
     type: 'VariableWorkVariableTime',
+    tags: ['cf-open'],
     clusters:[{
       // NOTE experimental
       // NOTE intervals here are unlimited
@@ -1267,6 +1303,7 @@ var workouts = [
     name: 'Open 13.5',
     scoring: 'rounds',
     type: 'FixedWorkVariableTime',
+    tags: ['cf-open'],
     clusters: [{
       rounds: 3,
       timing: {
@@ -1298,6 +1335,7 @@ var workouts = [
     name: 'Dragon',
     scoring: 'load',
     type: 'VariableWorkVariableTime',
+    tags: ['hero'],
     clusters: [{
       units: [{
         movementID: movements['/movement/run'].id,
