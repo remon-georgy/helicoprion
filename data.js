@@ -6,7 +6,11 @@
 // The Girls
 // http://www.crossfit.com/cf-info/faq.html
 ///////////////////////////////////////////////////////////////////////
-
+var tags = {
+  'cf-open': 'CrossFit Games Open',
+  'girls': 'The Girls',
+  'hero': 'The Heros',
+};
 
 var movements = {
   '/movement/pull-up': {
