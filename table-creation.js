@@ -2,13 +2,13 @@
  * @flow
  */
 
-var movements = require('./data').movements;
-var workouts = require('./data').workouts;
-var r = require('rethinkdb');
-var _ = require('lodash');
-var movementsArray = _.values(movements);
-var workoutsArray = _.values(workouts);
-var p = r.connect({db: 'wodmeup'});
+const movements = require('./data').movements;
+const workouts = require('./data').workouts;
+const r = require('rethinkdb');
+const _ = require('lodash');
+const movementsArray = _.values(movements);
+const workoutsArray = _.values(workouts);
+const p = r.connect({db: 'wodmeup'});
 
 p.then(function(conn) {
   // Movements

@@ -6,13 +6,39 @@
 // The Girls
 // http://www.crossfit.com/cf-info/faq.html
 ///////////////////////////////////////////////////////////////////////
-var tags = {
-  'cf-open': 'CrossFit Games Open',
+const tags = {
+  'cfg-open': 'CrossFit Games Open',
   'girls': 'The Girls',
   'hero': 'The Heros',
 };
 
-var movements = {
+const equipment = {
+  'body-weight': 'Body-weight',
+  'barbell': 'Barbell',
+  'dumbbell': 'Dumbbell',
+  'kettlebell': 'Kettlebell',
+  'jump-rope': 'Jump Rope',
+  'rope': 'Rope',
+  'abmat': 'Abmat',
+  'rings': 'Rings',
+  'pull-up-rig': 'Pull-Up Rig',
+  'box': 'Box',
+  'bench': 'Bench',
+  'rower': 'Rower',
+  'sled': 'Sled',
+  'yoke': 'Yoke',
+  'tire': 'Tire',
+  'parallettes': 'Parallettes',
+  'plates': 'Plates',
+  'rack': 'Rack',
+  'elastic-band': 'Elastic Band',
+  'medicine-ball': 'Medicine Ball',
+  'weight-vest': 'Weight Vest',
+  'ghd': 'GHD',
+  'assault-bike': 'Assaut Bike'
+};
+
+const movements = {
   '/movement/pull-up': {
     'id': '/movement/pull-up',
     'name': 'Pull-Up',
@@ -34,25 +60,25 @@ var movements = {
   '/movement/push-up': {
     'id': '/movement/push-up',
     'name': 'Push-Up',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/sit-up': {
     'id': '/movement/sit-up',
     'name': 'Sit-Up',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/run': {
     'id': '/movement/run',
     'name': 'Run',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['distance', 'load'],
   },
   '/movement/shuttle-sprint': {
     'id': '/movement/shuttle-sprint',
     'name': 'Shuttle Sprint',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['distance', 'load', 'reps'],
   },
   '/movement/snatch': {
@@ -87,13 +113,13 @@ var movements = {
   '/movement/clean': {
     'id': '/movement/clean',
     'name': 'Clean',
-    'equipment': ['barbell', 'dumbell', 'kettlebell', 'medicine-ball', 'plates'],
+    'equipment': ['barbell', 'dumbbell', 'kettlebell', 'medicine-ball', 'plates'],
     'aspects': ['reps', 'load'],
   },
   '/movement/squat-air': {
     'id': '/movement/squat-air',
     'name': 'Air Squat',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/squat-back': {
@@ -121,7 +147,7 @@ var movements = {
     'id': '/movement/pistol',
     'parent': '/movement/squat',
     'name': 'Pistol',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/clean-squat': {
@@ -151,7 +177,7 @@ var movements = {
   '/movement/handstand-push-up': {
     'id': '/movement/handstand-push-up',
     'name': 'Handstand Push-Up',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
   '/movement/ring-dip': {
@@ -230,30 +256,30 @@ var movements = {
   '/movement/burpee': {
     'id': '/movement/burpee',
     'name': 'Burpee',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['reps'],
   },
   '/movement/burpee-over-bar': {
     'id': '/movement/burpee-over-bar',
     'name': 'Over the Bar Burpees',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['reps'],
   },
   '/movement/burpee-facing-bar': {
     'id': '/movement/burpee-facing-bar',
     'name': 'Bar Facing Burpees',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['reps'],
   },
   '/movement/rest': {
     'id': '/movement/rest',
     'name': 'Rest',
-    'equipment': ['bodyweight'],
+    'equipment': ['body-weight'],
     'aspects': ['time'],
   },
 };
 
-var workouts = [
+const workouts = [
   // For time
   //
   // 100 Pull-ups
@@ -694,7 +720,7 @@ var workouts = [
   },
   // Lynne
   //
-  // Bodyweight bench press (e.g., same amount on bar as you weigh)
+  // body-weight bench press (e.g., same amount on bar as you weigh)
   // Pullups
   //
   // 5 rounds for max reps. There is NO time component to this WOD, although some versions Rx the movements as a couplet.
@@ -762,7 +788,7 @@ var workouts = [
   // Christine
   // 3 Rounds for Time
   // 500 meter Row
-  // 12 Deadlifts (Bodyweight)
+  // 12 Deadlifts (body-weight)
   // 21 Box Jumps (24/20 in)
   {
     name: 'Christine',
@@ -967,7 +993,7 @@ var workouts = [
     name: 'Open 15.5',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
-    tags: ['cf-open'],
+    tags: ['cfg-open'],
     clusters: [{
       rounds: 4,
       repScheme: '27-6*$round',
@@ -1160,7 +1186,7 @@ var workouts = [
     name: 'Open 12.2',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
-    tags: ['cf-open'],
+    tags: ['cfg-open'],
     clusters: [{
       timing: {
         type: 'Capped', name: 'AMRAP',
@@ -1198,7 +1224,7 @@ var workouts = [
     name: 'Open 12.5',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
-    tags: ['cf-open'],
+    tags: ['cfg-open'],
     clusters: [{
       repScheme: '($round+3)*3',
       timing: {
@@ -1227,7 +1253,7 @@ var workouts = [
     name: 'Open 14.4',
     scoring: 'rounds',
     type: 'FixedTimeVariableWork',
-    tags: ['cf-open'],
+    tags: ['cfg-open'],
     clusters: [{
       timing: {
         type: 'Capped', name: 'AMRAP',
@@ -1276,7 +1302,7 @@ var workouts = [
     name: 'Open 14.2',
     scoring: 'intervals',
     type: 'VariableWorkVariableTime',
-    tags: ['cf-open'],
+    tags: ['cfg-open'],
     clusters:[{
       // NOTE experimental
       // NOTE intervals here are unlimited
@@ -1307,7 +1333,7 @@ var workouts = [
     name: 'Open 13.5',
     scoring: 'rounds',
     type: 'FixedWorkVariableTime',
-    tags: ['cf-open'],
+    tags: ['cfg-open'],
     clusters: [{
       rounds: 3,
       timing: {

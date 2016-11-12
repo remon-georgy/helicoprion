@@ -2,10 +2,10 @@
  * @flow
  */
 
-var r = require('rethinkdb');
-var express = require('express');
-var app = express();
-var Model = require('./db');
+const r = require('rethinkdb');
+const express = require('express');
+const app = express();
+const Model = require('./db');
 
 app.use(function(req, res, next) {
   // Set permissive CORS header - this allows this server to be used only as
@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/workouts', function(req, res) {
-  var model = new Model((error) => {
+  const model = new Model((error) => {
     if (error) {
       console.error('error:', error);
     }

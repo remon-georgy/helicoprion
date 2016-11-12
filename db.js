@@ -2,11 +2,11 @@
  * @flow
  */
 
-var r = require('rethinkdb');
+const r = require('rethinkdb');
 
 module.exports = class Model {
   constructor(cb) {
-    var p = r.connect({db: 'wodmeup'});
+    const p = r.connect({db: 'wodmeup'});
     p.then((conn) => {
       this.conn = conn;
       cb();

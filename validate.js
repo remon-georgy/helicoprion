@@ -2,16 +2,16 @@
  * @flow
  */
 
-var data = require('./data');
-var Model = require('./db');
+const data = require('./data');
+const Model = require('./db');
 
-var equipmentSchema = {
+const equipmentSchema = {
   'id': '/Equipment',
   'enum': ['bodyweight', 'barbell', 'dumbell', 'kettlebell', 'jump-rope', 'rope', 'abmat', 'rings', 'pull-up-rig', 'box', 'bench', 'rower', 'sled', 'yoke', 'tire', 'parallettes', 'plates', 'rack', 'elastic-bands', 'medicine-ball', 'weighted-vest', 'ghd', 'assault-bike']
 };
 
 
-var aspectSchema = {
+const aspectSchema = {
   'id': '/Aspect',
   'enum': [
     // Non-iterable
@@ -20,7 +20,7 @@ var aspectSchema = {
     'distance', 'reps', 'calories', 'rounds', 'time', 'intervals']
 };
 
-var movementSchema = {
+const movementSchema = {
   'id': '/Movement',
   'type': 'object',
   'required': ['id', 'name', 'aspects'],
@@ -41,7 +41,7 @@ var movementSchema = {
   }
 };
 
-var unitSchema = {
+const unitSchema = {
   'id': '/Unit',
   'required': ['rx'],
   'additionalProperties': false,
@@ -55,7 +55,7 @@ var unitSchema = {
   }
 };
 
-var NoTimingSchema = {
+const NoTimingSchema = {
   'id': '/NoTiming',
   'required': ['type'],
   'additionalProperties': false,
@@ -64,7 +64,7 @@ var NoTimingSchema = {
   }
 };
 
-var FixedIntervalsTimingSchema = {
+const FixedIntervalsTimingSchema = {
   'id': '/FixedIntervalsTiming',
   'required': ['type'],
   'additionalProperties': false,
@@ -79,7 +79,7 @@ var FixedIntervalsTimingSchema = {
   }
 };
 
-var CappedTimingSchema = {
+const CappedTimingSchema = {
   'id': '/CappedTiming',
   'required': ['type', 'timeCap'],
   'additionalProperties': false,
@@ -91,7 +91,7 @@ var CappedTimingSchema = {
   }
 };
 
-var TimedUnitsTimingSchema = {
+const TimedUnitsTimingSchema = {
   'id': '/TimedUnitsTiming',
   'required': ['type'],
   'additionalProperties': false,
@@ -105,7 +105,7 @@ var TimedUnitsTimingSchema = {
 
 
 
-var RepSchemeExprSchema = {
+const RepSchemeExprSchema = {
   id: '/RepSchemeExpr',
   'enum': [
     '50-10*$round', // 50-40-30-20-10
@@ -119,13 +119,13 @@ var RepSchemeExprSchema = {
   ]
 };
 
-var RepSchemeArraySchema = {
+const RepSchemeArraySchema = {
   id: '/RepSchemeArray',
   type: 'array',
   'minItems': 1,
 };
 
-var ClusterSchema = {
+const ClusterSchema = {
   'id': '/Cluster',
   'required': ['units'],
   'additionalProperties': false,
@@ -158,7 +158,7 @@ var ClusterSchema = {
   }
 };
 
-var workoutSchema = {
+const workoutSchema = {
   'id': '/Workout',
   'type': 'object',
   'required': ['name', 'scoring', 'clusters', 'type', 'scoring'],
@@ -182,8 +182,8 @@ var workoutSchema = {
   }
 };
 
-var Validator = require('jsonschema').Validator;
-var v = new Validator();
+const Validator = require('jsonschema').Validator;
+const v = new Validator();
 v.addSchema(unitSchema, '/Unit');
 v.addSchema(aspectSchema, '/Aspect');
 v.addSchema(movementSchema, '/Movement');
@@ -196,12 +196,12 @@ v.addSchema(NoTimingSchema, '/NoTiming');
 v.addSchema(RepSchemeExprSchema, '/RepSchemeExpr');
 v.addSchema(RepSchemeArraySchema, '/RepSchemeArray');
 
-var model = new Model((error) => {
+const model = new Model((error) => {
   if (error)
     throw new Error(error.message);
   model.getWorkouts((workouts) => {
     workouts.forEach(function(workout) {
-      var ret = v.validate(workout, workoutSchema);
+      const ret = v.validate(workout, workoutSchema);
       if (ret.errors.length > 0) {
         console.log(ret.errors);
         console.log(workout);

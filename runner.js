@@ -1,5 +1,5 @@
 const _ = require('lodash');
-// var Model = require('./db');
+// const Model = require('./db');
 // let model = new Model(() => {
 //   model.getWorkouts('Annie', (wod) => {
 //     console.log(wod);
@@ -10,7 +10,7 @@ const _ = require('lodash');
 
 */
 
-var wod = {'clusters':[{'rounds':5,'units':[{'movement':{'aspects':['reps','load'],'equipment':['barbell'],'id':'/movement/bench-press','name':'Bench Press'},'movementID':'/movement/bench-press','rx':{'load':'$BW','reps':'$MAX'}},{'movement':{'aspects':['reps','load'],'equipment':['pull-up-rig'],'id':'/movement/pull-up','name':'Pull up'},'movementID':'/movement/pull-up','rx':{'reps':'$MAX'}}]}],'equipments':['barbell','pull-up-rig'],'id':'d8dcfba6-b823-45fb-bb12-c1cd0b2d062e','movements':['/movement/bench-press','/movement/pull-up'],'name':'Lynne','scoring':{'aspect':'reps','type':'VariableWorkVariableTime'}}
+const wod = {'clusters':[{'rounds':5,'units':[{'movement':{'aspects':['reps','load'],'equipment':['barbell'],'id':'/movement/bench-press','name':'Bench Press'},'movementID':'/movement/bench-press','rx':{'load':'$BW','reps':'$MAX'}},{'movement':{'aspects':['reps','load'],'equipment':['pull-up-rig'],'id':'/movement/pull-up','name':'Pull up'},'movementID':'/movement/pull-up','rx':{'reps':'$MAX'}}]}],'equipments':['barbell','pull-up-rig'],'id':'d8dcfba6-b823-45fb-bb12-c1cd0b2d062e','movements':['/movement/bench-press','/movement/pull-up'],'name':'Lynne','scoring':{'aspect':'reps','type':'VariableWorkVariableTime'}}
 ;
 
 wod.clusters.forEach((cluster) => {
