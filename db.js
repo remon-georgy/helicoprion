@@ -2,10 +2,12 @@
  * @flow
  */
 
+
 const r = require('rethinkdb');
 
 module.exports = class Model {
   constructor(cb) {
+    this.conn = null;
     const p = r.connect({db: 'wodmeup'});
     p.then((conn) => {
       this.conn = conn;
@@ -27,8 +29,15 @@ module.exports = class Model {
           return cluster.merge(function(cluster) {
             return {'units': cluster('units').map(function(unit) {
               return unit.merge({
-                movement: r.db('wodmeup').table('movements').get(unit('movementID')),
-                rx:{}, notes:[],
+                movement: r.db('wodmeup').table('movements').get(unit('movementID'))
+                // TODO Merge to equipment instead.
+                .merge(function(movement) {
+                  return {
+                    equipment: movement('equipment').map(function(eqID) {
+                      return r.db('wodmeup').table('equipments').get(eqID)('label');
+                    })};
+                })
+                , rx:{}, notes:[],
               });
             })};
           },
@@ -37,7 +46,8 @@ module.exports = class Model {
           },
           {notes:[]});
         })};
-      }, {notes: []});
+      },
+      {notes: []});
     })
     // Cache equipments
     .map(function(workout) {

@@ -6,37 +6,37 @@
 // The Girls
 // http://www.crossfit.com/cf-info/faq.html
 ///////////////////////////////////////////////////////////////////////
-const tags = {
-  'cfg-open': 'CrossFit Games Open',
-  'girls': 'The Girls',
-  'hero': 'The Heros',
-};
+const tags = [
+  { id: 'cfg-open', label: 'CrossFit Games Open' },
+  { id: 'girls', label: 'The Girls' },
+  { id: 'hero', label: 'The Heros' }
+];
 
-const equipment = {
-  'body-weight': 'Body-weight',
-  'barbell': 'Barbell',
-  'dumbbell': 'Dumbbell',
-  'kettlebell': 'Kettlebell',
-  'jump-rope': 'Jump Rope',
-  'rope': 'Rope',
-  'abmat': 'Abmat',
-  'rings': 'Rings',
-  'pull-up-rig': 'Pull-Up Rig',
-  'box': 'Box',
-  'bench': 'Bench',
-  'rower': 'Rower',
-  'sled': 'Sled',
-  'yoke': 'Yoke',
-  'tire': 'Tire',
-  'parallettes': 'Parallettes',
-  'plates': 'Plates',
-  'rack': 'Rack',
-  'elastic-band': 'Elastic Band',
-  'medicine-ball': 'Medicine Ball',
-  'weight-vest': 'Weight Vest',
-  'ghd': 'GHD',
-  'assault-bike': 'Assaut Bike'
-};
+const equipments = [
+  { id: 'body-weight', label: 'Body-weight' },
+  { id: 'barbell', label: 'Barbell' },
+  { id: 'dumbbell', label: 'Dumbbell' },
+  { id: 'kettlebell', label: 'Kettlebell' },
+  { id: 'jump-rope', label: 'Jump Rope' },
+  { id: 'rope', label: 'Rope' },
+  { id: 'abmat', label: 'Abmat' },
+  { id: 'rings', label: 'Rings' },
+  { id: 'pull-up-rig', label: 'Pull-Up Rig' },
+  { id: 'box', label: 'Box' },
+  { id: 'bench', label: 'Bench' },
+  { id: 'rower', label: 'Rower' },
+  { id: 'sled', label: 'Sled' },
+  { id: 'yoke', label: 'Yoke' },
+  { id: 'tire', label: 'Tire' },
+  { id: 'parallettes', label: 'Parallettes' },
+  { id: 'plates', label: 'Plates' },
+  { id: 'rack', label: 'Rack' },
+  { id: 'elastic-band', label: 'Elastic Band' },
+  { id: 'medicine-ball', label: 'Medicine Ball' },
+  { id: 'weight-vest', label: 'Weight Vest' },
+  { id: 'ghd', label: 'GHD' },
+  { id: 'assault-bike', label: 'Assaut Bike' }
+];
 
 const movements = {
   '/movement/pull-up': {
@@ -1403,4 +1403,6 @@ const workouts = [
 module.exports = {
   'workouts': workouts,
   'movements': movements,
+  'equipments': equipments,
+  'tags': tags
 };
