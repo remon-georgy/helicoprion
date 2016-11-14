@@ -34,7 +34,7 @@ module.exports = class Model {
                 .merge(function(movement) {
                   return {
                     equipment: movement('equipment').map(function(eqID) {
-                      return r.db('wodmeup').table('equipments').get(eqID)('label');
+                      return r.db('wodmeup').table('equipments').get(eqID)('name');
                     })};
                 })
                 , rx:{}, notes:[],

@@ -7,35 +7,35 @@
 // http://www.crossfit.com/cf-info/faq.html
 ///////////////////////////////////////////////////////////////////////
 const tags = [
-  { id: 'cfg-open', label: 'CrossFit Games Open' },
-  { id: 'girls', label: 'The Girls' },
-  { id: 'hero', label: 'The Heros' }
+  { id: 'cfg-open', name: 'CrossFit Games Open' },
+  { id: 'girls', name: 'The Girls' },
+  { id: 'hero', name: 'The Heros' }
 ];
 
 const equipments = [
-  { id: 'body-weight', label: 'Body-weight' },
-  { id: 'barbell', label: 'Barbell' },
-  { id: 'dumbbell', label: 'Dumbbell' },
-  { id: 'kettlebell', label: 'Kettlebell' },
-  { id: 'jump-rope', label: 'Jump Rope' },
-  { id: 'rope', label: 'Rope' },
-  { id: 'abmat', label: 'Abmat' },
-  { id: 'rings', label: 'Rings' },
-  { id: 'pull-up-rig', label: 'Pull-Up Rig' },
-  { id: 'box', label: 'Box' },
-  { id: 'bench', label: 'Bench' },
-  { id: 'rower', label: 'Rower' },
-  { id: 'sled', label: 'Sled' },
-  { id: 'yoke', label: 'Yoke' },
-  { id: 'tire', label: 'Tire' },
-  { id: 'parallettes', label: 'Parallettes' },
-  { id: 'plates', label: 'Plates' },
-  { id: 'rack', label: 'Rack' },
-  { id: 'elastic-band', label: 'Elastic Band' },
-  { id: 'medicine-ball', label: 'Medicine Ball' },
-  { id: 'weight-vest', label: 'Weight Vest' },
-  { id: 'ghd', label: 'GHD' },
-  { id: 'assault-bike', label: 'Assaut Bike' }
+  { id: 'body-weight', name: 'Body-weight' },
+  { id: 'barbell', name: 'Barbell' },
+  { id: 'dumbbell', name: 'Dumbbell' },
+  { id: 'kettlebell', name: 'Kettlebell' },
+  { id: 'jump-rope', name: 'Jump Rope' },
+  { id: 'rope', name: 'Rope' },
+  { id: 'abmat', name: 'Abmat' },
+  { id: 'rings', name: 'Rings' },
+  { id: 'pull-up-rig', name: 'Pull-Up Rig' },
+  { id: 'box', name: 'Box' },
+  { id: 'bench', name: 'Bench' },
+  { id: 'rower', name: 'Rower' },
+  { id: 'sled', name: 'Sled' },
+  { id: 'yoke', name: 'Yoke' },
+  { id: 'tire', name: 'Tire' },
+  { id: 'parallettes', name: 'Parallettes' },
+  { id: 'plates', name: 'Plates' },
+  { id: 'rack', name: 'Rack' },
+  { id: 'elastic-band', name: 'Elastic Band' },
+  { id: 'medicine-ball', name: 'Medicine Ball' },
+  { id: 'weight-vest', name: 'Weight Vest' },
+  { id: 'ghd', name: 'GHD' },
+  { id: 'assault-bike', name: 'Assaut Bike' }
 ];
 
 const movements = {
