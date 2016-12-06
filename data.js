@@ -7,9 +7,10 @@
 // http://www.crossfit.com/cf-info/faq.html
 ///////////////////////////////////////////////////////////////////////
 const tags = [
-  { id: 'cfg-open', name: 'CrossFit Games Open' },
+  { id: 'cfg-open',name: 'CrossFit Games Open' },
   { id: 'girls', name: 'The Girls' },
-  { id: 'hero', name: 'The Heros' }
+  { id: 'hero', name: 'The Heros' },
+  { id: 'competition', name: 'Competitions' },
 ];
 
 const equipments = [
@@ -97,12 +98,6 @@ const movements = {
     'id': '/movement/push-press',
     'name': 'Push Press',
     'equipment': ['barbell'],
-  },
-  '/movement/snatch-squat': {
-    'id': '/movement/snatch-squat',
-    'name': 'Squat Snatch',
-    'equipment': ['barbell'],
-    'aspects': ['reps', 'load'],
   },
   '/movement/snatch-hang-squat': {
     'id': '/movement/snatch-hang-squat',
@@ -261,13 +256,13 @@ const movements = {
   },
   '/movement/burpee-over-bar': {
     'id': '/movement/burpee-over-bar',
-    'name': 'Over the Bar Burpees',
+    'name': 'Over the Bar Burpee',
     'equipment': ['body-weight'],
     'aspects': ['reps'],
   },
   '/movement/burpee-facing-bar': {
     'id': '/movement/burpee-facing-bar',
-    'name': 'Bar Facing Burpees',
+    'name': 'Bar Facing Burpee',
     'equipment': ['body-weight'],
     'aspects': ['reps'],
   },
@@ -324,7 +319,7 @@ const workouts = [
     tags: ['girls'],
     clusters: [{
       rounds: 5,
-      restBetweenRounds: 180,
+      restBetweenRounds: {value: 3, unit: 'mins'},
       units: [{
         movementID: movements['/movement/pull-up'].id,
         rx: {reps: 20}
@@ -337,9 +332,6 @@ const workouts = [
       }, {
         movementID: movements['/movement/squat-air'].id,
         rx: {reps: 50}
-      }, {
-        movementID: movements['/movement/rest'].id,
-        rx: {time: 180}
       }]
     }]
   },
@@ -356,6 +348,7 @@ const workouts = [
     tags: ['girls'],
     clusters: [{
       timing: {
+        alias: 'EMOM 30',
         type: 'FixedIntervals',
         intervals: 30,
         deathBy: true,
@@ -388,7 +381,7 @@ const workouts = [
     tags: ['girls'],
     clusters: [{
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped',
         timeCap: 1200
       },
       units: [{
@@ -415,8 +408,7 @@ const workouts = [
     scoring: 'time',
     tags: ['girls'],
     clusters: [{
-      rounds: 3,
-      repScheme: '21-$round*6',
+      repScheme: [21, 15, 9],
       units: [{
         movementID: movements['/movement/deadlift'].id,
         rx: {'load': [225, 155], unit: 'lb'}
@@ -437,8 +429,7 @@ const workouts = [
     type: 'FixedWorkVariableTime',
     tags: ['girls'],
     clusters: [{
-      rounds: 3,
-      repScheme: '21-$round*6',
+      repScheme: [21, 15, 9],
       units: [{
         movementID: movements['/movement/clean-squat'].id,
         rx: {'load': [135, 95], unit: 'lb'}
@@ -459,8 +450,7 @@ const workouts = [
     type: 'FixedWorkVariableTime',
     tags: ['girls'],
     clusters: [{
-      rounds: 3,
-      repScheme: '21-$round*6',
+      repScheme: [21, 15, 9],
       units: [{
         movementID: movements['/movement/thruster'].id,
         rx: {'load': [95, 65], unit: 'lb'}
@@ -580,8 +570,7 @@ const workouts = [
     type: 'FixedWorkVariableTime',
     tags: ['girls'],
     clusters: [{
-      rounds: 10,
-      repScheme: '10-$round',
+      repScheme: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       units: [{
         movementID: movements['/movement/deadlift'].id,
         rx: {'load': '1.5 * $BW'}
@@ -608,7 +597,7 @@ const workouts = [
     tags: ['girls'],
     clusters: [{
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP 20 minutes',
         timeCap: 1200,
       },
       units: [{
@@ -657,8 +646,7 @@ const workouts = [
     type: 'FixedWorkVariableTime',
     tags: ['girls'],
     clusters: [{
-      rounds: 5,
-      repScheme: '50-10*$round',
+      repScheme: [50, 40, 30, 20, 10],
       units: [{
         movementID: movements['/movement/jump-rope-du'].id,
       }, {
@@ -685,7 +673,7 @@ const workouts = [
         rx: {'distance': 800, unit: 'm'}
       }, {
         movementID: movements['/movement/kettlebell-swing'].id,
-        rx: {reps: 30, load: 70, unit: 'pood'}
+        rx: {reps: 30, load: 2, unit: 'pood'}
       }, {
         movementID: movements['/movement/pull-up'].id,
         rx: {reps: 30}
@@ -751,9 +739,10 @@ const workouts = [
     type: 'FixedTimeVariableWork',
     scoring: 'reps',
     tags: ['girls'],
+    notes: ['Score is total of un-broken Pull-Ups completed each round.'],
     clusters: [{
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP 20 minutes',
         timeCap: 1200,
       },
       units: [{
@@ -775,12 +764,11 @@ const workouts = [
     scoring: 'time',
     tags: ['girls'],
     clusters: [{
-      rounds: 3,
-      repScheme: '9-$round*2',
+      repScheme: [9, 7, 5],
       units: [{
         movementID: movements['/movement/muscle-up'].id,
       }, {
-        movementID: movements['/movement/snatch-squat'].id,
+        movementID: movements['/movement/snatch'].id,
         rx: {load: [135, 95], unit: 'lb'}
       }]
     }]
@@ -820,13 +808,13 @@ const workouts = [
     scoring: 'load',
     tags: ['girls'],
     clusters: [{
-      repScheme: '15-$round*3',
-      rounds: 3,
+      repScheme: [15, 12, 9],
       units: [{
         movementID: movements['/movement/clean-and-jerk'].id,
         rx: {load: '$MAX'}
       }]
-    }]
+    }],
+    notes: ['Score is weight used for all three UNBROKEN sets.']
   },
   // DONNY
   // 21-15-9-9-15-21 Reps For Time
@@ -868,7 +856,7 @@ const workouts = [
     tags: ['hero'],
     clusters: [{
       rounds: 3,
-      restBetweenRounds: 60,
+      restBetweenRounds: {value: 1, unit: 'min'},
       timing: {
         type: 'TimedUnits',
         time: 60,
@@ -965,7 +953,7 @@ const workouts = [
     tags: ['hero'],
     clusters: [{
       rounds: 3,
-      restBetweenRounds: 60,
+      restBetweenRounds: {unit: 'minute', value: 1},
       timing: {
         type: 'FixedIntervals',
         intervals: 3,
@@ -993,10 +981,9 @@ const workouts = [
     name: 'Open 15.5',
     scoring: 'time',
     type: 'FixedWorkVariableTime',
-    tags: ['cfg-open'],
+    tags: ['cfg-open', 'competition'],
     clusters: [{
-      rounds: 4,
-      repScheme: '27-6*$round',
+      repScheme: [27, 21, 15, 9],
       units: [{
         movementID: movements['/movement/row'].id,
         // NOTE this is an experimental
@@ -1025,9 +1012,13 @@ const workouts = [
       timing: {
         type: 'Capped',
         timeCap: 25*60,
-        name: 'AMRAP',
+        alias:'AMRAP',
       },
-      repScheme: '($round+3)*3',
+      //'($round+3)*3',
+      repScheme: {
+        init: 3,
+        step: 3,
+      },
       units: [{
         movementID: movements['/movement/thruster'].id,
         rx: {load: [95, 65], unit: 'lb'},
@@ -1102,10 +1093,11 @@ const workouts = [
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
     tags: ['hero'],
+    notes: ['Complete all three parts of the workout (“Jeremy,” “Ben,” and “Beau”). Rest 2 Minutes between each part. Score is the total number of reps completed for all three parts.'],
     clusters: [{
       name: 'Jeremy Wise',
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP 4 minutes',
         timeCap: 240,
       },
       units: [{
@@ -1118,7 +1110,7 @@ const workouts = [
     }, {
       name: 'Ben Wise',
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP 4 minutes',
         timeCap: 240,
       },
       units: [{
@@ -1131,7 +1123,7 @@ const workouts = [
     }, {
       name: 'Beau Wise',
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP 4 minutes',
         timeCap: 240,
       },
       units: [{
@@ -1186,10 +1178,10 @@ const workouts = [
     name: 'Open 12.2',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
-    tags: ['cfg-open'],
+    tags: ['cfg-open', 'competition'],
     clusters: [{
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP 10 minutes',
         timeCap: 600
       },
       units: [{
@@ -1224,11 +1216,14 @@ const workouts = [
     name: 'Open 12.5',
     scoring: 'reps',
     type: 'FixedTimeVariableWork',
-    tags: ['cfg-open'],
+    tags: ['cfg-open', 'competition'],
     clusters: [{
-      repScheme: '($round+3)*3',
+      repScheme: {
+        init: 3,
+        step: 3,
+      },
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP 7 minutes',
         timeCap: 420,
       },
       units: [{
@@ -1253,10 +1248,10 @@ const workouts = [
     name: 'Open 14.4',
     scoring: 'rounds',
     type: 'FixedTimeVariableWork',
-    tags: ['cfg-open'],
+    tags: ['cfg-open', 'competition'],
     clusters: [{
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP',
         timeCap: 1020,
       },
       units: [{
@@ -1302,7 +1297,7 @@ const workouts = [
     name: 'Open 14.2',
     scoring: 'intervals',
     type: 'VariableWorkVariableTime',
-    tags: ['cfg-open'],
+    tags: ['cfg-open', 'competition'],
     clusters:[{
       // NOTE experimental
       // NOTE intervals here are unlimited
@@ -1333,11 +1328,11 @@ const workouts = [
     name: 'Open 13.5',
     scoring: 'rounds',
     type: 'FixedWorkVariableTime',
-    tags: ['cfg-open'],
+    tags: ['cfg-open', 'competition'],
     clusters: [{
       rounds: 3,
       timing: {
-        type: 'Capped', name: 'AMRAP',
+        type: 'Capped', alias:'AMRAP',
         timeCap: 240,
         repeatable: true,
       },
@@ -1393,7 +1388,7 @@ const workouts = [
       },
       units: [{
         movementID: movements['/movement/push-jerk'].id,
-        rx: {load: '$MAX'},
+        rx: {load: '$MAX', unit: 'lb'},
       }],
       notes: ['Find 4RM'],
     }]

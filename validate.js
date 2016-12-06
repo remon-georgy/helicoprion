@@ -109,13 +109,58 @@ const RepSchemeExprSchema = {
   id: '/RepSchemeExpr',
   'enum': [
     '50-10*$round', // 50-40-30-20-10
+    {
+      'start': 50,
+      'rounds': 5,
+      'step': -10
+    },
+    
     '27-6*$round', // 27-21-15-9
+    {
+      start: 27,
+      rounds: 4,
+      step: -6,
+    },
+    
     '21-$round*6', // 21-15-9
+    {
+      start: 21,
+      rounds: 3,
+      step: -6,
+    },
+    
     '15-$round*3', // 15-12-9
+    {
+      start: 15,
+      rounds: 3,
+      step: -3,
+    },
+        
     '10-$round', // 10-9-8-7-6-5-4-3-2-1
+    {
+      start: 15,
+      rounds: 3,
+      step: -3,
+    },
+    
     '9-$round*2', // 9-7-5
+    {
+      start: 9,
+      rounds: 3,
+      step: -2
+    },
+    
     '($round+3)*3', // 3-6-9...etc
+    {
+      start: 3,
+      step: 3,
+    },
+    
     '10+$round*2', // 10-12-14..etc
+    {
+      start: 10,
+      step: 2,
+    }
   ]
 };
 

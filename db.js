@@ -6,6 +6,7 @@
 const r = require('rethinkdb');
 
 module.exports = class Model {
+  
   constructor(cb) {
     this.conn = null;
     const p = r.connect({db: 'wodmeup'});
@@ -37,17 +38,15 @@ module.exports = class Model {
                       return r.db('wodmeup').table('equipments').get(eqID)('name');
                     })};
                 })
-                , rx:{}, notes:[],
+                , rx:{},
               });
             })};
           },
           function(cluster) {
             return r.expr({timing: {type: 'NoTiming'}}).merge(cluster);
-          },
-          {notes:[]});
+          });
         })};
-      },
-      {notes: []});
+      });
     })
     // Cache equipments
     .map(function(workout) {
@@ -64,7 +63,22 @@ module.exports = class Model {
         }).distinct()
       });
     })
-    .orderBy('name');
+    .orderBy('name')
+    .filter(
+      function(workout) {
+        return r.expr([
+          // 'DEL',
+          // 'The Chief',
+          // 'Santora', // FixedUnits
+          // 'Open 15.5',
+          //  'Test 3' // FixedIntervals
+          // 'Open 14.4'// calories
+          // 'Open 14.2' // intervals
+          // 'Open 13.5' // intervals
+          'Dragon',
+        ]).contains(workout('name'));
+      }
+    );
 
     query.run(this.conn, (err, cursor) => {
       if (err) throw err;

@@ -47,10 +47,9 @@ p.then(function(conn) {
           console.log(result);
         });
       });
-      return;
     });
   });
-  
-}).error(function(err){
+})
+.error(function(err){
   console.log(err);
 });
