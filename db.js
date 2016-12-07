@@ -1,8 +1,3 @@
-/**
- * @flow
- */
-
-
 const r = require('rethinkdb');
 
 module.exports = class Model {
@@ -63,23 +58,7 @@ module.exports = class Model {
         }).distinct()
       });
     })
-    .orderBy('name')
-    // .filter(
-    //   function(workout) {
-    //     return r.expr([
-    //       //'The Chief',
-    //       //'Chelsea',
-    //       // 'Test 3',
-    //       // 'Open 14.2',
-    //       // 'Open 13.5',
-    //       'Santora', // FixedUnits
-    //       // 'Open 15.5',
-    //       // 'Open 14.4',// calories
-    //       // 'Dragon',
-    //     ]).contains(workout('name'));
-    //   }
-    // )
-    ;
+    .orderBy('name');
 
     query.run(this.conn, (err, cursor) => {
       if (err) throw err;
