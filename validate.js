@@ -17,7 +17,7 @@ const aspectSchema = {
     // Non-iterable
     'load', 'height', 'damping',
     // Iterable
-    'distance', 'reps', 'calories', 'rounds', 'time', 'intervals']
+    'distance', 'reps', 'calories', 'rounds', 'time', 'cycles']
 };
 
 const movementSchema = {
@@ -64,14 +64,14 @@ const NoTimingSchema = {
   }
 };
 
-const FixedIntervalsTimingSchema = {
-  'id': '/FixedIntervalsTiming',
+const FixedCyclesTimingSchema = {
+  'id': '/FixedCyclesTiming',
   'required': ['type'],
   'additionalProperties': false,
   'properties': {
     name: {type: 'string'},
-    type: {'enum': ['FixedIntervals']},
-    intervals: {type: 'integer'},
+    type: {'enum': ['FixedCycles']},
+    cycles: {type: 'integer'},
     deathBy: {type: 'boolean', 'default': false},
     time: {type: 'integer', 'default':60},
     rest: {type: 'integer', 'default':0},
@@ -177,12 +177,12 @@ const ClusterSchema = {
   'properties': {
     'name': {'type': 'string'},
     'rounds': {'type': 'integer', 'default': 1},
-    'restBetweenRounds': {'type': 'integer'},
+    'builtinRest': {'type': 'integer'},
     'notes': {type: 'array'},
     'timing': {
       'type': 'object',
       'oneOf': [
-        {'$ref': '/FixedIntervalsTiming'},
+        {'$ref': '/FixedCyclesTiming'},
         {'$ref': '/CappedTiming'},
         {'$ref': '/TimedUnitsTiming'},
         {'$ref': '/NoTiming'},
@@ -234,7 +234,7 @@ v.addSchema(aspectSchema, '/Aspect');
 v.addSchema(movementSchema, '/Movement');
 v.addSchema(equipmentSchema, '/Equipment');
 v.addSchema(ClusterSchema, '/Cluster');
-v.addSchema(FixedIntervalsTimingSchema, '/FixedIntervalsTiming');
+v.addSchema(FixedCyclesTimingSchema, '/FixedCyclesTiming');
 v.addSchema(CappedTimingSchema, '/CappedTiming');
 v.addSchema(TimedUnitsTimingSchema, '/TimedUnitsTiming');
 v.addSchema(NoTimingSchema, '/NoTiming');

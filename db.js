@@ -64,21 +64,22 @@ module.exports = class Model {
       });
     })
     .orderBy('name')
-    .filter(
-      function(workout) {
-        return r.expr([
-          // 'DEL',
-          // 'The Chief',
-          // 'Santora', // FixedUnits
-          // 'Open 15.5',
-          //  'Test 3' // FixedIntervals
-          // 'Open 14.4'// calories
-          // 'Open 14.2' // intervals
-          // 'Open 13.5' // intervals
-          'Dragon',
-        ]).contains(workout('name'));
-      }
-    );
+    // .filter(
+    //   function(workout) {
+    //     return r.expr([
+    //       //'The Chief',
+    //       //'Chelsea',
+    //       // 'Test 3',
+    //       // 'Open 14.2',
+    //       // 'Open 13.5',
+    //       'Santora', // FixedUnits
+    //       // 'Open 15.5',
+    //       // 'Open 14.4',// calories
+    //       // 'Dragon',
+    //     ]).contains(workout('name'));
+    //   }
+    // )
+    ;
 
     query.run(this.conn, (err, cursor) => {
       if (err) throw err;
