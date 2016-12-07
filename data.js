@@ -375,7 +375,7 @@ const workouts = [
     clusters: [{
       timing: {
         type: 'Capped',
-        timeCap: 1200
+        time: 1200
       },
       units: [{
         movementID: movements['/movement/pull-up'].id,
@@ -591,7 +591,7 @@ const workouts = [
     clusters: [{
       timing: {
         type: 'Capped', alias:'AMRAP 20 minutes',
-        timeCap: 1200,
+        time: 1200,
       },
       units: [{
         movementID: movements['/movement/handstand-push-up'].id,
@@ -736,7 +736,7 @@ const workouts = [
     clusters: [{
       timing: {
         type: 'Capped', alias:'AMRAP 20 minutes',
-        timeCap: 1200,
+        time: 1200,
       },
       units: [{
         movementID: movements['/movement/run'].id,
@@ -1003,7 +1003,7 @@ const workouts = [
     clusters: [{
       timing: {
         type: 'Capped',
-        timeCap: 25*60,
+        time: 25*60,
         alias:'AMRAP',
       },
       //'($round+3)*3',
@@ -1090,7 +1090,7 @@ const workouts = [
       name: 'Jeremy Wise',
       timing: {
         type: 'Capped', alias:'AMRAP 4 minutes',
-        timeCap: 240,
+        time: 240,
       },
       units: [{
         movementID: movements['/movement/snatch-hang-squat'].id,
@@ -1103,7 +1103,7 @@ const workouts = [
       name: 'Ben Wise',
       timing: {
         type: 'Capped', alias:'AMRAP 4 minutes',
-        timeCap: 240,
+        time: 240,
       },
       units: [{
         movementID: movements['/movement/clean-power'].id,
@@ -1116,7 +1116,7 @@ const workouts = [
       name: 'Beau Wise',
       timing: {
         type: 'Capped', alias:'AMRAP 4 minutes',
-        timeCap: 240,
+        time: 240,
       },
       units: [{
         movementID: movements['/movement/box-jump-over'].id,
@@ -1176,7 +1176,7 @@ const workouts = [
     clusters: [{
       timing: {
         type: 'Capped', alias:'AMRAP 10 minutes',
-        timeCap: 600
+        time: 600
       },
       units: [{
         movementID: movements['/movement/snatch'].id,
@@ -1218,7 +1218,7 @@ const workouts = [
       },
       timing: {
         type: 'Capped', alias:'AMRAP 7 minutes',
-        timeCap: 420,
+        time: 420,
       },
       units: [{
         movementID: movements['/movement/chest-to-bar'].id,
@@ -1246,7 +1246,7 @@ const workouts = [
     clusters: [{
       timing: {
         type: 'Capped', alias:'AMRAP 14 minutes',
-        timeCap: 1020,
+        time: 1020,
       },
       units: [{
         movementID: movements['/movement/row'].id,
@@ -1351,7 +1351,7 @@ const workouts = [
   //
   // *ref* find max load
   // *ref* confusing score
-  // *ref* timeCapped but not an AMPAP, actually as much load
+  // *ref* timeped but not an AMPAP, actually as much load
   {
     name: 'Dragon',
     scoring: 'load',
@@ -1365,7 +1365,7 @@ const workouts = [
     }, {
       timing: {
         type: 'Capped',
-        timeCap: 240,
+        time: 240,
       },
       units: [{
         movementID: movements['/movement/deadlift'].id,
@@ -1380,7 +1380,7 @@ const workouts = [
     }, {
       timing: {
         type: 'Capped',
-        timeCap: 240,
+        time: 240,
       },
       units: [{
         movementID: movements['/movement/push-jerk'].id,

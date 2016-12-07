@@ -81,12 +81,12 @@ const FixedCyclesTimingSchema = {
 
 const CappedTimingSchema = {
   'id': '/CappedTiming',
-  'required': ['type', 'timeCap'],
+  'required': ['type', 'time'],
   'additionalProperties': false,
   'properties': {
     name: {type: 'string'},
     type: {'enum': ['Capped']},
-    timeCap: {'type': 'integer'},
+    time: {'type': 'integer'},
     repeatable: {'type': 'boolean', 'default': false}
   }
 };
