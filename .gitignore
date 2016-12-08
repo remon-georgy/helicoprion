@@ -36,3 +36,6 @@ rethinkdb_data
 
 # Optional REPL history
 .node_repl_history
+
+# By Remon
+test.js

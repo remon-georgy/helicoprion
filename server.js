@@ -1,8 +1,3 @@
-/**
- * @flow
- */
-
-const r = require('rethinkdb');
 const express = require('express');
 const app = express();
 const Model = require('./db');
@@ -24,6 +19,21 @@ app.get('/workouts', function(req, res) {
     }
     model.getWorkouts((workouts) => {
       res.json(workouts);
+    });
+  });
+});
+
+app.get('/sync', function(req, res) {
+  const model = new Model((error) => {
+    if (error) {
+      console.error('error:', error);
+    }
+    model.getWorkouts((workouts) => {
+      let ret = {workouts: workouts};
+      model.getMovements((movements) => {
+        ret.movements = movements;
+        res.json(ret);
+      });
     });
   });
 });

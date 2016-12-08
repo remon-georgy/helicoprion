@@ -16,6 +16,16 @@ module.exports = class Model {
     });
   }
   
+  getMovements(cb) {
+    let query = r.db('wodmeup').table('movements').orderBy('name').pluck('name')('name');
+    query.run(this.conn, (err, cursor) => {
+      if (err) throw err;
+      cursor.toArray((err, result) => {
+        cb(result);
+      });
+    });
+  }
+
   getWorkouts(cb) {
     let query = r.db('wodmeup').table('workouts')
     // Cache movements
