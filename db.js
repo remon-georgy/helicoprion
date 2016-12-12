@@ -17,7 +17,7 @@ module.exports = class Model {
   }
   
   getMovements(cb) {
-    let query = r.db('wodmeup').table('movements').orderBy('name').pluck('name')('name');
+    let query = r.db('wodmeup').table('movements').orderBy('name').pluck(['id', 'name']);
     query.run(this.conn, (err, cursor) => {
       if (err) throw err;
       cursor.toArray((err, result) => {
