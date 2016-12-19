@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const Model = require('./db');
+const equipments = require('./data').equipments;
+const tags = require('./data').tags;
 
 app.use(function(req, res, next) {
   // Set permissive CORS header - this allows this server to be used only as
@@ -28,8 +30,12 @@ app.get('/sync', function(req, res) {
     if (error) {
       console.error('error:', error);
     }
+    let ret = {
+      tags: tags,
+      equipments: equipments,
+    };
     model.getWorkouts((workouts) => {
-      let ret = {workouts: workouts};
+      ret.workouts = workouts;
       model.getMovements((movements) => {
         ret.movements = movements;
         res.json(ret);

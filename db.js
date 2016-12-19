@@ -39,9 +39,10 @@ module.exports = class Model {
                 // TODO Merge to equipment instead.
                 .merge(function(movement) {
                   return {
-                    equipment: movement('equipment').map(function(eqID) {
-                      return r.db('wodmeup').table('equipments').get(eqID)('name');
-                    })};
+                    equipment:movement('equipment').map(function(eqID) {
+                      return eqID;
+                    })
+                  };
                 })
                 , rx:{},
               });
