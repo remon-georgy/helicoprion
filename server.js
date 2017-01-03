@@ -31,13 +31,15 @@ app.get('/sync', function(req, res) {
       console.error('error:', error);
     }
     let ret = {
-      tags: tags,
-      equipments: equipments,
+      filters: {
+        tags: tags,
+        equipments: equipments,
+      }
     };
     model.getWorkouts((workouts) => {
       ret.workouts = workouts;
       model.getMovements((movements) => {
-        ret.movements = movements;
+        ret.filters.movements = movements;
         res.json(ret);
       });
     });

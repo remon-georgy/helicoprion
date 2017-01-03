@@ -36,7 +36,6 @@ module.exports = class Model {
             return {'units': cluster('units').map(function(unit) {
               return unit.merge({
                 movement: r.db('wodmeup').table('movements').get(unit('movementID'))
-                // TODO Merge to equipment instead.
                 .merge(function(movement) {
                   return {
                     equipment:movement('equipment').map(function(eqID) {
