@@ -7,261 +7,261 @@
 // http://www.crossfit.com/cf-info/faq.html
 ///////////////////////////////////////////////////////////////////////
 const tags = [
-  { id: 'cfg-open',name: 'CrossFit Games Open' },
-  { id: 'girls', name: 'The Girls' },
-  { id: 'hero', name: 'The Heros' },
-  { id: 'competition', name: 'Competitions' },
+  { _id: 'cfg-open',name: 'CrossFit Games Open' },
+  { _id: 'girls', name: 'The Girls' },
+  { _id: 'hero', name: 'The Heros' },
+  { _id: 'competition', name: 'Competitions' },
 ];
 
 const equipments = [
-  { id: 'body-weight', name: 'Body-weight' },
-  { id: 'barbell', name: 'Barbell' },
-  { id: 'dumbbell', name: 'Dumbbell' },
-  { id: 'kettlebell', name: 'Kettlebell' },
-  { id: 'jump-rope', name: 'Jump Rope' },
-  { id: 'rope', name: 'Rope' },
-  { id: 'abmat', name: 'Abmat' },
-  { id: 'rings', name: 'Rings' },
-  { id: 'pull-up-rig', name: 'Pull-Up Rig' },
-  { id: 'box', name: 'Box' },
-  { id: 'bench', name: 'Bench' },
-  { id: 'rower', name: 'Rower' },
-  { id: 'sled', name: 'Sled' },
-  { id: 'yoke', name: 'Yoke' },
-  { id: 'tire', name: 'Tire' },
-  { id: 'parallettes', name: 'Parallettes' },
-  { id: 'plates', name: 'Plates' },
-  { id: 'rack', name: 'Rack' },
-  { id: 'elastic-band', name: 'Elastic Band' },
-  { id: 'medicine-ball', name: 'Medicine Ball' },
-  { id: 'weight-vest', name: 'Weight Vest' },
-  { id: 'ghd', name: 'GHD' },
-  { id: 'assault-bike', name: 'Assaut Bike' }
+  { _id: 'body-weight', name: 'Body-weight' },
+  { _id: 'barbell', name: 'Barbell' },
+  { _id: 'dumbbell', name: 'Dumbbell' },
+  { _id: 'kettlebell', name: 'Kettlebell' },
+  { _id: 'jump-rope', name: 'Jump Rope' },
+  { _id: 'rope', name: 'Rope' },
+  { _id: 'abmat', name: 'Abmat' },
+  { _id: 'rings', name: 'Rings' },
+  { _id: 'pull-up-rig', name: 'Pull-Up Rig' },
+  { _id: 'box', name: 'Box' },
+  { _id: 'bench', name: 'Bench' },
+  { _id: 'rower', name: 'Rower' },
+  { _id: 'sled', name: 'Sled' },
+  { _id: 'yoke', name: 'Yoke' },
+  { _id: 'tire', name: 'Tire' },
+  { _id: 'parallettes', name: 'Parallettes' },
+  { _id: 'plates', name: 'Plates' },
+  { _id: 'rack', name: 'Rack' },
+  { _id: 'elastic-band', name: 'Elastic Band' },
+  { _id: 'medicine-ball', name: 'Medicine Ball' },
+  { _id: 'weight-vest', name: 'Weight Vest' },
+  { _id: 'ghd', name: 'GHD' },
+  { _id: 'assault-bike', name: 'Assaut Bike' }
 ];
 
 const movements = {
-  '/movement/pull-up': {
-    'id': 'pull-up',
+  'pull-up': {
+    '_id': 'pull-up',
     'name': 'Pull-Up',
     'equipment': ['pull-up-rig'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/chest-to-bar': {
-    'id': 'chest-to-bar',
+  'chest-to-bar': {
+    '_id': 'chest-to-bar',
     'name': 'Chest-to-Bar Pull-up',
     'equipment': ['pull-up-rig'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/toes-to-bar': {
-    'id': 'toes-to-bar',
+  'toes-to-bar': {
+    '_id': 'toes-to-bar',
     'name': 'Toes-to-Bar',
     'equipment': ['pull-up-rig'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/push-up': {
-    'id': 'push-up',
+  'push-up': {
+    '_id': 'push-up',
     'name': 'Push-Up',
     'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/sit-up': {
-    'id': 'sit-up',
+  'sit-up': {
+    '_id': 'sit-up',
     'name': 'Sit-Up',
     'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/run': {
-    'id': 'run',
+  'run': {
+    '_id': 'run',
     'name': 'Run',
     'equipment': ['body-weight'],
     'aspects': ['distance', 'load'],
   },
-  '/movement/shuttle-sprint': {
-    'id': 'shuttle-sprint',
+  'shuttle-sprint': {
+    '_id': 'shuttle-sprint',
     'name': 'Shuttle Sprint',
     'equipment': ['body-weight'],
     'aspects': ['distance', 'load', 'reps'],
   },
-  '/movement/snatch': {
-    'id': 'snatch',
+  'snatch': {
+    '_id': 'snatch',
     'name': 'Snatch',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/push-jerk': {
-    'id': 'push-jerk',
+  'push-jerk': {
+    '_id': 'push-jerk',
     'name': 'Push Jerk',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/push-press': {
-    'id': 'push-press',
+  'push-press': {
+    '_id': 'push-press',
     'name': 'Push Press',
     'equipment': ['barbell'],
   },
-  '/movement/snatch-hang-squat': {
-    'id': 'snatch-hang-squat',
+  'snatch-hang-squat': {
+    '_id': 'snatch-hang-squat',
     'name': 'Hang Squat Snatch',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/clean': {
-    'id': 'clean',
+  'clean': {
+    '_id': 'clean',
     'name': 'Clean',
     'equipment': ['barbell', 'dumbbell', 'kettlebell', 'medicine-ball', 'plates'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/squat-air': {
-    'id': 'squat-air',
+  'squat-air': {
+    '_id': 'squat-air',
     'name': 'Air Squat',
     'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/squat-back': {
-    'id': 'squat-back',
+  'squat-back': {
+    '_id': 'squat-back',
     'name': 'Back Squat',
-    'parent': '/movement/squat',
+    'parent': 'squat',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/squat-overhead': {
-    'id': '/squat-overhead',
-    'parent': '/movement/squat',
+  'squat-overhead': {
+    '_id': 'squat-overhead',
+    'parent': 'squat',
     'name': 'Overhead Squat',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/squat-front': {
-    'id': 'squat-front',
-    'parent': '/movement/squat',
+  'squat-front': {
+    '_id': 'squat-front',
+    'parent': 'squat',
     'name': 'Front Squat',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/pistol': {
-    'id': 'pistol',
-    'parent': '/movement/squat',
+  'pistol': {
+    '_id': 'pistol',
+    'parent': 'squat',
     'name': 'Pistol',
     'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/clean-power': {
-    'id': 'clean-power',
+  'clean-power': {
+    '_id': 'clean-power',
     'name': 'Power Clean',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/deadlift': {
-    'id': 'deadlift',
+  'deadlift': {
+    '_id': 'deadlift',
     'name': 'Deadlift',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/bench-press': {
-    'id': 'bench-press',
+  'bench-press': {
+    '_id': 'bench-press',
     'name': 'Bench Press',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/handstand-push-up': {
-    'id': 'handstand-push-up',
+  'handstand-push-up': {
+    '_id': 'handstand-push-up',
     'name': 'Handstand Push-Up',
     'equipment': ['body-weight'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/ring-dip': {
-    'id': 'ring-dip',
+  'ring-dip': {
+    '_id': 'ring-dip',
     'name': 'Ring Dip',
     'equipment': ['rings'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/thruster': {
-    'id': 'thruster',
+  'thruster': {
+    '_id': 'thruster',
     'name': 'Thruster',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/clean-and-jerk': {
-    'id': 'clean-and-jerk',
+  'clean-and-jerk': {
+    '_id': 'clean-and-jerk',
     'name': 'Clean-and-Jerk',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/jerk': {
-    'id': 'jerk',
+  'jerk': {
+    '_id': 'jerk',
     'name': 'Jerk',
     'equipment': ['barbell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/kettlebell-swing': {
-    'id': 'kettlebell-swing',
+  'kettlebell-swing': {
+    '_id': 'kettlebell-swing',
     'name': 'Kettlebell Swing',
     'equipment': ['kettlebell'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/row': {
-    'id': 'row',
+  'row': {
+    '_id': 'row',
     'name': 'Row',
     'equipment': ['rower'],
     'aspects': ['distance', 'damping'],
   },
-  '/movement/wall-ball-shot': {
-    'id': 'wall-ball-shot',
+  'wall-ball-shot': {
+    '_id': 'wall-ball-shot',
     'name': 'Wall-Ball Shot',
     'equipment': ['medicine-ball'],
     'aspects': ['reps', 'load', 'height'],
   },
-  '/movement/jump-rope': {
-    'id': 'jump-rope',
+  'jump-rope': {
+    '_id': 'jump-rope',
     'name': 'Jump Rope',
     'equipment': ['jump-rope'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/jump-rope-du': {
-    'id': 'jump-rope-du',
+  'jump-rope-du': {
+    '_id': 'jump-rope-du',
     'name': 'Double-Under',
-    'parent': '/movement/jump-rope',
+    'parent': 'jump-rope',
     'equipment': ['jump-rope'],
     'aspects': ['reps', 'load'],
   },
-  '/movement/box-jump': {
-    'id': 'box-jump',
+  'box-jump': {
+    '_id': 'box-jump',
     'name': 'Box Jump',
     'equipment': ['box'],
     'aspects': ['reps', 'height'],
   },
-  '/movement/box-jump-over': {
-    'id': 'box-jump-over',
+  'box-jump-over': {
+    '_id': 'box-jump-over',
     'name': 'Box Jump Over',
     'equipment': ['box'],
     'aspects': ['reps', 'height'],
   },
-  '/movement/muscle-up': {
-    'id': 'muscle-up',
+  'muscle-up': {
+    '_id': 'muscle-up',
     'name': 'Muscle-Up',
     'equipment': ['rings'],
     'aspects': ['reps'],
   },
-  '/movement/burpee': {
-    'id': 'burpee',
+  'burpee': {
+    '_id': 'burpee',
     'name': 'Burpee',
     'equipment': ['body-weight'],
     'aspects': ['reps'],
   },
-  '/movement/burpee-over-bar': {
-    'id': 'burpee-over-bar',
+  'burpee-over-bar': {
+    '_id': 'burpee-over-bar',
     'name': 'Over the Bar Burpee',
     'equipment': ['body-weight'],
     'aspects': ['reps'],
   },
-  '/movement/burpee-facing-bar': {
-    'id': 'burpee-facing-bar',
+  'burpee-facing-bar': {
+    '_id': 'burpee-facing-bar',
     'name': 'Bar Facing Burpee',
     'equipment': ['body-weight'],
     'aspects': ['reps'],
   },
-  '/movement/rest': {
-    'id': 'rest',
+  'rest': {
+    '_id': 'rest',
     'name': 'Rest',
     'equipment': ['body-weight'],
     'aspects': ['time'],
@@ -283,16 +283,16 @@ const workouts = [
     clusters: [{
       'units': [
         {
-          movementID: movements['/movement/pull-up'].id,
+          movement: 'pull-up',
           rx: {reps: 100}
         }, {
-          movementID: movements['/movement/push-up'].id,
+          movement: 'push-up',
           rx: {reps: 100}
         }, {
-          movementID: movements['/movement/sit-up'].id,
+          movement: 'sit-up',
           rx: {reps: 100}
         }, {
-          movementID: movements['/movement/squat-air'].id,
+          movement: 'squat-air',
           rx: {reps: 100}
         }
       ]
@@ -315,16 +315,16 @@ const workouts = [
       rounds: 5,
       builtinRest: {value: 3, unit: 'mins', between: 'rounds'},
       units: [{
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: 20}
       },{
-        movementID: movements['/movement/push-up'].id,
+        movement: 'push-up',
         rx: {reps: 30}
       }, {
-        movementID: movements['/movement/sit-up'].id,
+        movement: 'sit-up',
         rx: {reps: 40}
       }, {
-        movementID: movements['/movement/squat-air'].id,
+        movement: 'squat-air',
         rx: {reps: 50}
       }]
     }]
@@ -349,13 +349,13 @@ const workouts = [
         // work: 60, // defaults to time
       },
       units: [{
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: 5}
       },{
-        movementID: movements['/movement/push-up'].id,
+        movement: 'push-up',
         rx: {reps: 10}
       }, {
-        movementID: movements['/movement/squat-air'].id,
+        movement: 'squat-air',
         rx: {reps: 15}
       }]
     }]
@@ -378,13 +378,13 @@ const workouts = [
         time: 1200
       },
       units: [{
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: 5}
       },{
-        movementID: movements['/movement/push-up'].id,
+        movement: 'push-up',
         rx: {reps: 10}
       }, {
-        movementID: movements['/movement/squat-air'].id,
+        movement: 'squat-air',
         rx: {reps: 15}
       }]
     }]
@@ -403,10 +403,10 @@ const workouts = [
     clusters: [{
       repScheme: [21, 15, 9],
       units: [{
-        movementID: movements['/movement/deadlift'].id,
+        movement: 'deadlift',
         rx: {'load': [225, 155], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/handstand-push-up'].id,
+        movement: 'handstand-push-up',
       }]
     }]
   },
@@ -424,10 +424,10 @@ const workouts = [
     clusters: [{
       repScheme: [21, 15, 9],
       units: [{
-        movementID: movements['/movement/clean'].id,
+        movement: 'clean',
         rx: {'load': [135, 95], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/ring-dip'].id,
+        movement: 'ring-dip',
       }]
     }]
   },
@@ -445,10 +445,10 @@ const workouts = [
     clusters: [{
       repScheme: [21, 15, 9],
       units: [{
-        movementID: movements['/movement/thruster'].id,
+        movement: 'thruster',
         rx: {'load': [95, 65], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
       }]
     }]
   },
@@ -464,7 +464,7 @@ const workouts = [
     tags: ['girls'],
     clusters: [{
       units: [{
-        movementID: movements['/movement/clean-and-jerk'].id,
+        movement: 'clean-and-jerk',
         rx: {'load': [135, 95], unit: 'lbs', reps: 30}
       }]
     }]
@@ -483,13 +483,13 @@ const workouts = [
     clusters: [{
       rounds: 3,
       units: [{
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance': 400, unit: 'meters'}
       }, {
-        movementID: movements['/movement/kettlebell-swing'].id,
+        movement: 'kettlebell-swing',
         rx: {'load': [53, 35], 'reps': 21, unit: 'lbs'}
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {'reps': 12}
       }]
     }]
@@ -506,7 +506,7 @@ const workouts = [
     tags: ['girls'],
     clusters: [{
       units: [{
-        movementID: movements['/movement/snatch'].id,
+        movement: 'snatch',
         rx: {'load': [135, 95], 'reps': 30, unit: 'lbs'}
       }]
     }]
@@ -523,13 +523,13 @@ const workouts = [
     tags: ['girls'],
     clusters: [{
       units: [{
-        movementID: movements['/movement/row'].id,
+        movement: 'row',
         rx: {'distance': 1000, unit: 'meters'}
       }, {
-        movementID: movements['/movement/thruster'].id,
+        movement: 'thruster',
         rx: {'load': 45, reps: 50, unit: 'lbs'}
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {'reps': 30}
       }]
     }]
@@ -544,7 +544,7 @@ const workouts = [
     tags: ['girls'],
     clusters: [{
       units: [{
-        movementID: movements['/movement/wall-ball-shot'].id,
+        movement: 'wall-ball-shot',
         rx: {reps: 150, load: [20, 14], unit: 'lbs'}
       }]
     }]
@@ -565,13 +565,13 @@ const workouts = [
     clusters: [{
       repScheme: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
       units: [{
-        movementID: movements['/movement/deadlift'].id,
+        movement: 'deadlift',
         rx: {'load': '1.5 * $BW'}
       }, {
-        movementID: movements['/movement/bench-press'].id,
+        movement: 'bench-press',
         rx: {'load': '$BW'}
       }, {
-        movementID: movements['/movement/clean'].id,
+        movement: 'clean',
         rx: {'load': '0.75 * $BW'}
       }]
     }]
@@ -594,13 +594,13 @@ const workouts = [
         time: 1200,
       },
       units: [{
-        movementID: movements['/movement/handstand-push-up'].id,
+        movement: 'handstand-push-up',
         rx: {reps: 5}
       }, {
-        movementID: movements['/movement/pistol'].id,
+        movement: 'pistol',
         rx: {reps: 10}
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: 15}
       }]
     }]
@@ -619,10 +619,10 @@ const workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance': 400, unit: 'meters'}
       }, {
-        movementID: movements['/movement/squat-overhead'].id,
+        movement: 'squat-overhead',
         rx: {reps: 15, load: [95, 65], unit: 'lbs'}
       }]
     }]
@@ -641,9 +641,9 @@ const workouts = [
     clusters: [{
       repScheme: [50, 40, 30, 20, 10],
       units: [{
-        movementID: movements['/movement/jump-rope-du'].id,
+        movement: 'jump-rope-du',
       }, {
-        movementID: movements['/movement/sit-up'].id,
+        movement: 'sit-up',
       }]
     }]
   },
@@ -662,13 +662,13 @@ const workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance': 800, unit: 'meters'}
       }, {
-        movementID: movements['/movement/kettlebell-swing'].id,
+        movement: 'kettlebell-swing',
         rx: {reps: 30, load: 2, unit: 'pood'}
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: 30}
       }]
     }]
@@ -688,13 +688,13 @@ const workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance': 400, unit: 'meters'}
       }, {
-        movementID: movements['/movement/box-jump'].id,
+        movement: 'box-jump',
         rx: {reps: 30, height: [24, 20], unit: 'inches'}
       }, {
-        movementID: movements['/movement/wall-ball-shot'].id,
+        movement: 'wall-ball-shot',
         rx: {reps: 30, load: [20, 14], unit: 'lbs'}
       }]
     }]
@@ -713,10 +713,10 @@ const workouts = [
     clusters: [{
       rounds: 5,
       units: [{
-        movementID: movements['/movement/bench-press'].id,
+        movement: 'bench-press',
         rx: {reps: '$AMRAP', load: '$BW'}
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: '$AMRAP'}
       }]
     }]
@@ -739,10 +739,10 @@ const workouts = [
         time: 1200,
       },
       units: [{
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance': 400, unit: 'meters'}
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: '$AMRAP'}
       }]
     }]
@@ -759,9 +759,9 @@ const workouts = [
     clusters: [{
       repScheme: [9, 7, 5],
       units: [{
-        movementID: movements['/movement/muscle-up'].id,
+        movement: 'muscle-up',
       }, {
-        movementID: movements['/movement/snatch'].id,
+        movement: 'snatch',
         rx: {load: [135, 95], unit: 'lbs'}
       }]
     }]
@@ -779,13 +779,13 @@ const workouts = [
     clusters: [{
       rounds: 3,
       units: [{
-        movementID: movements['/movement/row'].id,
+        movement: 'row',
         rx: {distance: 500, unit: 'meters'}
       }, {
-        movementID: movements['/movement/deadlift'].id,
+        movement: 'deadlift',
         rx: {reps: 12, 'load': '$BW'}
       }, {
-        movementID: movements['/movement/box-jump'].id,
+        movement: 'box-jump',
         rx: {reps: 21, height: [24, 20], unit: 'inches'}
       }]
     }]
@@ -803,7 +803,7 @@ const workouts = [
     clusters: [{
       repScheme: [15, 12, 9],
       units: [{
-        movementID: movements['/movement/clean-and-jerk'].id,
+        movement: 'clean-and-jerk',
         rx: {load: '$MAX'}
       }]
     }],
@@ -823,10 +823,10 @@ const workouts = [
     clusters: [{
       repScheme: [21, 15, 9, 9, 15, 21],
       units: [{
-        movementID: movements['/movement/deadlift'].id,
+        movement: 'deadlift',
         rx: {'load': [225, 155], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/burpee'].id,
+        movement: 'burpee',
       }]
     }]
   },
@@ -855,20 +855,20 @@ const workouts = [
         time: 60,
       },
       units: [{
-        movementID: movements['/movement/clean'].id,
+        movement: 'clean',
         rx: {reps: '1 minute ', load: 155, unit: 'lbs'}
       },{
-        movementID: movements['/movement/shuttle-sprint'].id,
+        movement: 'shuttle-sprint',
         rx: {reps: '1 minute '},
         notes: ['20 ft foward, 20 ft backwards = 1 rep'],
       }, {
-        movementID: movements['/movement/deadlift'].id,
+        movement: 'deadlift',
         rx: {reps: '1 minute ', load: 245, unit: 'lbs'}
       }, {
-        movementID: movements['/movement/burpee'].id,
+        movement: 'burpee',
         rx: {reps: '1 minute '}
       }, {
-        movementID: movements['/movement/jerk'].id,
+        movement: 'jerk',
         rx: {reps: '1 minute ', load: 155, unit: 'lbs'}
       }]
     }]
@@ -895,36 +895,36 @@ const workouts = [
     tags: ['hero'],
     clusters: [{
       units: [{
-        movementID: movements['/movement/burpee'].id,
+        movement: 'burpee',
         rx: {reps: 25},
       }, {
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance':400, unit: 'meters'},
         notes: ['20 lbs/14 lbs medicine ball']
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: 25},
         notes: ['20 lbs/15 lbs dumbbell']
       }, {
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance':400, unit: 'meters'},
         notes: ['20 lbs/14 lbs medicine ball']
       }, {
-        movementID: movements['/movement/handstand-push-up'].id,
+        movement: 'handstand-push-up',
         rx: {reps: 25},
       }, {
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance':400, unit: 'meters'},
         notes: ['20 lbs/14 lbs medicine ball']
       }, {
-        movementID: movements['/movement/chest-to-bar'].id,
+        movement: 'chest-to-bar',
         rx: {reps: 25},
       }, {
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {'distance':400, unit: 'meters'},
         notes: ['20 lbs/14 lbs medicine ball']
       }, {
-        movementID: movements['/movement/burpee'].id,
+        movement: 'burpee',
         rx: {reps: 25},
       }]
     }]
@@ -953,13 +953,13 @@ const workouts = [
         time: 180,
       },
       units: [{
-        movementID: movements['/movement/clean-power'].id,
+        movement: 'clean-power',
         rx: {reps: 3, load: [135, 95], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/push-up'].id,
+        movement: 'push-up',
         rx: {reps: 6}
       }, {
-        movementID: movements['/movement/squat-air'].id,
+        movement: 'squat-air',
         rx: {reps: 9}
       }, ]
     }]
@@ -978,10 +978,10 @@ const workouts = [
     clusters: [{
       repScheme: [27, 21, 15, 9],
       units: [{
-        movementID: movements['/movement/row'].id,
+        movement: 'row',
         rx: {reps:'./calories', unit: 'calories'}
       }, {
-        movementID: movements['/movement/thruster'].id,
+        movement: 'thruster',
         rx: {load: [95, 65], unit: 'lbs'}
       }]
     }]
@@ -1012,12 +1012,12 @@ const workouts = [
         step: 3,
       },
       units: [{
-        movementID: movements['/movement/thruster'].id,
+        movement: 'thruster',
         rx: {load: [95, 65], unit: 'lbs'},
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
       }, {
-        movementID: movements['/movement/burpee-over-bar'].id,
+        movement: 'burpee-over-bar',
       }]
     }]
   },
@@ -1041,21 +1041,21 @@ const workouts = [
     tags: ['hero'],
     clusters: [{
       units: [{
-        movementID: movements['/movement/row'].id,
+        movement: 'row',
         rx: {distance: 1000, unit: 'meters'}
       }]
     }, {
       rounds: 10,
       units: [{
-        movementID: movements['/movement/burpee-facing-bar'].id,
+        movement: 'burpee-facing-bar',
         rx: {reps: 7}
       }, {
-        movementID: movements['/movement/thruster'].id,
+        movement: 'thruster',
         rx: {reps: 3, load: [95, 65], unit: 'lbs'}
       }]
     }, {
       units: [{
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {distance: 1200, unit: 'meters'}
       }]
     }]
@@ -1093,10 +1093,10 @@ const workouts = [
         time: 240,
       },
       units: [{
-        movementID: movements['/movement/snatch-hang-squat'].id,
+        movement: 'snatch-hang-squat',
         rx: {load: [135, 95], reps: 5, unit: 'lbs'}
       }, {
-        movementID: movements['/movement/burpee-facing-bar'].id,
+        movement: 'burpee-facing-bar',
         rx: {reps: 10}
       }]
     }, {
@@ -1106,10 +1106,10 @@ const workouts = [
         time: 240,
       },
       units: [{
-        movementID: movements['/movement/clean-power'].id,
+        movement: 'clean-power',
         rx: {load: [135, 95], reps: 10, unit: 'lbs'}
       }, {
-        movementID: movements['/movement/pull-up'].id,
+        movement: 'pull-up',
         rx: {reps: 20}
       }]
     }, {
@@ -1119,10 +1119,10 @@ const workouts = [
         time: 240,
       },
       units: [{
-        movementID: movements['/movement/box-jump-over'].id,
+        movement: 'box-jump-over',
         rx: {reps: 15, height: [24, 20], unit: 'inches'}
       }, {
-        movementID: movements['/movement/wall-ball-shot'].id,
+        movement: 'wall-ball-shot',
         rx: {load: [20, 14], reps: 30, unit: 'lbs'}
       }]
     }]
@@ -1150,11 +1150,11 @@ const workouts = [
         cycles: 8,
       },
       units: [{
-        movementID: movements['/movement/squat-air'].id
+        movement: 'squat-air'
       }]
     }, {
       units: [{
-        movementID: movements['/movement/muscle-up'].id,
+        movement: 'muscle-up',
         rx: {reps: '$AMRAP'}
       }]
     }]
@@ -1179,16 +1179,16 @@ const workouts = [
         time: 600
       },
       units: [{
-        movementID: movements['/movement/snatch'].id,
+        movement: 'snatch',
         rx: {reps: 30, load: [75, 45], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/snatch'].id,
+        movement: 'snatch',
         rx: {reps: 30, load: [135, 75], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/snatch'].id,
+        movement: 'snatch',
         rx: {reps: 30, load: [165, 100], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/snatch'].id,
+        movement: 'snatch',
         rx: {reps: '$AMRAP', load: [210, 120], unit: 'lbs'}
       }]
     }]
@@ -1221,9 +1221,9 @@ const workouts = [
         time: 420,
       },
       units: [{
-        movementID: movements['/movement/chest-to-bar'].id,
+        movement: 'chest-to-bar',
       }, {
-        movementID: movements['/movement/thruster'].id,
+        movement: 'thruster',
         rx: {load: 100, unit: 'lbs'}
       }]
     }]
@@ -1249,19 +1249,19 @@ const workouts = [
         time: 1020,
       },
       units: [{
-        movementID: movements['/movement/row'].id,
+        movement: 'row',
         rx: {reps: './calories', calories: 60, unit: 'cal'}
       }, {
-        movementID: movements['/movement/toes-to-bar'].id,
+        movement: 'toes-to-bar',
         rx: {reps: 50}
       }, {
-        movementID: movements['/movement/wall-ball-shot'].id,
+        movement: 'wall-ball-shot',
         rx: {reps: 40, load: [20, 14], height: [10 ,9], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/clean'].id,
+        movement: 'clean',
         rx: {reps: 30, load: [135, 95], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/muscle-up'].id,
+        movement: 'muscle-up',
         rx: {reps: 20}
       }]
     }]
@@ -1304,10 +1304,10 @@ const workouts = [
         time: 180,
       },
       units: [{
-        movementID: movements['/movement/squat-overhead'].id,
+        movement: 'squat-overhead',
         rx: {load: [95, 65], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/chest-to-bar'].id,
+        movement: 'chest-to-bar',
       }]
     }]
   },
@@ -1333,10 +1333,10 @@ const workouts = [
         deathBy: true,
       },
       units: [{
-        movementID: movements['/movement/thruster'].id,
+        movement: 'thruster',
         rx: {reps: 15, load: [100, 65], unit: 'lbs'}
       }, {
-        movementID: movements['/movement/chest-to-bar'].id,
+        movement: 'chest-to-bar',
         rx: {reps: 15}
       }]
     }]
@@ -1359,7 +1359,7 @@ const workouts = [
     tags: ['hero'],
     clusters: [{
       units: [{
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {distance: 5, unit: 'km'}
       }]
     }, {
@@ -1368,13 +1368,13 @@ const workouts = [
         time: 240,
       },
       units: [{
-        movementID: movements['/movement/deadlift'].id,
+        movement: 'deadlift',
         rx: {load: '$4RM'},
         notes: ['Find 4 rep max'],
       }],
     }, {
       units: [{
-        movementID: movements['/movement/run'].id,
+        movement: 'run',
         rx: {distance: 5, unit: 'km'}
       }]
     }, {
@@ -1383,7 +1383,7 @@ const workouts = [
         time: 240,
       },
       units: [{
-        movementID: movements['/movement/push-jerk'].id,
+        movement: 'push-jerk',
         rx: {load: '$4RM'},
         notes: ['Find 4R rep max'],
       }],
