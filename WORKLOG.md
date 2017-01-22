@@ -26,6 +26,8 @@ could I use pouch-find to solve them all instead of messing with indexes?
 - [ ] Extract movements and equipments
 - [ ] Filter results by movement, equipment, and name
 - [ ] db auth
+- [ ] add all wods
+- then export db as json and add to git
 
 ### Use Couch as a backend!
 perhaps take it a step further and make sure all front end quries are Views

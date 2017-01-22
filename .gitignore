@@ -39,3 +39,4 @@ rethinkdb_data
 
 # By Remon
 test.js
+pouch-server-data
