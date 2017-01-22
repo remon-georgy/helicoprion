@@ -29,7 +29,6 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
-rethinkdb_data
 
 # Optional npm cache directory
 .npm
@@ -39,4 +38,4 @@ rethinkdb_data
 
 # By Remon
 test.js
-pouch-server-data
+pouch_files

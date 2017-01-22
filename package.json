@@ -4,16 +4,14 @@
   "description": "Workout analysis",
   "main": "index.js",
   "devDependencies": {
-    "babel-cli": "^6.18.0",
+    "babel-cli": "^6.22.2",
     "eslint": "^3.7.1",
-    "flow-bin": "^0.32.0",
-    "recli": "^0.2.4"
+    "flow-bin": "^0.32.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/nodemon/bin/nodemon.js server.js",
-    "import-data": "node ./import-data.js",
-    "pouch-start": "./node_modules/pouchdb-server/bin/pouchdb-server --config=config/pouch-server.json"
+    "start": "./node_modules/pouchdb-server/bin/pouchdb-server --config=config/pouch-server.json",
+    "import-data": "node ./import-data.js"
   },
   "repository": {
     "type": "git",
@@ -26,14 +24,12 @@
   },
   "homepage": "https://github.com/remon-georgy/helicoprion#readme",
   "dependencies": {
-    "babel-cli": "^6.22.2",
     "eslint": "^3.14.0",
     "express": "^4.14.0",
     "jsonschema": "^1.1.1",
     "lodash": "^4.17.4",
     "nodemon": "^1.11.0",
     "pouchdb": "^6.1.1",
-    "pouchdb-server": "^2.0.1",
-    "rethinkdb": "^2.3.3"
+    "pouchdb-server": "^2.0.1"
   }
 }

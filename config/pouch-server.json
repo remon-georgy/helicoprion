@@ -1,7 +1,7 @@
 {
   "couchdb": {
     "uuid": "ecd609c7-cd19-460e-bae6-e5eaf1097a84",
-    "database_dir": "pouch-server-data"
+    "database_dir": "pouch_files"
   },
   "httpd": {
     "bind_address": "0.0.0.0",

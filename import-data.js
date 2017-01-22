@@ -6,8 +6,8 @@ let equipmentsArray = require('./data').equipments;
 let tagsArray = require('./data').tags;
 let workoutsArray = require('./data').workouts;
 
-// TODO specify backend.
-const db = PouchDB('wodmeup');
+// TODO load backend config from config/pouch-server.json
+const db = PouchDB('http://0.0.0.0:9000/wodmeup');
 
 let movementsArray = _.values(movements);
 movementsArray = movementsArray.map((movement) => {
